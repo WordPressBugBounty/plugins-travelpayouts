@@ -1,0 +1,7 @@
+/*! DataTables 1.13.2
+ * ©2008-2023 SpryMedia Ltd - datatables.net/license
+ */
+
+/*! Responsive 2.4.0
+ * 2014-2022 SpryMedia Ltd - datatables.net/license
+ */

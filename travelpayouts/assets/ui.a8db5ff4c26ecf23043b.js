@@ -1,0 +1,1 @@
+"use strict";(self.travelpayoutsWpPlugin=self.travelpayoutsWpPlugin||[]).push([[522],{65418:(s,l,t)=>{t.r(l)}}]);
