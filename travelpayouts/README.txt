@@ -168,6 +168,9 @@ Sure. Our Help Desk is always available at [support.travelpayouts.com](https://s
 
 == Changelog ==
 
+= 1.1.21 =
+* Fixed issue with tables when they show no data
+
 = 1.1.20 =
 * Tutu tables fix
 

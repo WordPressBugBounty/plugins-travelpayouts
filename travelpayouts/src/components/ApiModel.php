@@ -52,7 +52,6 @@ abstract class ApiModel extends InjectedModel
         'headers' => [
             'Accept-Encoding' => 'gzip, deflate',
             'Accept-Language' => '*',
-            'Host' => 'suggest.travelpayouts.com',
             'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
         ],
     ];
@@ -161,13 +160,18 @@ abstract class ApiModel extends InjectedModel
     }
 
     /**
-     * @param $url
+     * @param string $url
      * @return bool|false|mixed|null
      * @see getRequestUrl()
      */
-    private function fetchRemoteContent($url)
+    private function fetchRemoteContent(string $url)
     {
         $this->addRequestUrl($url);
+        $this->clientOptions = ArrayHelper::mergeRecursive($this->clientOptions, [
+            'headers' => [
+                'Host' => parse_url($url, PHP_URL_HOST),
+            ],
+        ]);
 
         return $this->getHttpClient()->get($url)->json;
     }

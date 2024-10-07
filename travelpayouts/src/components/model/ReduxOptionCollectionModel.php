@@ -22,7 +22,11 @@ abstract class ReduxOptionCollectionModel extends OptionCollectionModel
     protected function getCollection()
     {
         $data = $this->redux->getOption($this->optionPath(), '[]');
-        return json_decode($data, true);
+        if (!is_null($data) && $data !== '') {
+            return json_decode($data, true);
+        }
+
+        return [];
     }
 
     protected function setCollection($value)
