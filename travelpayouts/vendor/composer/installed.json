@@ -68,9 +68,10 @@
             "dist": {
                 "type": "path",
                 "url": "../library/symfony/polyfill-mbstring",
-                "reference": "b9c88902358b93a106ac67d99350fd0711d63b77"
+                "reference": "78d499bb1e2af4c9c85ae719e1a584fbfc7c4da2"
             },
             "require": {
+                "ext-iconv": "*",
                 "php": ">=7.2"
             },
             "provide": {
@@ -235,12 +236,12 @@
         },
         {
             "name": "travelpayouts-apimatic/jsonmapper",
-            "version": "3.1.4",
-            "version_normalized": "3.1.4.0",
+            "version": "3.1.6",
+            "version_normalized": "3.1.6.0",
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-apimatic/jsonmapper",
-                "reference": "19d91281dee400452ee121ad9527daf322fcd5c6"
+                "reference": "4c43157842f9305a421f00fccdb8c98964e90170"
             },
             "require": {
                 "ext-json": "*",
@@ -487,19 +488,20 @@
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-doctrine/deprecations",
-                "reference": "d3f49f0dd0facd74b34ea730c6bcdc4d11dcbb58"
+                "reference": "d8b9be25ceb307e8aab368e8d133ba6b153eabc2"
             },
             "require": {
                 "php": "^7.1 || ^8.0"
             },
+            "conflict": {
+                "phpunit/phpunit": "<=7.5 || >=13"
+            },
             "require-dev": {
-                "doctrine/coding-standard": "^9",
-                "phpstan/phpstan": "1.4.10 || 1.10.15",
-                "phpstan/phpstan-phpunit": "^1.0",
-                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
-                "psalm/plugin-phpunit": "0.18.4",
-                "psr/log": "^1 || ^2 || ^3",
-                "vimeo/psalm": "4.30.0 || 5.12.0"
+                "doctrine/coding-standard": "^9 || ^12 || ^13",
+                "phpstan/phpstan": "1.4.10 || 2.1.11",
+                "phpstan/phpstan-phpunit": "^1.0 || ^2",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.6 || ^10.5 || ^11.5 || ^12",
+                "psr/log": "^1 || ^2 || ^3"
             },
             "suggest": {
                 "psr/log": "Allows logging deprecations via PSR-3 logger implementation"
@@ -508,7 +510,7 @@
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "Travelpayouts\\Vendor\\Doctrine\\Deprecations\\": "lib/Doctrine/Deprecations"
+                    "Travelpayouts\\Vendor\\Doctrine\\Deprecations\\": "src"
                 }
             },
             "autoload-dev": {
@@ -958,12 +960,12 @@
         },
         {
             "name": "travelpayouts-opis/closure",
-            "version": "dev-master",
-            "version_normalized": "dev-master",
+            "version": "3.x-dev",
+            "version_normalized": "3.9999999.9999999.9999999-dev",
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-opis/closure",
-                "reference": "3bd0b1fe7775a183ca7c61d0a07b9635d4f65abb"
+                "reference": "bbda4387365865966814d8a746e43b1d0bd6eac8"
             },
             "require": {
                 "php": "^5.4 || ^7.0 || ^8.0"
@@ -1073,11 +1075,11 @@
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-php-di/php-di",
-                "reference": "7aafbe6075f140063fe93ffb105cada513b03889"
+                "reference": "4ee81465f4944071fa1c7c250714888cf0def06a"
             },
             "require": {
                 "php": ">=7.2.0",
-                "travelpayouts-opis/closure": "dev-master",
+                "travelpayouts-opis/closure": "3.x-dev",
                 "travelpayouts-php-di/invoker": "2.0.0",
                 "travelpayouts-php-di/phpdoc-reader": "2.2.1",
                 "travelpayouts-psr/container": "1.1.x-dev"

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit536990c96d756c5e455c7387a24c84c8
+class ComposerStaticInitfb40b16fbeda7ee6d813a00f256ac6ea
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -140,7 +140,7 @@ class ComposerStaticInit536990c96d756c5e455c7387a24c84c8
         ),
         'Travelpayouts\\Vendor\\Doctrine\\Deprecations\\' => 
         array (
-            0 => __DIR__ . '/..' . '/travelpayouts-doctrine/deprecations/lib/Doctrine/Deprecations',
+            0 => __DIR__ . '/..' . '/travelpayouts-doctrine/deprecations/src',
         ),
         'Travelpayouts\\Vendor\\Doctrine\\Common\\Lexer\\' => 
         array (
@@ -200,9 +200,9 @@ class ComposerStaticInit536990c96d756c5e455c7387a24c84c8
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit536990c96d756c5e455c7387a24c84c8::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit536990c96d756c5e455c7387a24c84c8::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit536990c96d756c5e455c7387a24c84c8::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitfb40b16fbeda7ee6d813a00f256ac6ea::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitfb40b16fbeda7ee6d813a00f256ac6ea::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitfb40b16fbeda7ee6d813a00f256ac6ea::$classMap;
 
         }, null, ClassLoader::class);
     }

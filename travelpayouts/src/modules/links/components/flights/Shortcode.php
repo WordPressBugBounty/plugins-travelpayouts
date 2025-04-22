@@ -27,6 +27,8 @@ class Shortcode extends BaseLinkShortcode
      * @var string|bool
      */
     public $one_way = false;
+
+    public $new_tab = null;
     /**
      * @var string
      */

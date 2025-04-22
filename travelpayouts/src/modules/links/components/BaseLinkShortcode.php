@@ -23,7 +23,7 @@ abstract class BaseLinkShortcode extends ShortcodeModel
     /**
      * @var string
      */
-    public $new_tab = false;
+    public $new_tab = null;
     /**
      * @var string
      */
@@ -79,22 +79,34 @@ abstract class BaseLinkShortcode extends ShortcodeModel
      */
     protected function get_link_html($url)
     {
-        $newTab = true === filter_var(
-                $this->new_tab,
-                FILTER_VALIDATE_BOOLEAN
-            );
-
         $button_attributes = [
             'href' => UrlHelper::getInstance()->getUrl($url),
         ];
         $settingsModuleData = $this->settingsModule->data;
+        $settingsNewTab = true === filter_var(
+                $settingsModuleData->get('target_url'),
+                FILTER_VALIDATE_BOOLEAN
+            );
         if ($settingsModuleData->get('nofollow')) {
             $button_attributes['rel'] = 'nofollow';
         }
-        if ($settingsModuleData->get('target_url') || $newTab) {
+
+        if ($settingsNewTab) {
             $button_attributes['target'] = '_blank';
         }
 
+        if ($this->new_tab != null) {
+            $newTab = true === filter_var(
+                $this->new_tab,
+                FILTER_VALIDATE_BOOLEAN
+            );
+            if ($newTab) {
+                $button_attributes['target'] = '_blank';
+            } else {
+                unset($button_attributes['target']);
+            }
+        }
+        
         $button_attributes['class'] = TRAVELPAYOUTS_TEXT_DOMAIN . '-link';
 
         return Html::tag(

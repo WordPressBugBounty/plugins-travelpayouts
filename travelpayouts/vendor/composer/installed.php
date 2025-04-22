@@ -55,7 +55,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'b9c88902358b93a106ac67d99350fd0711d63b77',
+      'reference' => '78d499bb1e2af4c9c85ae719e1a584fbfc7c4da2',
     ),
     'symfony/polyfill-php80' => 
     array (
@@ -84,12 +84,12 @@
     ),
     'travelpayouts-apimatic/jsonmapper' => 
     array (
-      'pretty_version' => '3.1.4',
-      'version' => '3.1.4.0',
+      'pretty_version' => '3.1.6',
+      'version' => '3.1.6.0',
       'aliases' => 
       array (
       ),
-      'reference' => '19d91281dee400452ee121ad9527daf322fcd5c6',
+      'reference' => '4c43157842f9305a421f00fccdb8c98964e90170',
     ),
     'travelpayouts-brick/math' => 
     array (
@@ -125,7 +125,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'd3f49f0dd0facd74b34ea730c6bcdc4d11dcbb58',
+      'reference' => 'd8b9be25ceb307e8aab368e8d133ba6b153eabc2',
     ),
     'travelpayouts-doctrine/lexer' => 
     array (
@@ -183,12 +183,12 @@
     ),
     'travelpayouts-opis/closure' => 
     array (
-      'pretty_version' => 'dev-master',
-      'version' => 'dev-master',
+      'pretty_version' => '3.x-dev',
+      'version' => '3.9999999.9999999.9999999-dev',
       'aliases' => 
       array (
       ),
-      'reference' => '3bd0b1fe7775a183ca7c61d0a07b9635d4f65abb',
+      'reference' => 'bbda4387365865966814d8a746e43b1d0bd6eac8',
     ),
     'travelpayouts-php-di/invoker' => 
     array (
@@ -206,7 +206,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '7aafbe6075f140063fe93ffb105cada513b03889',
+      'reference' => '4ee81465f4944071fa1c7c250714888cf0def06a',
     ),
     'travelpayouts-php-di/phpdoc-reader' => 
     array (

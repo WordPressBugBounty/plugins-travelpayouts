@@ -168,6 +168,10 @@ Sure. Our Help Desk is always available at [support.travelpayouts.com](https://s
 
 == Changelog ==
 
+= 1.1.22 =
+* Fixed pagination in hotel tables
+* Fixed the "new_tab" option for links
+
 = 1.1.21 =
 * Fixed issue with tables when they show no data
 

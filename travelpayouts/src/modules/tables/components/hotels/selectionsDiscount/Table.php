@@ -226,7 +226,7 @@ class Table extends HotelTableShortcodeModel
     {
         $model = new LocationApiModel($this->apiModelOptions());
         $model->id = $this->city;
-        $model->limit = $this->number_results;
+        $model->limit = 100;
         $model->currency = $this->currency;
         $model->language = $this->locale;
         $model->type = $this->type_selections;

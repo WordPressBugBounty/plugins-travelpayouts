@@ -48,5 +48,5 @@
         "preferred-install": "dist",
         "sort-packages": true
     },
-    "version": "dev-master"
+    "version": "3.x-dev"
 }

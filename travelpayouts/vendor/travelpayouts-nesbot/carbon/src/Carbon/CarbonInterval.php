@@ -979,7 +979,7 @@ class CarbonInterval extends DateInterval implements CarbonConverterInterface
 
                 default:
                     throw new InvalidIntervalException(
-                        sprintf('Invalid part %s in definition %s', $part, $intervalDefinition)
+                        \sprintf('Invalid part %s in definition %s', $part, $intervalDefinition)
                     );
             }
         }
@@ -2328,7 +2328,7 @@ class CarbonInterval extends DateInterval implements CarbonConverterInterface
 
         $seconds = abs($interval->s);
         if ($microseconds && $interval->f > 0) {
-            $seconds = sprintf('%d.%06d', $seconds, abs($interval->f) * 1000000);
+            $seconds = \sprintf('%d.%06d', $seconds, abs($interval->f) * 1000000);
         }
 
         $time = array_filter([

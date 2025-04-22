@@ -25,7 +25,7 @@ return array(
     'Travelpayouts\\Vendor\\Invoker\\' => array($vendorDir . '/travelpayouts-php-di/invoker/src'),
     'Travelpayouts\\Vendor\\Glook\\YiiGrid\\' => array($vendorDir . '/travelpayouts-glook/yiigrid/src'),
     'Travelpayouts\\Vendor\\FastRoute\\' => array($vendorDir . '/travelpayouts-nikic/fast-route/src'),
-    'Travelpayouts\\Vendor\\Doctrine\\Deprecations\\' => array($vendorDir . '/travelpayouts-doctrine/deprecations/lib/Doctrine/Deprecations'),
+    'Travelpayouts\\Vendor\\Doctrine\\Deprecations\\' => array($vendorDir . '/travelpayouts-doctrine/deprecations/src'),
     'Travelpayouts\\Vendor\\Doctrine\\Common\\Lexer\\' => array($vendorDir . '/travelpayouts-doctrine/lexer/src'),
     'Travelpayouts\\Vendor\\Doctrine\\Common\\Annotations\\' => array($vendorDir . '/travelpayouts-doctrine/annotations/lib/Doctrine/Common/Annotations'),
     'Travelpayouts\\Vendor\\DI\\' => array($vendorDir . '/travelpayouts-php-di/php-di/src'),
