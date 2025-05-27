@@ -69,7 +69,7 @@ abstract class TableShortcode extends ShortcodeModel
     /**
      * @var string
      */
-    public $theme = '';
+    public $theme = 'default-theme';
 
     /**
      * @var boolean

@@ -3,7 +3,6 @@
 namespace Travelpayouts\modules\tables\components\settings;
 
 use Travelpayouts;
-use Travelpayouts\components\tables\style\InlineStyles;
 use Travelpayouts\helpers\StringHelper;
 
 /**
@@ -57,6 +56,10 @@ class CustomTableStylesSection extends Fields
     /**
      * @var string
      */
+    public $border_color;
+    /**
+     * @var string
+     */
     public $bg_body_hover;
     /**
      * @var string
@@ -105,6 +108,14 @@ class CustomTableStylesSection extends Fields
                 ->setRequired($requireForTableHeader),
             'customize_body' => $this->fieldInlineCheckbox()
                 ->setTitle(Travelpayouts::__('Customize table body')),
+            'text_body' => $this->fieldColor()
+                ->setTitle(Travelpayouts::__('Table body text color'))
+                ->setDefault('#6c7a87')
+                ->setRequired($requireForTableBody),
+            'border_color'=> $this->fieldColor()
+                ->setTitle(Travelpayouts::__('Table body border color'))
+                ->setDefault('#eaeaea')
+                ->setRequired($requireForTableBody),
             'bg_body_odd' => $this->fieldColor()
                 ->setTitle(Travelpayouts::__('Table body odd row background color'))
                 ->setDefault('#ffffff')
@@ -112,10 +123,6 @@ class CustomTableStylesSection extends Fields
             'bg_body_even' => $this->fieldColor()
                 ->setTitle(Travelpayouts::__('Table body even row background color'))
                 ->setDefault('#f5f6f9')
-                ->setRequired($requireForTableBody),
-            'text_body' => $this->fieldColor()
-                ->setTitle(Travelpayouts::__('Table body text color'))
-                ->setDefault('#6c7a87')
                 ->setRequired($requireForTableBody),
             'bg_body_hover' => $this->fieldColor()
                 ->setTitle(Travelpayouts::__('Table row hovered background color'))
@@ -166,100 +173,62 @@ class CustomTableStylesSection extends Fields
         return StringHelper::toBoolean($this->customize_buttons);
     }
 
-    /**
-     * @param string $prefixSelector
-     * @return InlineStyles
-     */
-    public function getInlineStyles($prefixSelector): InlineStyles
+    public function getCssVariables(): array
     {
-        $styles = InlineStyles::create($prefixSelector . '.' . self::CUSTOM_THEME);
+        $result = [];
 
-        // header styles
-        if ($this->getCustomizeHeader()) {
-            $styles->add(
-                'table thead tr th',
-                [
-                    'background' => $this->bg_header,
-                    'color' => $this->text_header,
-                ]
-            )
-                ->add(
-                    'table thead tr th:hover',
-                    [
-                        'background' => $this->bg_header_active,
-                        'color' => $this->text_header_active,
-                    ]
-                )->add(
-                    'table thead tr th.sorting_asc, table thead tr th.sorting_desc',
-                    [
-                        'background' => $this->bg_header_active,
-                        'color' => $this->text_header_active,
-                    ]
-                );
+        if($this->getCustomizeHeader()){
+            $result = array_merge($result, [
+                'tp-table-custom-header-bg' => $this->bg_header,
+                'tp-table-custom-header-color' => $this->text_header,
+                'tp-table-custom-header-active-bg' => $this->bg_header_active,
+                'tp-table-custom-header-active-color' => $this->text_header_active,
+            ]);
         }
 
-        // body styles
-        if ($this->getCustomizeBody()) {
-            $styles->add(
-                'table tbody tr',
-                [
-                    'background-color' => $this->bg_body_odd,
-                ]
-            )->add(
-                'table tbody tr:nth-child(2n)',
-                [
-                    'background-color' => $this->bg_body_even,
-                ]
-            )->add(
-                'table tbody tr:hover',
-                [
-                    'background-color' => $this->bg_body_hover,
-                ]
-            )->add(
-                'table tbody tr td',
-                [
-                    'color' => $this->text_body,
-                ]
-            )->add(
-                'table>tbody>tr>td:before',
-                [
-                    'background' => $this->bg_header . ' !important',
-                    'color' => $this->text_header . ' !important',
-                ]
-            );
+        if($this->getCustomizeBody()){
+            $result = array_merge($result, [
+                'tp-table-custom-body-bg-odd' => $this->bg_body_odd,
+                'tp-table-custom-body-bg-even' => $this->bg_body_even,
+                'tp-table-custom-body-color' => $this->text_body,
+                'tp-table-custom-body-bg-hover' => $this->bg_body_hover,
+                'tp-table-custom-body-border' => $this->border_color,
+            ]);
         }
 
-        // button and pagination buttons styles
-        if ($this->getCustomizeButtons()) {
-            $styles->add(
-                'table tbody tr td a.travelpayouts-table-button',
-                [
-                    'background-color' => $this->bg_button,
-                    'border-color' => $this->border_button,
-                    'color' => $this->text_button,
-                ]
-            )->add(
-                'table tbody tr td a.travelpayouts-table-button:hover',
-                [
-                    'background-color' => $this->bg_button_hover,
-                ]
-            )->add(
-                '.dataTables_paginate .paginate_button.current, .dataTables_paginate .paginate_button.current:hover, .dataTables_paginate .paginate_button:hover',
-                [
-                    'background-color' => $this->bg_button,
-                    'border-color' => $this->bg_button,
-                    'color' => $this->text_button,
-                ]
-            )->add(
-                '.dataTables_paginate .paginate_button',
-                [
-                    'background-color' => $this->bg_body_odd,
-                    'color' => $this->text_body,
-                ]
-            );
+        if($this->getCustomizeButtons()){
+            $result = array_merge($result, [
+                'tp-table-custom-button-bg' => $this->bg_button,
+                'tp-table-custom-button-bg-hover' => $this->bg_button_hover,
+                'tp-table-custom-button-border' => $this->border_button,
+                'tp-table-custom-button-color' => $this->text_button,
+            ]);
         }
 
-        return $styles;
+
+
+
+
+        return $result;
+    }
+
+    /**
+     *
+     * @return string|null
+     */
+    public function getStylesheets(): ?string
+    {
+        $variables = $this->getCssVariables();
+        if (!empty($variables)) {
+            $content = ":root{ \n";
+            foreach ($variables as $key => $value) {
+                $content .= "--$key: $value;\n";
+            }
+            $content .= "}\n";
+            return $content;
+        }
+
+        return null;
     }
 
     /**

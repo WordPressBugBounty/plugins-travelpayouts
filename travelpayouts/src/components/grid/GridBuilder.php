@@ -70,9 +70,9 @@ class GridBuilder extends InjectedModel
         $htmlOptions = [
             'class' => HtmlHelper::classNames([
                 'travel',
-                'tp-table__wrapper',
+                'tp-table-container',
                 $shortcodeModel->tableWrapperClassName,
-                StringHelper::toBoolean($shortcodeModel->scroll) ? 'tp-table__wrapper--scroll' : null,
+                StringHelper::toBoolean($shortcodeModel->scroll) ? 'tp-table--scroll' : null,
                 $shortcodeModel->theme,
             ]),
         ];
@@ -124,7 +124,7 @@ class GridBuilder extends InjectedModel
         $titleTag = $section->title_tag ?? 'H3';
         // сливаем опции из GridTitleStyleConfig, если существуют
         $attributes = array_merge([
-            'class' => 'tp-table__title',
+            'class' => 'tp-table-title',
         ], $customTitleHtmlProps);
         return HtmlHelper::tag($titleTag, $attributes, $title);
     }

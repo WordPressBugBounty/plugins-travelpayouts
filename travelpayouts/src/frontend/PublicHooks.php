@@ -100,12 +100,7 @@ class PublicHooks extends HookableObject
             ->addFilter('allowed_redirect_hosts', [$this, 'allowedRedirectHosts'])
             ->addAction('wp_footer', [$this->moneyScript, 'run']);
 
-        if (
-            $this->flightsSettings->theme === CustomTableStylesSection::CUSTOM_THEME ||
-            $this->hotelsSettings->theme === CustomTableStylesSection::CUSTOM_THEME
-        ) {
-            $hooksLoader->addAction('wp_head', [$this, 'appendCustomTableStyles']);
-        }
+        $hooksLoader->addAction('wp_head', [$this, 'appendCustomTableStyles']);
 
         if ($this->airtableDistribution->shouldAddScript()) {
             $hooksLoader->addAction('wp_head', [$this, 'addAnalyticsScript']);
@@ -146,10 +141,9 @@ class PublicHooks extends HookableObject
 
     public function appendCustomTableStyles()
     {
-        $inlineStyles = $this->customTableStyles->getInlineStyles('.tp-table__wrapper')->setSelectorPriority(4)
-            ->getResult();
-        if (!empty($inlineStyles)) {
-            echo HtmlHelper::tag('style', ['type' => 'text/css'], $inlineStyles, true);
+        $stylesheets = $this->customTableStyles->getStylesheets();
+        if ($stylesheets) {
+            echo HtmlHelper::tag('style', ['type' => 'text/css'], $stylesheets, true);
         }
     }
 

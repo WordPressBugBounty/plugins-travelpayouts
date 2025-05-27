@@ -22,7 +22,7 @@ class ColumnStarRating extends GridColumn
 
             return Html::tag(
                 'span',
-                ['class' => 'stars'],
+                ['class' => 'tp-table-stars'],
                 $content
             );
         }
