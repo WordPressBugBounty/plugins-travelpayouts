@@ -13,7 +13,7 @@ use Travelpayouts\Vendor\DI\Annotation\Inject;
 use Travelpayouts;
 use Travelpayouts\components\Assets;
 use Travelpayouts\components\assets\AssetEntry;
-use Travelpayouts\components\brands\Platforms;
+use Travelpayouts\components\brands\PlatformsEndpoint;
 use Travelpayouts\components\HookableObject;
 use Travelpayouts\components\HtmlHelper;
 use Travelpayouts\components\tables\enrichment\UrlHelper;
@@ -180,7 +180,7 @@ class PublicHooks extends HookableObject
 
     public function addPlatformsScript()
     {
-        $platforms = Platforms::getInstance();
+        $platforms = PlatformsEndpoint::getInstance();
 
         $scriptLink = $platforms->getScriptLink();
 

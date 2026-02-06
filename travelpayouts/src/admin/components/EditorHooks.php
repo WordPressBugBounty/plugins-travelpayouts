@@ -5,9 +5,9 @@
 
 namespace Travelpayouts\admin\components;
 use Travelpayouts\Vendor\DI\Annotation\Inject;
-use Travelpayouts\Vendor\Rollbar\RollbarLogger;
 use RuntimeException;
 use Travelpayouts\components\Assets;
+use Travelpayouts\components\Logger;
 use Travelpayouts\components\HookableObject;
 use Travelpayouts\components\LanguageHelper;
 use Travelpayouts\components\rest\controllers\GutenbergRestController;
@@ -25,9 +25,9 @@ class EditorHooks extends HookableObject
     protected $pluginName;
     /**
      * @Inject
-     * @var RollbarLogger
+     * @var Logger
      */
-    protected $rollbar;
+    protected $logger;
     /**
      * @Inject
      * @var Assets
@@ -131,7 +131,7 @@ class EditorHooks extends HookableObject
                 );
             }
         } catch (RuntimeException $exception) {
-            $this->rollbar->error($exception->getMessage());
+            $this->logger->error($exception->getMessage());
         }
     }
 
@@ -165,7 +165,7 @@ class EditorHooks extends HookableObject
             $this->assets->getAssetByName('admin-gutenberg-modal')
                 ->setInFooter(true)->enqueueStyle()->enqueueScript();
         } catch (RuntimeException $exception) {
-            $this->rollbar->error($exception->getMessage());
+            $this->logger->error($exception->getMessage());
         }
     }
 }

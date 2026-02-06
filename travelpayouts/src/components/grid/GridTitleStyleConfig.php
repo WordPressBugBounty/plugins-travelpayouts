@@ -58,7 +58,7 @@ class GridTitleStyleConfig extends BaseObject
             ]);
         }
         return [
-            'class'=> 'tp-table-title',
+            'class'=> 'tp-widget-table-title',
         ];
     }
 

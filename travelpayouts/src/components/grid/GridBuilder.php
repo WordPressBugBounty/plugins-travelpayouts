@@ -70,9 +70,9 @@ class GridBuilder extends InjectedModel
         $htmlOptions = [
             'class' => HtmlHelper::classNames([
                 'travel',
-                'tp-table-container',
+                'tp-widget-table-container',
                 $shortcodeModel->tableWrapperClassName,
-                StringHelper::toBoolean($shortcodeModel->scroll) ? 'tp-table--scroll' : null,
+                StringHelper::toBoolean($shortcodeModel->scroll) ? 'tp-widget-table--scroll' : null,
                 $shortcodeModel->theme,
             ]),
         ];
@@ -124,7 +124,7 @@ class GridBuilder extends InjectedModel
         $titleTag = $section->title_tag ?? 'H3';
         // сливаем опции из GridTitleStyleConfig, если существуют
         $attributes = array_merge([
-            'class' => 'tp-table-title',
+            'class' => 'tp-widget-table-title',
         ], $customTitleHtmlProps);
         return HtmlHelper::tag($titleTag, $attributes, $title);
     }
@@ -134,7 +134,7 @@ class GridBuilder extends InjectedModel
         $subtitle = $this->shortcodeModel->getGridSubtitle();
         return $subtitle && is_string($subtitle) ? HtmlHelper::tag(
             'div',
-            ['class' => 'tp-table-subtitle'],
+            ['class' => 'tp-widget-table-subtitle'],
             $subtitle
         ) : '';
     }
@@ -151,9 +151,9 @@ class GridBuilder extends InjectedModel
         $gridConfig = [
             'dataProvider' => $dataProvider,
             'columns' => $this->getGridColumns(),
-            'options'=>  ['class' => 'tp-table-grid'],
+            'options'=>  ['class' => 'tp-widget-table-grid'],
             'tableOptions' => [
-                'class' => 'tp-table',
+                'class' => 'tp-widget-table',
                 'data-options' => \json_encode(
                     [
                         'showPagination' => $shortcodeModel->getPaginate(),

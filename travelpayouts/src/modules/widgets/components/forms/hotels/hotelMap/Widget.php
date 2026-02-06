@@ -4,8 +4,8 @@
  */
 
 namespace Travelpayouts\modules\widgets\components\forms\hotels\hotelMap;
-use Travelpayouts\Vendor\DI\Annotation\Inject;
-use Travelpayouts\modules\widgets\components\BaseWidgetShortcodeModel;
+
+use Travelpayouts\modules\widgets\components\forms\hotels\HotelLookWidgetShortcodeModel;
 use Travelpayouts\modules\widgets\components\WidgetDimensionTrait;
 
 /**
@@ -14,7 +14,7 @@ use Travelpayouts\modules\widgets\components\WidgetDimensionTrait;
  * @property string $width
  * @property string $height
  */
-class Widget extends BaseWidgetShortcodeModel
+class Widget extends HotelLookWidgetShortcodeModel
 {
     use WidgetDimensionTrait;
 

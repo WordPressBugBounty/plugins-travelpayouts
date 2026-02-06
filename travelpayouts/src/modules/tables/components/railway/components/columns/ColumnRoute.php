@@ -17,7 +17,7 @@ class ColumnRoute extends GridColumn
         /** @var mixed|Station[] $value */
         $value = $this->getDataCellValue($model, $key, $index);
         if (is_array($value)) {
-            $delimiterElement = Html::tag('div', ['class' => 'TP-train-route__delimiter'], '&#8594;');
+            $delimiterElement = Html::tag('i', ['class' => 'tp-train-delimiter tp-i-tabler:arrow-right tp-text-base sm:tp-text-sm'], '');
             $result = [];
             foreach ($value as $stationIndex => $station) {
                 $isFirst = $stationIndex === 0;
@@ -27,9 +27,7 @@ class ColumnRoute extends GridColumn
                     'div',
                     [
                         'class' => Html::classNames([
-                            'TP-train-route__name',
-                            $station->type === Station::STATION_TYPE_MAIN ? 'TP-train-route__name--main' : null,
-                            $station->type === Station::STATION_TYPE_SECONDARY ? 'TP-train-route__name--secondary' : null,
+                            'tp-train-route-name sm:tp-whitespace-nowrap tp-leading-5',
                         ]),
                     ],
                     $station->getName()
@@ -45,7 +43,7 @@ class ColumnRoute extends GridColumn
                 $result[] = $this->renderStationWrapper($station, $stationElement, $isFirst, $isLast);
             }
 
-            return Html::tagArrayContent('div', ['class' => 'TP-train-routes'], $result);
+            return Html::tagArrayContent('div', ['class' => 'tp-train-routes tp-stack-2 tp-flex-wrap sm:tp-py-1 tp-flex-grow-1'], $result);
         }
 
         return null;
@@ -72,11 +70,11 @@ class ColumnRoute extends GridColumn
         return Html::tagArrayContent('div', [
             'class' =>
                 Html::classNames([
-                    'TP-train-route',
-                    $isFirst ? 'TP-train-route--first' : null,
-                    $isLast ? 'TP-train-route--last' : null,
-                    $station->type === Station::STATION_TYPE_MAIN ? 'TP-train-route--main' : null,
-                    $station->type === Station::STATION_TYPE_SECONDARY ? 'TP-train-route--secondary' : null,
+                    'tp-train-route tp-flex tp-items-center tp-gap-2 tp-flex-nowrap sm:tp-gap-1 tp-justify-between sm:tp-justify-start',
+                    $isFirst ? 'tp-train-route-first' : null,
+                    $isLast ? 'tp-train-route-last' : null,
+                    $station->type === Station::STATION_TYPE_MAIN ? 'tp-train-route-main' : null,
+                    $station->type === Station::STATION_TYPE_SECONDARY ? 'tp-train-route-secondary tp-opacity-60' : null,
                 ]),
         ],
             $content);

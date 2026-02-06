@@ -17,6 +17,10 @@ class ColumnPrice extends GridColumn
      */
     protected $currency;
 
+    public $contentOptions = [
+        'class' => 'tp-break-words tp-whitespace-nowrap',
+    ];
+
     protected function renderDataCellContent($model, $key, $index)
     {
         $value = $this->getDataCellValue($model, $key, $index);

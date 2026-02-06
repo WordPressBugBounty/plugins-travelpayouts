@@ -36,7 +36,7 @@ use Travelpayouts\modules\tables\components\settings\FlightsSettingsSection;
 abstract class FlightsShortcodeModel extends TableShortcode
 {
 
-    public $tableWrapperClassName = 'tp-table-flights';
+    public $tableWrapperClassName = 'tp-widget-table-flights';
     /**
      * @Inject
      * @var FlightsSettingsSection

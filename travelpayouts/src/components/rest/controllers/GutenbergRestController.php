@@ -7,6 +7,7 @@ namespace Travelpayouts\components\rest\controllers;
 
 use Travelpayouts\components\rest\actions\EditShortcodeAction;
 use Travelpayouts\components\rest\actions\GenerateShortcodeAction;
+use Travelpayouts\components\rest\actions\GetAccessTokenAction;
 use Travelpayouts\components\rest\actions\PreviewShortcodeAction;
 use Travelpayouts\components\rest\models\GutenbergModulesModel;
 use Travelpayouts\components\web\WpRestController;
@@ -93,7 +94,12 @@ class GutenbergRestController extends WpRestController
                 'shortcodeList' => $this->shortcodes,
                 'method' => 'POST',
                 'checkAccess' => [$this, 'isUserCanCreatePosts'],
-            ]
+            ],
+            'token' => [
+                'class' => GetAccessTokenAction::class,
+                'method' => 'GET',
+                'checkAccess' => [$this, 'isUserCanCreatePosts'],
+            ],
         ], $this->shortcodeActions());
     }
 

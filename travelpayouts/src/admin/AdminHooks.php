@@ -11,7 +11,6 @@
 namespace Travelpayouts\admin;
 
 use Exception;
-use Travelpayouts\Vendor\Rollbar\RollbarLogger;
 use Travelpayouts;
 use Travelpayouts\admin\components\DeactivationFeedback;
 use Travelpayouts\admin\components\EditorHooks;
@@ -21,11 +20,12 @@ use Travelpayouts\admin\partials\LandingPage;
 use Travelpayouts\admin\redux\extensions\SettingsImportField;
 use Travelpayouts\admin\redux\ReduxHooks;
 use Travelpayouts\components\Assets;
+use Travelpayouts\components\brands\PlatformsEndpoint;
+use Travelpayouts\components\Logger;
 use Travelpayouts\components\Menu;
 use Travelpayouts\components\notices\Notice;
 use Travelpayouts\components\notices\NoticeButton;
 use Travelpayouts\components\notices\Notices;
-use Travelpayouts\components\brands\Platforms;
 use Travelpayouts\components\Rights;
 use Travelpayouts\components\snowplow\Tracker;
 use Travelpayouts\includes\HooksLoader;
@@ -64,9 +64,9 @@ class AdminHooks extends Travelpayouts\components\HookableObject
 
     /**
      * @Inject
-     * @var RollbarLogger
+     * @var Logger
      */
-    public $rollbar;
+    public $logger;
 
     /**
      * @Inject
@@ -284,7 +284,7 @@ class AdminHooks extends Travelpayouts\components\HookableObject
             die(Travelpayouts::__('Insufficient access rights!'));
         }
 
-        if ($response = Platforms::getInstance()->getResponse()) {
+        if ($response = PlatformsEndpoint::getInstance()->getResponse()) {
             $response->deleteCache();
         }
 
@@ -560,7 +560,7 @@ class AdminHooks extends Travelpayouts\components\HookableObject
      */
     private function platformNotice()
     {
-        $platforms = Platforms::getInstance();
+        $platforms = PlatformsEndpoint::getInstance();
         if ($platforms->showSelectPlatformNotice()) {
             $this->notices->add(
                 Notice::create('account-platform-selected-notice')
@@ -583,7 +583,7 @@ class AdminHooks extends Travelpayouts\components\HookableObject
             $this->notices->add(
                 Notice::create('account-program-required-notice')
                     ->setTitle(Travelpayouts::__('Action is required!'))
-                    ->setDescription(Travelpayouts::__('Please join Aviasales and Hotellook programs with selected project in the partners dashboard to add this tool.'))
+                    ->setDescription(Travelpayouts::__('Please join Aviasales program with selected project in the partners dashboard to add this tool.'))
                     ->addButton(
                         NoticeButton::create(Travelpayouts::__('Activate programs'))
                             ->setType(NoticeButton::BUTTON_TYPE_PRIMARY)

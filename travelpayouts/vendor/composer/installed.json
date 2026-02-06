@@ -488,7 +488,7 @@
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-doctrine/deprecations",
-                "reference": "d8b9be25ceb307e8aab368e8d133ba6b153eabc2"
+                "reference": "fbf1e607e1f890a2297d3b99562df6418d0f7af5"
             },
             "require": {
                 "php": "^7.1 || ^8.0"
@@ -497,10 +497,10 @@
                 "phpunit/phpunit": "<=7.5 || >=13"
             },
             "require-dev": {
-                "doctrine/coding-standard": "^9 || ^12 || ^13",
-                "phpstan/phpstan": "1.4.10 || 2.1.11",
+                "doctrine/coding-standard": "^9 || ^12 || ^14",
+                "phpstan/phpstan": "1.4.10 || 2.1.30",
                 "phpstan/phpstan-phpunit": "^1.0 || ^2",
-                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.6 || ^10.5 || ^11.5 || ^12",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.6 || ^10.5 || ^11.5 || ^12.4",
                 "psr/log": "^1 || ^2 || ^3"
             },
             "suggest": {
@@ -683,90 +683,6 @@
                 "relative": true
             },
             "install-path": "../travelpayouts-league/plates"
-        },
-        {
-            "name": "travelpayouts-monolog/monolog",
-            "version": "1.x-dev",
-            "version_normalized": "1.9999999.9999999.9999999-dev",
-            "dist": {
-                "type": "path",
-                "url": "../library/travelpayouts-monolog/monolog",
-                "reference": "9e5102c4cbf47cbc711d0d241de3d78ffde3655f"
-            },
-            "require": {
-                "php": ">=5.3.0",
-                "travelpayouts-psr/log": "1.1.4"
-            },
-            "provide": {
-                "psr/log-implementation": "1.0.0"
-            },
-            "require-dev": {
-                "aws/aws-sdk-php": "^2.4.9 || ^3.0",
-                "doctrine/couchdb": "~1.0@dev",
-                "graylog2/gelf-php": "~1.0",
-                "php-amqplib/php-amqplib": "~2.4",
-                "php-console/php-console": "^3.1.3",
-                "phpstan/phpstan": "^0.12.59",
-                "phpunit/phpunit": "~4.5",
-                "ruflin/elastica": ">=0.90 <3.0",
-                "sentry/sentry": "^0.13",
-                "swiftmailer/swiftmailer": "^5.3|^6.0"
-            },
-            "suggest": {
-                "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
-                "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
-                "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
-                "ext-mongo": "Allow sending log messages to a MongoDB server",
-                "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
-                "mongodb/mongodb": "Allow sending log messages to a MongoDB server via PHP Driver",
-                "php-amqplib/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib",
-                "php-console/php-console": "Allow sending log messages to Google Chrome",
-                "rollbar/rollbar": "Allow sending log messages to Rollbar",
-                "ruflin/elastica": "Allow sending log messages to an Elastic Search server",
-                "sentry/sentry": "Allow sending log messages to a Sentry server"
-            },
-            "type": "library",
-            "installation-source": "dist",
-            "autoload": {
-                "psr-4": {
-                    "Travelpayouts\\Vendor\\Monolog\\": "src/Monolog"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Monolog\\": "tests/Monolog"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ],
-                "phpstan": [
-                    "vendor/bin/phpstan analyse"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jordi Boggiano",
-                    "email": "j.boggiano@seld.be",
-                    "homepage": "http://seld.be"
-                }
-            ],
-            "description": "Sends your logs to files, sockets, inboxes, databases and various web services",
-            "homepage": "http://github.com/Seldaek/monolog",
-            "keywords": [
-                "log",
-                "logging",
-                "psr-3"
-            ],
-            "transport-options": {
-                "symlink": false,
-                "relative": true
-            },
-            "install-path": "../travelpayouts-monolog/monolog"
         },
         {
             "name": "travelpayouts-nesbot/carbon",
@@ -1618,87 +1534,6 @@
                 "relative": true
             },
             "install-path": "../travelpayouts-ramsey/uuid"
-        },
-        {
-            "name": "travelpayouts-rollbar/rollbar",
-            "version": "v1.8.1",
-            "version_normalized": "1.8.1.0",
-            "dist": {
-                "type": "path",
-                "url": "../library/travelpayouts-rollbar/rollbar",
-                "reference": "9aa45c8fd24f62b454ef2a012770f6ab0f1506a5"
-            },
-            "require": {
-                "ext-curl": "*",
-                "travelpayouts-monolog/monolog": "1.x-dev",
-                "travelpayouts-psr/log": "1.1.4"
-            },
-            "require-dev": {
-                "codeclimate/php-test-reporter": "dev-master",
-                "mockery/mockery": "0.9.*",
-                "packfire/php5.3-compat": "*",
-                "phpmd/phpmd": "@stable",
-                "phpunit/phpunit": "4.8.*",
-                "squizlabs/php_codesniffer": "2.*"
-            },
-            "suggest": {
-                "fluent/logger": "Needed to use the 'fluent' handler for fluentd support",
-                "packfire/php5.3-compat": "for backward compatibility with PHP 5.3"
-            },
-            "type": "library",
-            "installation-source": "dist",
-            "autoload": {
-                "psr-4": {
-                    "Travelpayouts\\Vendor\\Rollbar\\": "src/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Rollbar\\": "tests/"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "phpunit --coverage-clover build/logs/clover.xml --testsuite 'Rollbar Test Suite'",
-                    "phpcs --standard=PSR1,PSR2 src tests"
-                ],
-                "fix": [
-                    "phpcbf --standard=PSR1,PSR2 src tests"
-                ],
-                "get-js-snippet": [
-                    "ROLLBAR_JS_TAG=$(curl -s https://api.github.com/repos/rollbar/rollbar.js/releases/latest | sed -n 's/\"tag_name\":.*\"\\(.*\\)\",/\\1/p' | sed 's/ *//'); curl -X GET https://raw.githubusercontent.com/rollbar/rollbar.js/$ROLLBAR_JS_TAG/dist/rollbar.snippet.js > data/rollbar.snippet.js"
-                ],
-                "performance": [
-                    "phpunit --coverage-clover build/logs/clover.xml --testsuite 'Rollbar Performance Test Suite'"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Rollbar, Inc.",
-                    "email": "support@rollbar.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Monitors errors and exceptions and reports them to Rollbar",
-            "homepage": "http://github.com/rollbar/rollbar-php",
-            "keywords": [
-                "debugging",
-                "errors",
-                "exceptions",
-                "logging",
-                "monitoring"
-            ],
-            "support": {
-                "email": "support@rollbar.com"
-            },
-            "transport-options": {
-                "symlink": false,
-                "relative": true
-            },
-            "install-path": "../travelpayouts-rollbar/rollbar"
         },
         {
             "name": "travelpayouts-snowplow/snowplow-tracker",

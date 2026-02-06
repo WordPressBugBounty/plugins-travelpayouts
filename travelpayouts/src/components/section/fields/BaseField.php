@@ -58,6 +58,11 @@ class BaseField extends Model
      */
     public $wrapField = true;
 
+    /**
+     * @var bool
+     */
+    public $hidden = false;
+
     public function init()
     {
         if (!$this->type) {
@@ -152,6 +157,26 @@ class BaseField extends Model
         return $this;
     }
 
+    /**
+     * @return bool
+     */
+    public function isHidden(): bool
+    {
+        return $this->hidden;
+    }
+
+    /**
+     * @param bool $hidden
+     * @return self
+     */
+    public function setHidden(bool $hidden): self
+    {
+        $this->hidden = $hidden;
+        return $this;
+    }
+
+
+
     public function fields()
     {
         return $this->attributes();
@@ -159,6 +184,10 @@ class BaseField extends Model
 
     public function result(): array
     {
+        if ($this->hidden) {
+            return [];
+        }
+
         return array_filter($this->toArray(), function ($value) {
             return !is_null($value);
         });

@@ -87,7 +87,7 @@ class Section extends ModuleSection
     {
         return [
             'title' => Travelpayouts::__('Fields\' labels'),
-            'icon' => 'tp-icon tp-admin-sidebar-icon tp-icon-translate',
+            'icon' => 'tp-i-tabler:language',
         ];
     }
 

@@ -10,11 +10,11 @@
  * @subpackage Travelpayouts/includes
  */
 use Travelpayouts\Vendor\League\Plates\Engine;
-use Travelpayouts\Vendor\Rollbar\RollbarLogger;
 use Travelpayouts\admin\AdminHooks;
 use Travelpayouts\components\Assets;
 use Travelpayouts\components\base\BasePluginCore;
 use Travelpayouts\components\base\cache\Cache;
+use Travelpayouts\components\Logger;
 use Travelpayouts\components\exceptions\TravelpayoutsException;
 use Travelpayouts\components\LanguageHelper;
 use Travelpayouts\components\Module;
@@ -82,9 +82,9 @@ class Travelpayouts extends BasePluginCore
 
     /**
      * @Inject
-     * @var RollbarLogger
+     * @var Logger
      */
-    public $rollbar;
+    public $logger;
 
     /**
      * @Inject

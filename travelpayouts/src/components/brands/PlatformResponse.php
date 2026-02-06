@@ -15,9 +15,22 @@ class PlatformResponse extends ApiResponseObject
     public $sources = [];
 
     /**
-     * @var string
+     * @var string|null
      */
     public $script_link;
+
+    /**
+     * @var string|null
+     */
+    public $script_domain;
+    /**
+     * @var string|null
+     */
+    public $widget_domain;
+    /**
+     * @var string|null
+     */
+    public $short_link_domain;
 
     /**
      * @Inject

@@ -24,7 +24,7 @@ class ColumnPrice extends GridColumn
             foreach ($value as $category) {
                 $result[] = $this->renderCategoryPrice($category);
             }
-            return Html::tagArrayContent('div', ['class' => 'TP-train-prices'], $result);
+            return Html::tagArrayContent('div', ['class' => 'tp-train-prices tp-stack-3 tp-flex-nowrap'], $result);
         }
         return null;
     }
@@ -45,9 +45,9 @@ class ColumnPrice extends GridColumn
 
     protected function renderCategoryPrice(ITrainCategory $model): string
     {
-        return Html::tagArrayContent('div', ['class' => 'TP-train-price'], [
-            Html::tag('div', ['class' => 'TP-train-price__type'], $model->getLabel()),
-            Html::tag('div', ['class' => 'TP-train-price__price'], PriceFormatter::getInstance()
+        return Html::tagArrayContent('div', ['class' => 'tp-train-price tp-flex tp-gap-2 tp-flex-nowrap '], [
+            Html::tag('div', ['class' => 'tp-train-price-type md:tp-min-w-[60px] tp-min-w-[100px] '], $model->getLabel()),
+            Html::tag('div', ['class' => 'tp-train-price-value tp-flex tp-gap-1 tp-flex-nowrap tp-whitespace-nowrap'], PriceFormatter::getInstance()
                 ->format($model->getValue(), 'rub')),
         ]);
     }

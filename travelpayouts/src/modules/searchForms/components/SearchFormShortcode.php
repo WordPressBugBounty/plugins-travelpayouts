@@ -17,6 +17,7 @@ use Travelpayouts\modules\searchForms\models\WidgetCode;
 use Travelpayouts\modules\searchForms\models\widgetCode\Direction;
 use Travelpayouts\modules\searchForms\models\widgetCode\HotelCity;
 use Travelpayouts\modules\searchForms\SearchFormSection;
+use Travelpayouts\modules\widgets\components\WidgetShortcode;
 
 /**
  * Class SearchShortcodes
@@ -266,7 +267,10 @@ JS;
 
         // Для новых форм возвращаем только скрипт
         if ($this->model->code_form) {
-            return $this->model->code_form;
+            $widgetShortcode = new WidgetShortcode([
+                'content' => $this->model->code_form,
+            ]);
+            return $widgetShortcode->render();
         }
 
         return '';

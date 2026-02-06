@@ -74,13 +74,13 @@ abstract class BaseLinkShortcode extends ShortcodeModel
 
     /**
      * Формирование ссылки из параметра url и настроек
-     * @param $url
+     * @param $href
      * @return string
      */
-    protected function get_link_html($url)
+    protected function createAnchorTag($href): string
     {
-        $button_attributes = [
-            'href' => UrlHelper::getInstance()->getUrl($url),
+        $buttonAttributes = [
+            'href' => $href,
         ];
         $settingsModuleData = $this->settingsModule->data;
         $settingsNewTab = true === filter_var(
@@ -88,11 +88,11 @@ abstract class BaseLinkShortcode extends ShortcodeModel
                 FILTER_VALIDATE_BOOLEAN
             );
         if ($settingsModuleData->get('nofollow')) {
-            $button_attributes['rel'] = 'nofollow';
+            $buttonAttributes['rel'] = 'nofollow';
         }
 
         if ($settingsNewTab) {
-            $button_attributes['target'] = '_blank';
+            $buttonAttributes['target'] = '_blank';
         }
 
         if ($this->new_tab != null) {
@@ -101,17 +101,17 @@ abstract class BaseLinkShortcode extends ShortcodeModel
                 FILTER_VALIDATE_BOOLEAN
             );
             if ($newTab) {
-                $button_attributes['target'] = '_blank';
+                $buttonAttributes['target'] = '_blank';
             } else {
-                unset($button_attributes['target']);
+                unset($buttonAttributes['target']);
             }
         }
         
-        $button_attributes['class'] = TRAVELPAYOUTS_TEXT_DOMAIN . '-link';
+        $buttonAttributes['class'] = TRAVELPAYOUTS_TEXT_DOMAIN . '-link';
 
         return Html::tag(
             'a',
-            $button_attributes,
+            $buttonAttributes,
             $this->text_link
         );
     }
@@ -121,10 +121,11 @@ abstract class BaseLinkShortcode extends ShortcodeModel
      */
     public function render()
     {
-        return $this->get_link_html($this->get_url());
+        $url = UrlHelper::getInstance()->getUrl($this->getUrl());
+        return $this->createAnchorTag($url);
     }
 
-    abstract protected function get_url();
+    abstract protected function getUrl(): ?string;
 
     public static function render_shortcode_static($attributes = [], $content = null, $tag = '')
     {

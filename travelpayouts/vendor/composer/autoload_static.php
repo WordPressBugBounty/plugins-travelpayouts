@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit0743874b47fdd43648cca1c1188656f5
+class ComposerStaticInit22528e66ae77a2d9100af4fc38c6bbb7
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -29,7 +29,6 @@ class ComposerStaticInit0743874b47fdd43648cca1c1188656f5
             'Travelpayouts\\Vendor\\Symfony\\Component\\Yaml\\' => 44,
             'Travelpayouts\\Vendor\\Symfony\\Component\\Translation\\' => 51,
             'Travelpayouts\\Vendor\\Snowplow\\Tracker\\' => 38,
-            'Travelpayouts\\Vendor\\Rollbar\\' => 29,
             'Travelpayouts\\Vendor\\Ramsey\\Uuid\\' => 33,
             'Travelpayouts\\Vendor\\Ramsey\\Collection\\' => 39,
             'Travelpayouts\\Vendor\\Psr\\Log\\' => 29,
@@ -38,7 +37,6 @@ class ComposerStaticInit0743874b47fdd43648cca1c1188656f5
             'Travelpayouts\\Vendor\\Psr\\Cache\\' => 31,
             'Travelpayouts\\Vendor\\PhpDocReader\\' => 34,
             'Travelpayouts\\Vendor\\Opis\\Closure\\' => 34,
-            'Travelpayouts\\Vendor\\Monolog\\' => 29,
             'Travelpayouts\\Vendor\\League\\Plates\\' => 35,
             'Travelpayouts\\Vendor\\Invoker\\' => 29,
             'Travelpayouts\\Vendor\\Glook\\YiiGrid\\' => 35,
@@ -82,10 +80,6 @@ class ComposerStaticInit0743874b47fdd43648cca1c1188656f5
         array (
             0 => __DIR__ . '/..' . '/travelpayouts-snowplow/snowplow-tracker/src',
         ),
-        'Travelpayouts\\Vendor\\Rollbar\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/travelpayouts-rollbar/rollbar/src',
-        ),
         'Travelpayouts\\Vendor\\Ramsey\\Uuid\\' => 
         array (
             0 => __DIR__ . '/..' . '/travelpayouts-ramsey/uuid/src',
@@ -117,10 +111,6 @@ class ComposerStaticInit0743874b47fdd43648cca1c1188656f5
         'Travelpayouts\\Vendor\\Opis\\Closure\\' => 
         array (
             0 => __DIR__ . '/..' . '/travelpayouts-opis/closure/src',
-        ),
-        'Travelpayouts\\Vendor\\Monolog\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/travelpayouts-monolog/monolog/src/Monolog',
         ),
         'Travelpayouts\\Vendor\\League\\Plates\\' => 
         array (
@@ -200,9 +190,9 @@ class ComposerStaticInit0743874b47fdd43648cca1c1188656f5
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit0743874b47fdd43648cca1c1188656f5::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit0743874b47fdd43648cca1c1188656f5::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit0743874b47fdd43648cca1c1188656f5::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit22528e66ae77a2d9100af4fc38c6bbb7::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit22528e66ae77a2d9100af4fc38c6bbb7::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit22528e66ae77a2d9100af4fc38c6bbb7::$classMap;
 
         }, null, ClassLoader::class);
     }

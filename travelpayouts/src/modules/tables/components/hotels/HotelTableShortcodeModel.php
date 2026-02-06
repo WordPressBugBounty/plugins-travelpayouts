@@ -7,6 +7,7 @@ namespace Travelpayouts\modules\tables\components\hotels;
 
 use Travelpayouts;
 use Travelpayouts\components\BaseObject;
+use Travelpayouts\components\brands\BrandSubscriptionService;
 use Travelpayouts\components\grid\columns\ColumnPrice;
 use Travelpayouts\components\rest\fields\Autocomplete;
 use Travelpayouts\components\rest\fields\SelectAsync;
@@ -48,7 +49,7 @@ abstract class HotelTableShortcodeModel extends TableShortcode
      */
     public $type_selections_label;
 
-    public $tableWrapperClassName = 'tp-table-hotels';
+    public $tableWrapperClassName = 'tp-widget-table-hotels';
 
     public function init()
     {
@@ -259,6 +260,11 @@ abstract class HotelTableShortcodeModel extends TableShortcode
                     'label' => '${label}',
                 ],
             ]);
+    }
+
+    public static function isActive(): bool
+    {
+        return BrandSubscriptionService::isHotelLookAvailable();
     }
 
 }

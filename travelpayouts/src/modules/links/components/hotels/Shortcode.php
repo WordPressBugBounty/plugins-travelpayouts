@@ -3,6 +3,7 @@
 namespace Travelpayouts\modules\links\components\hotels;
 
 use Travelpayouts;
+use Travelpayouts\components\brands\BrandSubscriptionService;
 use Travelpayouts\components\rest\fields\Autocomplete;
 use Travelpayouts\components\tables\enrichment\UrlHelper;
 use Travelpayouts\components\validators\CompareValidator;
@@ -63,7 +64,7 @@ class Shortcode extends BaseLinkShortcode
      * Формирования урл для отелей из параметров шорткода link
      * @return string
      */
-    protected function get_url()
+    protected function getUrl(): string
     {
         $marker = UrlHelper::get_marker(
             $this->accountModule->marker,
@@ -192,6 +193,13 @@ class Shortcode extends BaseLinkShortcode
                 'label' => '${cityName}, ${countryName} (${hotelsCount})',
             ],
         ])->setAllowClear(true);
+    }
+
+    public function render()
+    {
+        return BrandSubscriptionService::isHotelLookSubscribed() ?
+            parent::render()
+            : $this->createAnchorTag('#');
     }
 
 }

@@ -20,8 +20,8 @@ use Travelpayouts\interfaces\Arrayable;
 
 class GridColumn extends DataColumn
 {
-    public const COLUMN_NOWRAP_CLASSNAME = 'tp-table-cell--no-wrap';
-    public const TP_TABLE_CELL_NO_BREAK = 'tp-table-cell--no-break';
+    public const COLUMN_NOWRAP_CLASSNAME = 'tp-whitespace-nowrap';
+    public const TP_TABLE_CELL_NO_BREAK = 'tp-break-normal';
 
     /**
      * @var ColumnValuesCollection
@@ -150,8 +150,8 @@ class GridColumn extends DataColumn
         }
 
         Html::addCssClass($options, Html::classNames(array_filter([
-            'tp-table-cell',
-            $this->attribute ? Inflector::camel2id("tp-table-cell-$this->attribute") : null,
+            'tp-widget-table-cell',
+            $this->attribute ? Inflector::camel2id("tp-widget-table-cell-$this->attribute") : null,
             !$this->contentWrap ? self::COLUMN_NOWRAP_CLASSNAME : null,
             !$this->contentBreakWords ? self::TP_TABLE_CELL_NO_BREAK : null,
         ])));

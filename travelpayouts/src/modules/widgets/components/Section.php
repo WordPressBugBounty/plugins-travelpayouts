@@ -18,7 +18,7 @@ class Section extends ModuleSection
     {
         return [
             'title' => Travelpayouts::__('Widgets'),
-            'icon' => 'el el-tasks',
+            'icon' => 'tp-i-tabler:apps',
         ];
     }
 

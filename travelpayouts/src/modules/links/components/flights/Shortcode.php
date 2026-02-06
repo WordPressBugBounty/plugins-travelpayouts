@@ -82,7 +82,7 @@ class Shortcode extends BaseLinkShortcode
      * Формирования урл для авиа из параметров шорткода link
      * @return string
      */
-    protected function get_url()
+    protected function getUrl(): string
     {
         $departDate = $this->date_time_add_days($this->origin_date);
         $returnDate = $this->destination_date ? $this->date_time_add_days($this->destination_date) : null;

@@ -23,10 +23,10 @@ class TimeAndStopsColumn extends GridColumn
                 ->format($this->getStopsCount($model), $this->locale);
             return Html::tagArrayContent(
                     'div',
-                    ['class' => GridColumn::COLUMN_NOWRAP_CLASSNAME . ' tp-time'],
+                    ['class' => GridColumn::COLUMN_NOWRAP_CLASSNAME . ' tp-time tp-flex tp-items-center tp-gap-1'],
                     [
                         $model->depart_time,
-                        ' &#8594; ',
+                        '<i class="tp-i-tabler:arrow-right"></i>',
                         $model->arrival_time,
                         $model->arrival_day_indicator ? Html::tag('sup', ['class' => 'tp-indicator'], '+1') : null,
                     ]

@@ -103,7 +103,7 @@ if ( ! class_exists( 'Redux_Travelpayouts_Checkbox', false ) ) {
 
 				// Got the "Checked" status as "0" or "1" then insert it as the "value" option.
 				echo '<input type="hidden" class="checkbox-check" data-val="1" name="' . esc_attr( $this->field['name'] . $this->field['name_suffix'] ) . '" value="' . esc_attr( $this->value ) . '"/>';
-				echo '<input type="checkbox" id="' . esc_attr( $ident_1 ) . '" value="1" class="checkbox tp-checkbox tp-input tp-input tp-me-2' . esc_attr( $this->field['class'] ) . '" ' . checked( $this->value, '1', false ) . '/>';
+				echo '<input type="checkbox" id="' . esc_attr( $ident_1 ) . '" value="1" class="checkbox tp-checkbox tp-input tp-input tp-mr-2' . esc_attr( $this->field['class'] ) . '" ' . checked( $this->value, '1', false ) . '/>';
 
 				if ( ! empty( $this->field['label'] ) ) {
 					echo ' ' . esc_html( $this->field['label'] );

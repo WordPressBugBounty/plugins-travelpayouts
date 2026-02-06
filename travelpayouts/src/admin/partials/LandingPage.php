@@ -73,7 +73,7 @@ class LandingPage
     private function apiTokenUrl()
     {
         return $this->getUtmLink(
-            'https://www.travelpayouts.com/programs/100/tools/api',
+            'https://app.travelpayouts.com/profile/api-token',
             [
                 'utm_source' => 'wpplugin',
                 'utm_medium' => 'settings',

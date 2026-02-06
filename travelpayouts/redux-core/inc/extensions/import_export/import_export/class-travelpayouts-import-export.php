@@ -74,13 +74,13 @@ if ( ! class_exists( 'Redux_Travelpayouts_Import_Export', false ) ) {
 
 			$id = $this->parent->args['opt_name'] . '-' . $this->field['id'];
 			?>
-			<div><h5 class='tp-fs-5 tp-mt-0 tp-mb-3'><?php esc_html_e('Import Options', 'redux-framework'); ?></h5>
+			<div><h5 class='tp-text-sm tp-mt-0 tp-mb-3'><?php esc_html_e('Import Options', 'redux-framework'); ?></h5>
 				<?= \Travelpayouts\admin\redux\ReduxOptions::alert(esc_html(apply_filters('redux-import-warning', esc_html__('WARNING! This will overwrite all existing option values, please proceed with caution!', TRAVELPAYOUTS_TEXT_DOMAIN))), ['class' => 'tp-alert--error'], '⚠') ?>
 				<div class='tp-mt-3'>
 					<a
 						href="javascript:void(0);"
 						id="redux-import-code-button"
-						class="tp-button tp-button--secondary tp-me-2">
+						class="tp-button tp-button--secondary tp-mr-2">
 						<?php esc_html_e('Import from File', 'redux-framework'); ?>
 					</a>
 

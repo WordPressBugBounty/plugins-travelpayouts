@@ -97,7 +97,7 @@ class PlatformSelectField extends SortByField
             }
 
             $sortable = (isset($this->field['sortable']) && $this->field['sortable']) ? ' select2-sortable"' : "";
-
+            echo '<div class="tp-flex tp-items-center tp-gap-4">';
             echo '<select ' . $multi . ' id="' . $this->field['id'] . '-select" data-placeholder="' . $placeholder . '" name="' . $this->field['name'] . $this->field['name_suffix'] . $nameBrackets . '" class="tp-select redux-select-item ' . $this->field['class'] . $sortable . '"' . $width . ' rows="6">';
 
             foreach ($this->field['options'] as $k => $v) {
@@ -118,7 +118,8 @@ class PlatformSelectField extends SortByField
             }
 
             echo '</select>';
-            echo '<span class="travelpayouts-reload-platforms-data tp-button tp-button--secondary" style="margin-left: 15px;"><i class="el el-refresh"></i></span>';
+            echo '<span class="travelpayouts-reload-platforms-data tp-button tp-button--secondary"><i class="tp-i-tabler:refresh"></i></span>';
+            echo '</div>';
         } else {
             echo '<strong>' . Travelpayouts::__('No items of this type were found.') . '</strong>';
         }

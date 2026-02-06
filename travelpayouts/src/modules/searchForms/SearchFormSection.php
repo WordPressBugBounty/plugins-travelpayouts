@@ -19,7 +19,7 @@ class SearchFormSection extends ModuleSection
     {
         return [
             'title' => Travelpayouts::__('Search forms'),
-            'icon' => 'el el-search',
+            'icon' => 'tp-i-tabler:device-tablet-search',
         ];
     }
 

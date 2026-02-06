@@ -3,6 +3,7 @@
 namespace Travelpayouts\modules\tables\components\columnTitles;
 use Travelpayouts\Vendor\DI\Annotation\Inject;
 use Travelpayouts;
+use Travelpayouts\components\brands\BrandSubscriptionService;
 use Travelpayouts\components\Controller as BaseController;
 use Travelpayouts\components\LanguageHelper;
 use Travelpayouts\components\tables\BaseColumnLabels;
@@ -38,6 +39,8 @@ class Controller extends BaseController
 
         if ($localeId) {
             $supportedLocales = $this->translator->getLocaleNames();
+            $isHoteLookSubscribed = BrandSubscriptionService::isHotelLookAvailable();
+
             if (isset($supportedLocales[$localeId])) {
                 $this->response(true, [
                     [
@@ -46,7 +49,9 @@ class Controller extends BaseController
                     ],
                     [
                         'label' => Travelpayouts::__('Hotels column titles'),
-                        'data' => $this->getColumnLabelsByLocaleName(HotelLabels::getInstance(), $localeId),
+                        'data' => $isHoteLookSubscribed ?
+                            $this->getColumnLabelsByLocaleName(HotelLabels::getInstance(), $localeId)
+                            : [],
                     ],
                     [
                         'label' => Travelpayouts::__('Railways column titles'),

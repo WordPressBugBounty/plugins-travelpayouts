@@ -31,8 +31,9 @@ class InputWithVariablesInDescription extends Input
             $result[] = HtmlHelper::tagArrayContent('div', [
                 'class' => HtmlHelper::classNames([
                     'tp-align-items-center',
-                    'tp-d-flex',
+                    'tp-flex',
                     'tp-mt-2',
+                    'tp-gap-2'
                 ]),
             ],
                 [
@@ -42,10 +43,10 @@ class InputWithVariablesInDescription extends Input
                                 'tp-badge',
                                 'tp-badge--primary',
                                 'tp-font-rubik',
-                                'tp-fs-em-6',
+                                'tp-text-xs',
                             ]),
                     ], '{' . $variableName . '}'),
-                    HtmlHelper::tag('div', ['class' => HtmlHelper::classNames(['tp-ms-2','tp-fs-em-7','tp-text--black'])], $variableLabel),
+                    HtmlHelper::tag('div', ['class' => HtmlHelper::classNames(['tp-text--black'])], $variableLabel),
                 ]);
         }
         return $result;
@@ -56,7 +57,7 @@ class InputWithVariablesInDescription extends Input
         if (!empty($this->variables)) {
             return HtmlHelper::tagArrayContent('div',
                 [
-                    'class' => 'tp-input-with-tags__variables-list',
+                    'class' => 'tp-input-with-tags__variables-list tp-stack-3',
                 ], array_merge([
                     HtmlHelper::tag('div', [
                         'class' => HtmlHelper::classNames(['tp-font-rubik', 'tp-fs-em-7','tp-text--black']),

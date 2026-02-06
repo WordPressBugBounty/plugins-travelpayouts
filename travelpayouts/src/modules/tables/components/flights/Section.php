@@ -24,7 +24,7 @@ class Section extends ModuleSection
     {
         return [
             'title' => Travelpayouts::__('Flights'),
-            'icon' => 'el el-plane',
+            'icon' => 'tp-i-tabler:plane',
         ];
     }
 

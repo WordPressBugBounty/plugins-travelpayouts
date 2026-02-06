@@ -8,6 +8,8 @@ namespace Travelpayouts\modules\tables\components\hotels;
 
 use Travelpayouts;
 use Travelpayouts\admin\redux\base\ModuleSection;
+use Travelpayouts\components\brands\BrandSubscriptionService;
+use Travelpayouts\components\brands\CampaignsSubscriptionsEndpoint;
 use Travelpayouts\components\dictionary\Campaigns;
 
 class Section extends ModuleSection
@@ -24,7 +26,7 @@ class Section extends ModuleSection
     {
         return [
             'title' => Travelpayouts::__('Hotels'),
-            'icon' => 'el el-home',
+            'icon' => 'el el-home'
         ];
     }
 
@@ -34,5 +36,10 @@ class Section extends ModuleSection
     public function optionPath(): string
     {
         return 'hotels';
+    }
+
+    public static function isActive(): bool
+    {
+        return BrandSubscriptionService::isHotelLookAvailable();
     }
 }

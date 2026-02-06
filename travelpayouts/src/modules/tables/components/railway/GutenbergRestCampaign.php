@@ -6,7 +6,7 @@
 namespace Travelpayouts\modules\tables\components\railway;
 use Travelpayouts\Vendor\DI\Annotation\Inject;
 use Travelpayouts\components\rest\models\BaseGutenbergRestCampaign;
-use Travelpayouts\components\brands\Subscriptions;
+use Travelpayouts\components\brands\CampaignsSubscriptionsEndpoint;
 
 class GutenbergRestCampaign extends BaseGutenbergRestCampaign
 {
@@ -21,7 +21,7 @@ class GutenbergRestCampaign extends BaseGutenbergRestCampaign
      */
     protected function campaignId()
     {
-        return Subscriptions::TP_TUTU_ID;
+        return CampaignsSubscriptionsEndpoint::TP_TUTU_ID;
     }
 
     public function isActive(): bool

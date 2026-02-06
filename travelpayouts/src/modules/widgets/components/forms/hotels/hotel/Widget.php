@@ -4,11 +4,11 @@
  */
 
 namespace Travelpayouts\modules\widgets\components\forms\hotels\hotel;
-use Travelpayouts\Vendor\DI\Annotation\Inject;
-use Travelpayouts\modules\widgets\components\BaseWidgetShortcodeModel;
+
+use Travelpayouts\modules\widgets\components\forms\hotels\HotelLookWidgetShortcodeModel;
 use Travelpayouts\modules\widgets\components\WidgetDimensionTrait;
 
-class Widget extends BaseWidgetShortcodeModel
+class Widget extends HotelLookWidgetShortcodeModel
 {
     use WidgetDimensionTrait;
 

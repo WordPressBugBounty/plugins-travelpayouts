@@ -6,11 +6,12 @@
 namespace Travelpayouts\modules\tables\components\railway\components\columns;
 
 use Travelpayouts\components\grid\columns\GridColumn;
-use Travelpayouts\components\HtmlHelper;
 use Travelpayouts\components\HtmlHelper as Html;
 
 class ColumnTrainNumber extends GridColumn
 {
+    public $contentOptions = [];
+
     /**
      * @var string
      */
@@ -18,7 +19,7 @@ class ColumnTrainNumber extends GridColumn
 
     public function init()
     {
-        HtmlHelper::addCssClass($this->headerOptions, HtmlHelper::classNames([
+        Html::addCssClass($this->headerOptions, Html::classNames([
             'no-sort',
         ]));
     }
@@ -28,10 +29,11 @@ class ColumnTrainNumber extends GridColumn
         $value = $this->getDataCellValue($model, $key, $index);
         if (is_string($value)) {
             $trainName = $this->getTrainName($model);
-            return implode('', array_filter([
-                Html::tag('div', ['class' => 'TP-train-number'], $value),
-                $trainName ? Html::tag('div', ['class' => 'TP-train-name'], '"' . $trainName . '"') : null,
-            ]));
+
+            return Html::tagArrayContent('div', ['class' => 'tp-train-data tp-stack-2'], [
+                Html::tag('div', ['class' => 'train-train-number'], $value),
+                $trainName ? Html::tag('div', ['class' => 'train-train-name'], '"' . $trainName . '"') : null,
+            ]);
         }
 
         return null;

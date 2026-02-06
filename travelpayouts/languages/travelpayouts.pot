@@ -2,9 +2,9 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Travelpayouts 1.1.21\n"
+"Project-Id-Version: Travelpayouts 1.2.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/tp_wp_last_hope\n"
-"POT-Creation-Date: 2025-05-15 11:15:56+00:00\n"
+"POT-Creation-Date: 2025-10-24 14:00:35+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -109,8 +109,8 @@ msgstr ""
 
 #: src/admin/AdminHooks.php:586
 msgid ""
-"Please join Aviasales and Hotellook programs with selected project in the "
-"partners dashboard to add this tool."
+"Please join Aviasales program with selected project in the partners "
+"dashboard to add this tool."
 msgstr ""
 
 #: src/admin/AdminHooks.php:588
@@ -123,7 +123,7 @@ msgstr ""
 
 #: src/admin/components/elementor/ElementorWidget.php:81
 #: src/components/rest/models/GutenbergModulesModel.php:48
-#: src/modules/settings/SettingsForm.php:144
+#: src/modules/settings/SettingsForm.php:145
 #: src/modules/tables/components/settings/SettingsSection.php:21
 msgid "Settings"
 msgstr ""
@@ -164,7 +164,7 @@ msgid "Full"
 msgstr ""
 
 #: src/admin/redux/ReduxOptions.php:145
-#: src/modules/settings/SettingsForm.php:230
+#: src/modules/settings/SettingsForm.php:235
 msgid "Compact"
 msgstr ""
 
@@ -595,7 +595,7 @@ msgid "Delete"
 msgstr ""
 
 #: src/admin/redux/extensions/linksForms/LinksForms.php:137
-#: src/modules/settings/SettingsForm.php:259
+#: src/modules/settings/SettingsForm.php:264
 msgid "Add the nofollow attribute"
 msgstr ""
 
@@ -612,7 +612,7 @@ msgstr ""
 msgid "Select an item"
 msgstr ""
 
-#: src/admin/redux/extensions/platformSelect/PlatformSelectField.php:123
+#: src/admin/redux/extensions/platformSelect/PlatformSelectField.php:124
 #: src/admin/redux/extensions/sortBy/SortByField.php:141
 msgid "No items of this type were found."
 msgstr ""
@@ -872,11 +872,11 @@ msgstr ""
 msgid "Chunk with name \"{name}\" not found in \"{path}\""
 msgstr ""
 
-#: src/components/brands/Platforms.php:29
+#: src/components/brands/PlatformsEndpoint.php:40
 msgid "Your account doesn't have traffic sources yet"
 msgstr ""
 
-#: src/components/brands/Platforms.php:33
+#: src/components/brands/PlatformsEndpoint.php:44
 msgid "Please select a source for your website"
 msgstr ""
 
@@ -905,7 +905,7 @@ msgid "An error occured while pasting the shortcode"
 msgstr ""
 
 #: src/components/rest/models/GutenbergModulesModel.php:50
-#: src/components/section/fields/InputWithVariablesInDescription.php:63
+#: src/components/section/fields/InputWithVariablesInDescription.php:64
 msgid "You can use the following variables in this field:"
 msgstr ""
 
@@ -914,7 +914,7 @@ msgid "Alternate title"
 msgstr ""
 
 #: src/components/tables/TableShortcode.php:186
-#: src/modules/tables/components/hotels/HotelTableShortcodeModel.php:77
+#: src/modules/tables/components/hotels/HotelTableShortcodeModel.php:78
 msgid "Hide title"
 msgstr ""
 
@@ -923,8 +923,8 @@ msgid "Alternate button title"
 msgstr ""
 
 #: src/components/tables/TableShortcode.php:188
-#: src/modules/links/components/BaseLinkShortcode.php:131
-#: src/modules/searchForms/components/SearchFormShortcode.php:427
+#: src/modules/links/components/BaseLinkShortcode.php:144
+#: src/modules/searchForms/components/SearchFormShortcode.php:431
 #: src/modules/tables/components/BaseTableFields.php:233
 #: src/modules/widgets/components/forms/flights/schedule/TpScheduleWidget.php:26
 msgid "Sub ID"
@@ -949,8 +949,8 @@ msgid "Currency"
 msgstr ""
 
 #: src/components/tables/TableShortcode.php:193
-#: src/modules/links/components/flights/Shortcode.php:215
-#: src/modules/searchForms/components/SearchFormShortcode.php:425
+#: src/modules/links/components/flights/Shortcode.php:217
+#: src/modules/searchForms/components/SearchFormShortcode.php:429
 #: src/modules/tables/components/flights/ColumnLabels.php:96
 #: src/modules/tables/components/flights/FlightsShortcodeModel.php:415
 #: src/modules/tables/components/railway/tutu/TutuShortcodeModel.php:305
@@ -958,8 +958,8 @@ msgid "Origin"
 msgstr ""
 
 #: src/components/tables/TableShortcode.php:194
-#: src/modules/links/components/flights/Shortcode.php:216
-#: src/modules/searchForms/components/SearchFormShortcode.php:426
+#: src/modules/links/components/flights/Shortcode.php:218
+#: src/modules/searchForms/components/SearchFormShortcode.php:430
 #: src/modules/tables/components/flights/ColumnLabels.php:92
 #: src/modules/tables/components/flights/FlightsShortcodeModel.php:416
 #: src/modules/tables/components/railway/tutu/TutuShortcodeModel.php:306
@@ -967,57 +967,57 @@ msgid "Destination"
 msgstr ""
 
 #: src/components/tables/TableShortcode.php:494
-#: src/modules/tables/components/settings/HotelSettingsSection.php:42
+#: src/modules/tables/components/settings/HotelSettingsSection.php:43
 msgid "Default theme"
 msgstr ""
 
 #: src/components/tables/TableShortcode.php:495
-#: src/modules/tables/components/settings/HotelSettingsSection.php:43
+#: src/modules/tables/components/settings/HotelSettingsSection.php:44
 msgid "Bright theme with a red button"
 msgstr ""
 
 #: src/components/tables/TableShortcode.php:496
-#: src/modules/tables/components/settings/HotelSettingsSection.php:44
+#: src/modules/tables/components/settings/HotelSettingsSection.php:45
 msgid "Light theme with a blue button"
 msgstr ""
 
 #: src/components/tables/TableShortcode.php:497
-#: src/modules/tables/components/settings/HotelSettingsSection.php:45
+#: src/modules/tables/components/settings/HotelSettingsSection.php:46
 msgid "Light theme with a light green button"
 msgstr ""
 
 #: src/components/tables/TableShortcode.php:498
-#: src/modules/tables/components/settings/HotelSettingsSection.php:46
+#: src/modules/tables/components/settings/HotelSettingsSection.php:47
 msgid "Light theme with a purple button"
 msgstr ""
 
 #: src/components/tables/TableShortcode.php:499
-#: src/modules/tables/components/settings/HotelSettingsSection.php:47
+#: src/modules/tables/components/settings/HotelSettingsSection.php:48
 msgid "Dark theme with a yellow button"
 msgstr ""
 
 #: src/components/tables/TableShortcode.php:500
-#: src/modules/tables/components/settings/HotelSettingsSection.php:48
+#: src/modules/tables/components/settings/HotelSettingsSection.php:49
 msgid "Dark theme with a coral button"
 msgstr ""
 
 #: src/components/tables/TableShortcode.php:501
-#: src/modules/tables/components/settings/HotelSettingsSection.php:49
+#: src/modules/tables/components/settings/HotelSettingsSection.php:50
 msgid "Light theme with a plum search column"
 msgstr ""
 
 #: src/components/tables/TableShortcode.php:502
-#: src/modules/tables/components/settings/HotelSettingsSection.php:50
+#: src/modules/tables/components/settings/HotelSettingsSection.php:51
 msgid "Light theme with a dark search column"
 msgstr ""
 
 #: src/components/tables/TableShortcode.php:503
-#: src/modules/tables/components/settings/HotelSettingsSection.php:51
+#: src/modules/tables/components/settings/HotelSettingsSection.php:52
 msgid "Light theme with a mint button"
 msgstr ""
 
 #: src/components/tables/TableShortcode.php:504
-#: src/modules/tables/components/settings/HotelSettingsSection.php:52
+#: src/modules/tables/components/settings/HotelSettingsSection.php:53
 msgid "Custom theme styles"
 msgstr ""
 
@@ -1028,7 +1028,7 @@ msgstr ""
 
 #: src/components/tables/TableShortcode.php:564
 #: src/components/tables/TableShortcode.php:567
-#: src/modules/settings/SettingsForm.php:229
+#: src/modules/settings/SettingsForm.php:234
 msgid "Default"
 msgstr ""
 
@@ -1082,46 +1082,46 @@ msgid ""
 "save-comments\" target=\"_blank\">Read more</a>"
 msgstr ""
 
-#: src/modules/account/AccountForm.php:43
+#: src/modules/account/AccountForm.php:44
 msgid "Account"
 msgstr ""
 
-#: src/modules/account/AccountForm.php:55
+#: src/modules/account/AccountForm.php:58
 msgid "Your Travelpayouts API token"
 msgstr ""
 
-#: src/modules/account/AccountForm.php:56
+#: src/modules/account/AccountForm.php:59
 msgid "Get API token and affiliate ID"
 msgstr ""
 
-#: src/modules/account/AccountForm.php:57
+#: src/modules/account/AccountForm.php:60
 msgid "Enter your API token"
 msgstr ""
 
-#: src/modules/account/AccountForm.php:59
+#: src/modules/account/AccountForm.php:62
 msgid "Your Travelpayouts Partner ID"
 msgstr ""
 
-#: src/modules/account/AccountForm.php:60
+#: src/modules/account/AccountForm.php:63
 msgid "Enter your Partner ID"
 msgstr ""
 
-#: src/modules/account/AccountForm.php:62
+#: src/modules/account/AccountForm.php:65
 msgid "Projects"
 msgstr ""
 
-#: src/modules/account/AccountForm.php:66
+#: src/modules/account/AccountForm.php:69
 msgid "Select your relevant channel"
 msgstr ""
 
-#: src/modules/account/AccountForm.php:70
+#: src/modules/account/AccountForm.php:73
 msgid ""
 "<a "
 "href=\"https://support.travelpayouts.com/hc/en-us/articles/360015015439-"
 "Traffic-sources\" target=\"_blank\" class=\"tp-link\">What are Projects?</a>"
 msgstr ""
 
-#: src/modules/account/AccountForm.php:72
+#: src/modules/account/AccountForm.php:75
 msgid ""
 "Select Project with your channel, where you use brands’ affiliate tools. "
 "This enables an accurate tracking of your views, clicks and other "
@@ -1130,29 +1130,29 @@ msgid ""
 "target=\"_blank\">Travelpayouts.com</a>"
 msgstr ""
 
-#: src/modules/account/AccountForm.php:75
+#: src/modules/account/AccountForm.php:78
 msgid "Your White Label domain"
 msgstr ""
 
-#: src/modules/account/AccountForm.php:76
+#: src/modules/account/AccountForm.php:79
 msgid "The domain name you entered in your White Label settings in Travelpayouts"
 msgstr ""
 
-#: src/modules/account/AccountForm.php:78
+#: src/modules/account/AccountForm.php:81
 msgid "White Label with flights"
 msgstr ""
 
-#: src/modules/account/AccountForm.php:79
+#: src/modules/account/AccountForm.php:82
 msgid ""
 "Ensure your White Label’s URL contains /flights after the  domain name. "
 "Example: \"mywhitelabel.com/flights\""
 msgstr ""
 
-#: src/modules/account/AccountForm.php:81
+#: src/modules/account/AccountForm.php:84
 msgid "White Label with hotels"
 msgstr ""
 
-#: src/modules/account/AccountForm.php:82
+#: src/modules/account/AccountForm.php:86
 msgid ""
 "Ensure your White Label’s URL contains /hotels after the  domain name. "
 "Example: \"mywhitelabel.com/hotels\""
@@ -1182,7 +1182,7 @@ msgid ""
 "(https://travel-template.dist.ooo/search-form.html)"
 msgstr ""
 
-#: src/modules/links/components/BaseLinkShortcode.php:130
+#: src/modules/links/components/BaseLinkShortcode.php:143
 msgid "Open link in a new tab"
 msgstr ""
 
@@ -1204,59 +1204,59 @@ msgstr ""
 msgid "Please select valid link type"
 msgstr ""
 
-#: src/modules/links/components/flights/Shortcode.php:138
+#: src/modules/links/components/flights/Shortcode.php:140
 msgid "Search for flights"
 msgstr ""
 
-#: src/modules/links/components/flights/Shortcode.php:152
+#: src/modules/links/components/flights/Shortcode.php:154
 msgid "Roundtrip"
 msgstr ""
 
-#: src/modules/links/components/flights/Shortcode.php:154
-#: src/modules/links/components/flights/Shortcode.php:167
+#: src/modules/links/components/flights/Shortcode.php:156
+#: src/modules/links/components/flights/Shortcode.php:169
 msgid "Departure: today +"
 msgstr ""
 
-#: src/modules/links/components/flights/Shortcode.php:159
+#: src/modules/links/components/flights/Shortcode.php:161
 msgid "Return: today +"
 msgstr ""
 
-#: src/modules/links/components/flights/Shortcode.php:165
+#: src/modules/links/components/flights/Shortcode.php:167
 #: src/modules/tables/components/flights/FlightsShortcodeModel.php:64
 msgid "One way"
 msgstr ""
 
-#: src/modules/links/components/flights/Shortcode.php:214
+#: src/modules/links/components/flights/Shortcode.php:216
 msgid "Link text"
 msgstr ""
 
-#: src/modules/links/components/flights/Shortcode.php:217
-#: src/modules/links/components/hotels/Shortcode.php:133
-#: src/modules/links/components/hotels/Shortcode.php:171
+#: src/modules/links/components/flights/Shortcode.php:219
+#: src/modules/links/components/hotels/Shortcode.php:134
+#: src/modules/links/components/hotels/Shortcode.php:172
 msgid "Type"
 msgstr ""
 
-#: src/modules/links/components/hotels/Shortcode.php:125
+#: src/modules/links/components/hotels/Shortcode.php:126
 msgid "Search for hotels"
 msgstr ""
 
-#: src/modules/links/components/hotels/Shortcode.php:134
-#: src/modules/links/components/hotels/Shortcode.php:167
+#: src/modules/links/components/hotels/Shortcode.php:135
+#: src/modules/links/components/hotels/Shortcode.php:168
 #: src/modules/tables/components/hotels/ColumnLabels.php:53
 msgid "Hotel"
 msgstr ""
 
-#: src/modules/links/components/hotels/Shortcode.php:137
-#: src/modules/links/components/hotels/Shortcode.php:168
-#: src/modules/tables/components/hotels/HotelTableShortcodeModel.php:70
+#: src/modules/links/components/hotels/Shortcode.php:138
+#: src/modules/links/components/hotels/Shortcode.php:169
+#: src/modules/tables/components/hotels/HotelTableShortcodeModel.php:71
 msgid "City"
 msgstr ""
 
-#: src/modules/links/components/hotels/Shortcode.php:169
+#: src/modules/links/components/hotels/Shortcode.php:170
 msgid "Check-out: today +"
 msgstr ""
 
-#: src/modules/links/components/hotels/Shortcode.php:170
+#: src/modules/links/components/hotels/Shortcode.php:171
 msgid "Check-in: today +"
 msgstr ""
 
@@ -1291,24 +1291,24 @@ msgid "Hotels search form"
 msgstr ""
 
 #: src/modules/searchForms/components/SearchFormHotelsShortcode.php:38
-#: src/modules/searchForms/components/SearchFormShortcode.php:386
+#: src/modules/searchForms/components/SearchFormShortcode.php:390
 #: src/modules/tables/components/settings/FlightsSettingsSection.php:77
 msgid "Select search form"
 msgstr ""
 
-#: src/modules/searchForms/components/SearchFormShortcode.php:139
+#: src/modules/searchForms/components/SearchFormShortcode.php:140
 msgid "One of parameters ({attributes}) is required"
 msgstr ""
 
-#: src/modules/searchForms/components/SearchFormShortcode.php:363
+#: src/modules/searchForms/components/SearchFormShortcode.php:367
 msgid "Flights search form"
 msgstr ""
 
-#: src/modules/searchForms/components/SearchFormShortcode.php:428
+#: src/modules/searchForms/components/SearchFormShortcode.php:432
 msgid "City or hotel"
 msgstr ""
 
-#: src/modules/searchForms/components/SearchFormShortcode.php:429
+#: src/modules/searchForms/components/SearchFormShortcode.php:433
 #: src/modules/searchForms/controllers/SearchFormsController.php:121
 msgid "Apply settings (origin, destination, etc.) from generated widget code "
 msgstr ""
@@ -1324,27 +1324,27 @@ msgstr ""
 
 #: src/modules/searchForms/controllers/SearchFormsController.php:116
 #: src/modules/searchForms/controllers/SearchFormsController.php:132
-#: src/modules/searchForms/models/SearchFormModel.php:126
+#: src/modules/searchForms/models/SearchFormModel.php:132
 msgid "Title"
 msgstr ""
 
 #: src/modules/searchForms/controllers/SearchFormsController.php:117
-#: src/modules/searchForms/models/SearchFormModel.php:127
+#: src/modules/searchForms/models/SearchFormModel.php:133
 msgid "Default departure city"
 msgstr ""
 
 #: src/modules/searchForms/controllers/SearchFormsController.php:118
-#: src/modules/searchForms/models/SearchFormModel.php:128
+#: src/modules/searchForms/models/SearchFormModel.php:134
 msgid "Default arrival city"
 msgstr ""
 
 #: src/modules/searchForms/controllers/SearchFormsController.php:119
-#: src/modules/searchForms/models/SearchFormModel.php:129
+#: src/modules/searchForms/models/SearchFormModel.php:135
 msgid "Default city or hotel"
 msgstr ""
 
 #: src/modules/searchForms/controllers/SearchFormsController.php:120
-#: src/modules/searchForms/models/SearchFormModel.php:132
+#: src/modules/searchForms/models/SearchFormModel.php:138
 msgid "Generated widget code"
 msgstr ""
 
@@ -1365,7 +1365,7 @@ msgid "You don't have any form added yet"
 msgstr ""
 
 #: src/modules/searchForms/controllers/SearchFormsController.php:133
-#: src/modules/searchForms/models/SearchFormModel.php:130
+#: src/modules/searchForms/models/SearchFormModel.php:136
 msgid "Date"
 msgstr ""
 
@@ -1452,8 +1452,8 @@ msgid "Ok, got it"
 msgstr ""
 
 #: src/modules/searchForms/controllers/SearchFormsController.php:162
-#: src/modules/searchForms/models/SearchFormModel.php:139
-#: src/modules/searchForms/models/SearchFormModel.php:350
+#: src/modules/searchForms/models/SearchFormModel.php:145
+#: src/modules/searchForms/models/SearchFormModel.php:359
 msgid "{attribute} has invalid value"
 msgstr ""
 
@@ -1462,7 +1462,7 @@ msgid "Name"
 msgstr ""
 
 #: src/modules/searchForms/models/widgetCode/HotelCity.php:42
-#: src/modules/tables/components/hotels/HotelTableShortcodeModel.php:172
+#: src/modules/tables/components/hotels/HotelTableShortcodeModel.php:173
 msgid "Location"
 msgstr ""
 
@@ -1482,275 +1482,275 @@ msgstr ""
 msgid "Country Name"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:158
+#: src/modules/settings/SettingsForm.php:161
 msgid "Date format"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:165
+#: src/modules/settings/SettingsForm.php:168
 msgid "Custom"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:167
+#: src/modules/settings/SettingsForm.php:170
 msgid "Custom date format"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:171
+#: src/modules/settings/SettingsForm.php:174
 msgid "Distance units"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:173
+#: src/modules/settings/SettingsForm.php:176
 msgid "Km"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:174
+#: src/modules/settings/SettingsForm.php:177
 msgid "Miles"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:188
+#: src/modules/settings/SettingsForm.php:192
 msgid "Tables and widgets language"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:192
+#: src/modules/settings/SettingsForm.php:196
 msgid "Origin case"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:197
+#: src/modules/settings/SettingsForm.php:201
 msgid "Destination case"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:203
+#: src/modules/settings/SettingsForm.php:207
 msgid "Show the currency"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:205
+#: src/modules/settings/SettingsForm.php:209
 msgid "After the price"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:206
+#: src/modules/settings/SettingsForm.php:210
 msgid "Before the price"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:207
-#: src/modules/settings/SettingsForm.php:231
+#: src/modules/settings/SettingsForm.php:211
+#: src/modules/settings/SettingsForm.php:236
 msgid "Hide"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:208
+#: src/modules/settings/SettingsForm.php:212
 msgid "Сurrency code (after the price)"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:209
+#: src/modules/settings/SettingsForm.php:213
 msgid "Currency code (before the price)"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:213
+#: src/modules/settings/SettingsForm.php:217
 msgid "Action after click (Flights)"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:215
+#: src/modules/settings/SettingsForm.php:219
 #: src/modules/tables/components/settings/FlightsSettingsSection.php:68
 msgid "Show the search form"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:216
+#: src/modules/settings/SettingsForm.php:220
 msgid "Show search results"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:220
+#: src/modules/settings/SettingsForm.php:224
 msgid "Action after click (Hotels)"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:222
+#: src/modules/settings/SettingsForm.php:226
 msgid "Show the city page"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:223
+#: src/modules/settings/SettingsForm.php:227
 msgid "Show the hotel page"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:227
+#: src/modules/settings/SettingsForm.php:232
 msgid "Buttons in the editor"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:235
+#: src/modules/settings/SettingsForm.php:240
 msgid "Script include"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:237
+#: src/modules/settings/SettingsForm.php:242
 msgid "Inside &lt;head&gt; tag"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:238
+#: src/modules/settings/SettingsForm.php:243
 msgid "Inside &lt;footer&gt; tag"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:242
+#: src/modules/settings/SettingsForm.php:247
 msgid "Activate 301 redirect"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:243
+#: src/modules/settings/SettingsForm.php:248
 msgid ""
 "A 301 redirect sends visitors from an old URL to a new one. It also helps "
 "keep your site's search rankings by passing on the SEO value from the old "
 "page to the new one. We recommend not to change this option."
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:246
+#: src/modules/settings/SettingsForm.php:251
 msgid "Adjust airline's logo size"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:251
+#: src/modules/settings/SettingsForm.php:256
 msgid "Maximum 300 pixels for width and 200 pixels height"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:253
+#: src/modules/settings/SettingsForm.php:258
 msgid "Open results in a new window"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:256
+#: src/modules/settings/SettingsForm.php:261
 msgid "Track additional stats"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:260
+#: src/modules/settings/SettingsForm.php:265
 msgid ""
 "This attribute prevents unwanted search results from being indexed by "
 "search engines. We recommend not to change this setting."
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:263
+#: src/modules/settings/SettingsForm.php:268
 msgid "Use FileCache"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:264
+#: src/modules/settings/SettingsForm.php:269
 msgid ""
 "This feature helps conserve hosting resources and maintain speed by "
 "reducing transient cache records in your options table."
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:267
+#: src/modules/settings/SettingsForm.php:272
 msgid "Cache timeout flights (hours)"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:272
+#: src/modules/settings/SettingsForm.php:277
 msgid "Cache timeout hotels (hours)"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:277
+#: src/modules/settings/SettingsForm.php:283
 msgid "Event tracking. \"Find\" button"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:280
+#: src/modules/settings/SettingsForm.php:286
 msgid "Event tracking. Table is loaded"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:283
+#: src/modules/settings/SettingsForm.php:289
 msgid "Disable tables debug notices"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:284
+#: src/modules/settings/SettingsForm.php:290
 msgid "Select this option to disable tables error notices in admin area."
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:287
+#: src/modules/settings/SettingsForm.php:293
 msgid "Import settings from v1"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:288
+#: src/modules/settings/SettingsForm.php:294
 msgid ""
 "Load import settings from Travelpayouts WP Plugin (version up to v. 1) and "
 "press import"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:290
+#: src/modules/settings/SettingsForm.php:296
 msgid "Clear cache"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:291
+#: src/modules/settings/SettingsForm.php:297
 msgid "Clear all travelpayouts tables cache from wp_options table"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:299
+#: src/modules/settings/SettingsForm.php:305
 msgid ""
 "Set a goal in Yandex Metrika or Google Analytics and paste the code in this "
 "field to track the event (reaching the goal)"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:302
+#: src/modules/settings/SettingsForm.php:308
 msgid "For example"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:313
+#: src/modules/settings/SettingsForm.php:319
 msgid "You can also combine multiple events"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:326
+#: src/modules/settings/SettingsForm.php:332
 msgid ""
 "If you want to set a custom date format properly you can check the "
 "characters and corresponding formats below"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:328
+#: src/modules/settings/SettingsForm.php:334
 msgid "Day"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:329
+#: src/modules/settings/SettingsForm.php:335
 msgid "Day of the month without leading zeros"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:330
+#: src/modules/settings/SettingsForm.php:336
 msgid "Day of the month, 2 digits with leading zeros"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:334
-#: src/modules/settings/SettingsForm.php:342
+#: src/modules/settings/SettingsForm.php:340
+#: src/modules/settings/SettingsForm.php:348
 msgid "Month"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:335
+#: src/modules/settings/SettingsForm.php:341
 msgid "A full textual representation of a month, such as January or March"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:336
+#: src/modules/settings/SettingsForm.php:342
 msgid "Numeric representation of a month, with leading zeros"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:337
+#: src/modules/settings/SettingsForm.php:343
 msgid "A short textual representation of a month, three letters"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:338
+#: src/modules/settings/SettingsForm.php:344
 msgid "Numeric representation of a month, without leading zeros"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:343
+#: src/modules/settings/SettingsForm.php:349
 msgid "A full numeric representation of a year, 4 digits"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:344
+#: src/modules/settings/SettingsForm.php:350
 msgid "A two-digit representation of a year"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:455
+#: src/modules/settings/SettingsForm.php:461
 msgid "Nominative"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:456
+#: src/modules/settings/SettingsForm.php:462
 msgid "Genitive"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:457
+#: src/modules/settings/SettingsForm.php:463
 msgid "Accusative"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:458
+#: src/modules/settings/SettingsForm.php:464
 msgid "Dative"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:459
+#: src/modules/settings/SettingsForm.php:465
 msgid "Instrumental"
 msgstr ""
 
-#: src/modules/settings/SettingsForm.php:460
+#: src/modules/settings/SettingsForm.php:466
 msgid "Prepositional"
 msgstr ""
 
@@ -1880,17 +1880,17 @@ msgstr ""
 msgid "Attribute \"{:attribute}\" must be indexed array"
 msgstr ""
 
-#: src/modules/tables/components/columnTitles/Controller.php:45
+#: src/modules/tables/components/columnTitles/Controller.php:48
 #: src/modules/tables/components/flights/Section.php:26
 #: src/modules/widgets/components/forms/flights/Section.php:31
 msgid "Flights"
 msgstr ""
 
-#: src/modules/tables/components/columnTitles/Controller.php:49
+#: src/modules/tables/components/columnTitles/Controller.php:52
 msgid "Hotels column titles"
 msgstr ""
 
-#: src/modules/tables/components/columnTitles/Controller.php:53
+#: src/modules/tables/components/columnTitles/Controller.php:58
 msgid "Railways column titles"
 msgstr ""
 
@@ -2094,38 +2094,38 @@ msgstr ""
 msgid "Rating"
 msgstr ""
 
-#: src/modules/tables/components/hotels/HotelTableShortcodeModel.php:71
+#: src/modules/tables/components/hotels/HotelTableShortcodeModel.php:72
 msgid "Number of results"
 msgstr ""
 
-#: src/modules/tables/components/hotels/HotelTableShortcodeModel.php:72
-#: src/modules/tables/components/hotels/HotelTableShortcodeModel.php:173
-#: src/modules/tables/components/hotels/HotelTableShortcodeModel.php:251
+#: src/modules/tables/components/hotels/HotelTableShortcodeModel.php:73
+#: src/modules/tables/components/hotels/HotelTableShortcodeModel.php:174
+#: src/modules/tables/components/hotels/HotelTableShortcodeModel.php:252
 msgid "Selection type"
 msgstr ""
 
-#: src/modules/tables/components/hotels/HotelTableShortcodeModel.php:73
+#: src/modules/tables/components/hotels/HotelTableShortcodeModel.php:74
 msgid "Land without dates"
 msgstr ""
 
-#: src/modules/tables/components/hotels/HotelTableShortcodeModel.php:74
+#: src/modules/tables/components/hotels/HotelTableShortcodeModel.php:75
 msgid "Hotel selection custom name"
 msgstr ""
 
-#: src/modules/tables/components/hotels/HotelTableShortcodeModel.php:75
+#: src/modules/tables/components/hotels/HotelTableShortcodeModel.php:76
 msgid "Check-in date"
 msgstr ""
 
-#: src/modules/tables/components/hotels/HotelTableShortcodeModel.php:76
+#: src/modules/tables/components/hotels/HotelTableShortcodeModel.php:77
 msgid "Check-out date"
 msgstr ""
 
-#: src/modules/tables/components/hotels/HotelTableShortcodeModel.php:225
+#: src/modules/tables/components/hotels/HotelTableShortcodeModel.php:226
 msgid "Optional. Enter a custom name to display in the table's title"
 msgstr ""
 
-#: src/modules/tables/components/hotels/Section.php:26
-#: src/modules/widgets/components/forms/hotels/Section.php:31
+#: src/modules/tables/components/hotels/Section.php:28
+#: src/modules/widgets/components/forms/hotels/Section.php:33
 msgid "Hotels"
 msgstr ""
 
@@ -2347,11 +2347,11 @@ msgstr ""
 msgid "Customize flights tables settings"
 msgstr ""
 
-#: src/modules/tables/components/settings/HotelSettingsSection.php:29
+#: src/modules/tables/components/settings/HotelSettingsSection.php:30
 msgid "Redirect to Booking.com"
 msgstr ""
 
-#: src/modules/tables/components/settings/HotelSettingsSection.php:69
+#: src/modules/tables/components/settings/HotelSettingsSection.php:70
 msgid "Customize hotels tables settings"
 msgstr ""
 
@@ -2805,7 +2805,7 @@ msgctxt "moneyscript description text"
 msgid "Find out more in our {link}."
 msgstr ""
 
-#: src/modules/searchForms/components/SearchFormShortcode.php:146
+#: src/modules/searchForms/components/SearchFormShortcode.php:147
 msgctxt "searchform.model.exception"
 msgid "Can't find search form model by id \"{formId}\""
 msgstr ""
@@ -2859,17 +2859,17 @@ msgctxt "railway wagon type"
 msgid "Common"
 msgstr ""
 
-#: src/modules/tables/components/columnTitles/Controller.php:146
+#: src/modules/tables/components/columnTitles/Controller.php:151
 msgctxt "tables.columnTitles"
 msgid "Select language you want to customize"
 msgstr ""
 
-#: src/modules/tables/components/columnTitles/Controller.php:147
+#: src/modules/tables/components/columnTitles/Controller.php:152
 msgctxt "tables.columnTitles"
 msgid "Select languages..."
 msgstr ""
 
-#: src/modules/tables/components/columnTitles/Controller.php:148
+#: src/modules/tables/components/columnTitles/Controller.php:153
 msgctxt "tables.columnTitles"
 msgid "This phrase also used for columns"
 msgstr ""

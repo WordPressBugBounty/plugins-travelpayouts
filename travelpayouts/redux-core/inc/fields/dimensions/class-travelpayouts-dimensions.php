@@ -137,7 +137,7 @@ if ( ! class_exists( 'Redux_Travelpayouts_Dimensions', false ) ) {
 					}
 				}
 				echo '<div class="field-dimensions-input tp-input-group">';
-				echo '<div class="tp-input-group-prepend"><span class="add-on tp-input-group-add-on"><i class="el el-resize-horizontal icon-large"></i></span></div>';
+				echo '<div class="tp-input-group-prepend"><span class="add-on tp-input-group-add-on"><i class="tp-i-tabler:arrows-horizontal"></i></span></div>';
 				echo '<input 
 						type="text" 
 						class="tp-input redux-dimensions-input redux-dimensions-width mini ' . esc_attr( $this->field['class'] ) . '" 
@@ -164,7 +164,7 @@ if ( ! class_exists( 'Redux_Travelpayouts_Dimensions', false ) ) {
 					}
 				}
 				echo '<div class="field-dimensions-input tp-input-group">';
-				echo '<div class="tp-input-group-prepend"><span class="add-on tp-input-group-add-on"><i class="el el-resize-vertical icon-large"></i></span></div>';
+				echo '<div class="tp-input-group-prepend"><span class="add-on tp-input-group-add-on"><i class="tp-i-tabler:arrows-vertical"></i></span></div>';
 				echo '<input 
 						type="text" 
 						class="tp-input redux-dimensions-input redux-dimensions-height mini ' . esc_attr( $this->field['class'] ) . '" 

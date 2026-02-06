@@ -37,7 +37,7 @@ class MoneyScriptSection extends ModuleSection
     {
         return [
             'title' => Travelpayouts::__('Money Script'),
-            'icon' => 'el el-usd',
+            'icon' => 'tp-i-tabler:coin',
             'desc' => $this->getSectionDescription(),
         ];
     }

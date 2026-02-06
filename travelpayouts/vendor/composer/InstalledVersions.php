@@ -48,13 +48,6 @@ private static $installed = array (
         0 => '^1.0',
       ),
     ),
-    'psr/log-implementation' => 
-    array (
-      'provided' => 
-      array (
-        0 => '1.0.0',
-      ),
-    ),
     'rhumsaa/uuid' => 
     array (
       'replaced' => 
@@ -148,7 +141,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'd8b9be25ceb307e8aab368e8d133ba6b153eabc2',
+      'reference' => 'fbf1e607e1f890a2297d3b99562df6418d0f7af5',
     ),
     'travelpayouts-doctrine/lexer' => 
     array (
@@ -176,15 +169,6 @@ private static $installed = array (
       array (
       ),
       'reference' => 'c3013a37a939aafa17a4aef5bd11a334ee7e3b39',
-    ),
-    'travelpayouts-monolog/monolog' => 
-    array (
-      'pretty_version' => '1.x-dev',
-      'version' => '1.9999999.9999999.9999999-dev',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '9e5102c4cbf47cbc711d0d241de3d78ffde3655f',
     ),
     'travelpayouts-nesbot/carbon' => 
     array (
@@ -293,15 +277,6 @@ private static $installed = array (
       array (
       ),
       'reference' => '287a0945db59ae63da298c72aec3f61fdd935d9b',
-    ),
-    'travelpayouts-rollbar/rollbar' => 
-    array (
-      'pretty_version' => 'v1.8.1',
-      'version' => '1.8.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '9aa45c8fd24f62b454ef2a012770f6ab0f1506a5',
     ),
     'travelpayouts-snowplow/snowplow-tracker' => 
     array (

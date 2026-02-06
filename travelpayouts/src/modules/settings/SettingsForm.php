@@ -4,6 +4,7 @@ namespace Travelpayouts\modules\settings;
 use Travelpayouts\Vendor\Carbon\Carbon;
 use Travelpayouts;
 use Travelpayouts\admin\redux\base\ModuleSection;
+use Travelpayouts\components\brands\BrandSubscriptionService;
 use Travelpayouts\components\dictionary\TravelpayoutsApiData;
 use Travelpayouts\components\HtmlHelper;
 use Travelpayouts\components\LanguageHelper;
@@ -141,7 +142,7 @@ class SettingsForm extends ModuleSection
     {
         return [
             'title' => Travelpayouts::__('Settings'),
-            'icon' => 'el el-cog',
+            'icon' => 'tp-i-tabler:settings',
         ];
     }
 
@@ -151,16 +152,18 @@ class SettingsForm extends ModuleSection
     public function fields(): array
     {
         $localizedDate = Carbon::now()->locale($this->language);
+        $isSubscribedToHotels = BrandSubscriptionService::isHotelLookAvailable();
+
 
         return array_merge(
             [
                 'date_format_radio' => $this->fieldRadio()->setTitle(Travelpayouts::__('Date format'))
                     ->setOptions([
-                        'j F Y' => $localizedDate->translatedFormat('j F Y') . ' ' . FieldsHelper::pre('j F Y', ['tp-ms-2']),
-                        'F j, Y' => $localizedDate->translatedFormat('F j, Y') . ' ' . FieldsHelper::pre('F j, Y', ['tp-ms-2']),
-                        'j M Y' => $localizedDate->translatedFormat('j M Y') . ' ' . FieldsHelper::pre('j M Y', ['tp-ms-2']),
-                        'j F' => $localizedDate->translatedFormat('j F') . ' ' . FieldsHelper::pre('j F', ['tp-ms-2']),
-                        'd-m-y' => $localizedDate->translatedFormat('d-m-y') . ' ' . FieldsHelper::pre('d-m-y', ['tp-ms-2']),
+                        'j F Y' => $localizedDate->translatedFormat('j F Y') . ' ' . FieldsHelper::pre('j F Y', ['tp-ml-2']),
+                        'F j, Y' => $localizedDate->translatedFormat('F j, Y') . ' ' . FieldsHelper::pre('F j, Y', ['tp-ml-2']),
+                        'j M Y' => $localizedDate->translatedFormat('j M Y') . ' ' . FieldsHelper::pre('j M Y', ['tp-ml-2']),
+                        'j F' => $localizedDate->translatedFormat('j F') . ' ' . FieldsHelper::pre('j F', ['tp-ml-2']),
+                        'd-m-y' => $localizedDate->translatedFormat('d-m-y') . ' ' . FieldsHelper::pre('d-m-y', ['tp-ml-2']),
                         'custom' => Travelpayouts::__('Custom'),
                     ])->setDefault('j F Y'),
                 'date_format' => $this->fieldInput()->setTitle(Travelpayouts::__('Custom date format'))
@@ -181,6 +184,7 @@ class SettingsForm extends ModuleSection
             FieldsHelper::getMultilingualFields(
                 (new HotelSourceField())
                     ->setID('hotels_source')
+                ->setHidden(!$isSubscribedToHotels)
             ),
             [
                 'language' => $this->fieldSelect()
@@ -221,6 +225,7 @@ class SettingsForm extends ModuleSection
                         'city' => Travelpayouts::__('Show the city page'),
                         'hotel' => Travelpayouts::__('Show the hotel page'),
                     ])
+                    ->setHidden(!$isSubscribedToHotels)
                     ->setDefault('hotel'),
                 'editor_buttons' => $this->fieldSelect()
                     ->setTitle(Travelpayouts::__('Buttons in the editor'))
@@ -271,6 +276,7 @@ class SettingsForm extends ModuleSection
                     ->setTitle(Travelpayouts::__('Cache timeout hotels (hours)'))
                     ->setMin(24)
                     ->setMax(72)
+                    ->setHidden(!$isSubscribedToHotels)
                     ->setDefault(24),
                 'table_btn_event' => $this->fieldInput()
                     ->setTitle(Travelpayouts::__('Event tracking. "Find" button'))
@@ -325,22 +331,22 @@ class SettingsForm extends ModuleSection
             Travelpayouts::__('If you want to set a custom date format properly you can check the characters and corresponding formats below'),
             HtmlHelper::tagArrayContent('div', ['class' => 'tp-my-2'], [
                 HtmlHelper::tag('div', ['class' => 'tp-text--bold'], Travelpayouts::__('Day')),
-                HtmlHelper::tag('div', ['class' => 'tp-mt-3'], FieldsHelper::pre('j', ['tp-me-2']) . ' ' . Travelpayouts::__('Day of the month without leading zeros')),
-                HtmlHelper::tag('div', ['class' => 'tp-mt-3'], FieldsHelper::pre('d', ['tp-me-2']) . ' ' . Travelpayouts::__('Day of the month, 2 digits with leading zeros')),
+                HtmlHelper::tag('div', ['class' => 'tp-mt-3'], FieldsHelper::pre('j', ['tp-mr-2']) . ' ' . Travelpayouts::__('Day of the month without leading zeros')),
+                HtmlHelper::tag('div', ['class' => 'tp-mt-3'], FieldsHelper::pre('d', ['tp-mr-2']) . ' ' . Travelpayouts::__('Day of the month, 2 digits with leading zeros')),
             ]),
 
             HtmlHelper::tagArrayContent('div', ['class' => 'tp-my-2'], [
                 HtmlHelper::tag('div', ['class' => 'tp-text--bold'], Travelpayouts::__('Month')),
-                HtmlHelper::tag('div', ['class' => 'tp-mt-3'], FieldsHelper::pre('F', ['tp-me-2']) . ' ' . Travelpayouts::__('A full textual representation of a month, such as January or March')),
-                HtmlHelper::tag('div', ['class' => 'tp-mt-3'], FieldsHelper::pre('m', ['tp-me-2']) . ' ' . Travelpayouts::__('Numeric representation of a month, with leading zeros')),
-                HtmlHelper::tag('div', ['class' => 'tp-mt-3'], FieldsHelper::pre('M', ['tp-me-2']) . ' ' . Travelpayouts::__('A short textual representation of a month, three letters')),
-                HtmlHelper::tag('div', ['class' => 'tp-mt-3'], FieldsHelper::pre('n', ['tp-me-2']) . ' ' . Travelpayouts::__('Numeric representation of a month, without leading zeros')),
+                HtmlHelper::tag('div', ['class' => 'tp-mt-3'], FieldsHelper::pre('F', ['tp-mr-2']) . ' ' . Travelpayouts::__('A full textual representation of a month, such as January or March')),
+                HtmlHelper::tag('div', ['class' => 'tp-mt-3'], FieldsHelper::pre('m', ['tp-mr-2']) . ' ' . Travelpayouts::__('Numeric representation of a month, with leading zeros')),
+                HtmlHelper::tag('div', ['class' => 'tp-mt-3'], FieldsHelper::pre('M', ['tp-mr-2']) . ' ' . Travelpayouts::__('A short textual representation of a month, three letters')),
+                HtmlHelper::tag('div', ['class' => 'tp-mt-3'], FieldsHelper::pre('n', ['tp-mr-2']) . ' ' . Travelpayouts::__('Numeric representation of a month, without leading zeros')),
             ]),
 
             HtmlHelper::tagArrayContent('div', ['class' => 'tp-mt-3'], [
                 HtmlHelper::tag('div', ['class' => 'tp-text--bold'], Travelpayouts::__('Month')),
-                HtmlHelper::tag('div', ['class' => 'tp-mt-3'], FieldsHelper::pre('Y', ['tp-me-2']) . ' ' . Travelpayouts::__('A full numeric representation of a year, 4 digits')),
-                HtmlHelper::tag('div', ['class' => 'tp-mt-3'], FieldsHelper::pre('y', ['tp-me-2']) . ' ' . Travelpayouts::__('A two-digit representation of a year')),
+                HtmlHelper::tag('div', ['class' => 'tp-mt-3'], FieldsHelper::pre('Y', ['tp-mr-2']) . ' ' . Travelpayouts::__('A full numeric representation of a year, 4 digits')),
+                HtmlHelper::tag('div', ['class' => 'tp-mt-3'], FieldsHelper::pre('y', ['tp-mr-2']) . ' ' . Travelpayouts::__('A two-digit representation of a year')),
             ]),
         ]);
     }

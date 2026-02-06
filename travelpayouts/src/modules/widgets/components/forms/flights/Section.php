@@ -30,7 +30,7 @@ class Section extends ModuleSection
         return [
             'title' => $campaign ? $campaign->name : Travelpayouts::__('Flights'),
             'desc' => ReduxOptions::widgetsSectionDesc(),
-            'icon' => 'el el-plane',
+            'icon' => 'tp-i-tabler:plane',
         ];
     }
 

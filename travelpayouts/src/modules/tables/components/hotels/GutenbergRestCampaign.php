@@ -6,7 +6,7 @@
 namespace Travelpayouts\modules\tables\components\hotels;
 use Travelpayouts\Vendor\DI\Annotation\Inject;
 use Travelpayouts\components\rest\models\BaseGutenbergRestCampaign;
-use Travelpayouts\components\brands\Subscriptions;
+use Travelpayouts\components\brands\CampaignsSubscriptionsEndpoint;
 
 class GutenbergRestCampaign extends BaseGutenbergRestCampaign
 {
@@ -26,6 +26,14 @@ class GutenbergRestCampaign extends BaseGutenbergRestCampaign
      */
     protected function campaignId()
     {
-        return Subscriptions::HOTELLOOK_ID;
+        return CampaignsSubscriptionsEndpoint::HOTELLOOK_ID;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function isActive(): bool
+    {
+        return Section::isActive();
     }
 }

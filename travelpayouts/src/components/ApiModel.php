@@ -134,7 +134,7 @@ abstract class ApiModel extends InjectedModel
 
             $this->notifyErrors();
         } catch (Exception $e) {
-            Travelpayouts::getInstance()->rollbar->error($e->getMessage(), [
+            Travelpayouts::getInstance()->logger->error($e->getMessage(), [
                 $this->attributes,
             ]);
         }

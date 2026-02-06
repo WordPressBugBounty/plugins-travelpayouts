@@ -206,28 +206,28 @@ class Table extends FlightsShortcodeModel
             return null;
         }
 
-        $origin = HtmlHelper::tag(
+        return HtmlHelper::tagArrayContent('div', ['class' => 'tp-flex tp-items-center'], [
+            HtmlHelper::tag(
                 'span',
-                ['class' => 'tp-origin-city'],
+                ['class' => 'tp-origin-city tp-font-bold'],
                 $this->getResponse()->subtitle->origin->city
             ) . ', ' . HtmlHelper::tag(
                 'span',
                 ['class' => 'tp-origin-country'],
                 $this->getResponse()->subtitle->origin->country
-            );
-
-        $destination = HtmlHelper::tag(
+            ),
+            '<i class="tp-i-tabler:arrow-right tp-mx-2"></i>',
+            HtmlHelper::tag(
                 'span',
-                ['class' => 'tp-destination-city'],
+                ['class' => 'tp-destination-city tp-font-bold'],
                 $this->getResponse()->subtitle->destination->city
 
             ) . ', ' . HtmlHelper::tag(
                 'span',
                 ['class' => 'tp-destination-country'],
                 $this->getResponse()->subtitle->destination->country
-            );
-
-        return $origin . ' &#8594; ' . $destination;
+            ),
+        ]);
     }
 
     public function gridColumnsPriority(): array
@@ -283,7 +283,7 @@ class Table extends FlightsShortcodeModel
                     'headerOptions' => [
                         'class' => 'no-sort',
                     ],
-                ]
+                ],
             ]
         );
     }

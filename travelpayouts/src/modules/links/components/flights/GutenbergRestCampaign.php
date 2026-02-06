@@ -6,7 +6,7 @@
 namespace Travelpayouts\modules\links\components\flights;
 use Travelpayouts\Vendor\DI\Annotation\Inject;
 use Travelpayouts\components\rest\models\BaseGutenbergRestCampaign;
-use Travelpayouts\components\brands\Subscriptions;
+use Travelpayouts\components\brands\CampaignsSubscriptionsEndpoint;
 
 class GutenbergRestCampaign extends BaseGutenbergRestCampaign
 {
@@ -21,6 +21,6 @@ class GutenbergRestCampaign extends BaseGutenbergRestCampaign
      */
     protected function campaignId()
     {
-        return Subscriptions::AVIASALES_ID;
+        return CampaignsSubscriptionsEndpoint::AVIASALES_ID;
     }
 }

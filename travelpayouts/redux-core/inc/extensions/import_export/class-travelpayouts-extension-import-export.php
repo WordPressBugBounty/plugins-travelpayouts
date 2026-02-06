@@ -113,7 +113,7 @@ if ( ! class_exists( 'Redux_Travelpayouts_Extension_Import_Export', false ) ) {
 				'id'         => 'import/export',
 				'title'      => esc_html__( 'Import / Export', 'redux-framework' ),
 				'heading'    => '',
-				'icon'       => 'el el-refresh',
+				'icon'       => 'tp-i-tabler:database-export',
 				'customizer' => false,
 				'fields'     => array(
 					array(

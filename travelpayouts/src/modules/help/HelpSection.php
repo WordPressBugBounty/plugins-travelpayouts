@@ -21,7 +21,7 @@ class HelpSection extends ModuleSection
     {
         return [
             'title' => Travelpayouts::__('Help'),
-            'icon' => 'el el-icon-question',
+            'icon' => 'tp-i-tabler:lifebuoy',
         ];
     }
 

@@ -2,7 +2,8 @@
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
-use Travelpayouts\Vendor\Rollbar\Payload\Level;
+
+use Rollbar\Payload\Level;
 use Travelpayouts\admin\redux\ReduxExtension;
 
 return [
@@ -18,29 +19,6 @@ return [
 			'domain' => home_url(),
 			'plugin_locale' => get_user_locale(),
 			'marker' => Travelpayouts::getInstance()->account->marker,
-		];
-	},
-	'rollbar.config' => static function () {
-		return [
-			'access_token' => '60856ddce13a4e66a94e6ca9a769d7db',
-			'environment' => !TRAVELPAYOUTS_DEBUG
-				? 'production'
-				: 'development',
-			'enabled' => !TRAVELPAYOUTS_DEBUG,
-			'minimum_level' => Level::ERROR,
-			'framework' => 'wordpress',
-			'custom' => [
-				'host' => home_url(),
-				'email' => get_option('admin_email'),
-				'language' => get_user_locale(),
-				'wp_version' => get_bloginfo('version'),
-				'plugin_version' => defined('TRAVELPAYOUTS_VERSION')
-					? TRAVELPAYOUTS_VERSION
-					: '-',
-				'php_version' => PHP_VERSION,
-				'marker' => Travelpayouts::getInstance()->account->marker,
-				'template' => get_option('template'),
-			],
 		];
 	},
 	'redux.config'=>  [

@@ -74,7 +74,7 @@ class ColumnPriceDiscount extends \Travelpayouts\components\grid\columns\ColumnP
     {
         return Html::tag(
             'span',
-            ['class' => 'tp-table-cross-out'],
+            ['class' => 'tp-widget-table-cross-out'],
             $this->renderPrice($value)
         );
     }

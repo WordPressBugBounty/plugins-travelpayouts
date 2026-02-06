@@ -3,6 +3,7 @@
 namespace Travelpayouts\modules\tables\components\settings;
 
 use Travelpayouts;
+use Travelpayouts\components\brands\BrandSubscriptionService;
 
 /**
  * Class HotelSettingsSection
@@ -67,5 +68,13 @@ class HotelSettingsSection extends Fields
     public function getLabel(): string
     {
         return Travelpayouts::__('Customize hotels tables settings');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function isActive(): bool
+    {
+        return BrandSubscriptionService::isHotelLookAvailable();
     }
 }

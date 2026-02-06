@@ -36,15 +36,28 @@ abstract class ShortcodeModel extends InjectedModel implements IShortcodeModel
      */
     public static function register(): void
     {
-        if (static::isActive() && is_array(static::shortcodeTags())) {
+        if (is_array(static::shortcodeTags())) {
             foreach (static::shortcodeTags() as $shortcodeTag) {
-                Travelpayouts::getInstance()->hooksLoader->addShortcode(
-                    $shortcodeTag,
-                    [
-                        static::class,
-                        'render_shortcode_static',
-                    ]
-                );
+                $isActive = static::isActive();
+                $hooksLoader = Travelpayouts::getInstance()->hooksLoader;
+                if ($isActive) {
+                    $hooksLoader->addShortcode(
+                        $shortcodeTag,
+                        [
+                            static::class,
+                            'render_shortcode_static',
+                        ]
+                    );
+                } else {
+                    // Отдаем пустой шорткод, если не активен
+                    $hooksLoader->addShortcode(
+                        $shortcodeTag,
+                        function () {
+                            return '';
+                        }
+                    );
+                }
+
             }
         }
     }

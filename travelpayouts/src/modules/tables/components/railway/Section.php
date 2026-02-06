@@ -6,7 +6,7 @@ use Travelpayouts;
 use Travelpayouts\admin\redux\base\ModuleSection;
 use Travelpayouts\components\brands\BrandsPartnerPermissions;
 use Travelpayouts\components\dictionary\Campaigns;
-use Travelpayouts\components\brands\Subscriptions;
+use Travelpayouts\components\brands\CampaignsSubscriptionsEndpoint;
 
 class Section extends ModuleSection
 {
@@ -24,7 +24,7 @@ class Section extends ModuleSection
 
         return [
             'title' => $campaign ? $campaign->name : Travelpayouts::__('Railway'),
-            'icon' => 'el el-road',
+            'icon' => 'tp-i-tabler:train',
         ];
     }
 
@@ -43,7 +43,7 @@ class Section extends ModuleSection
     public static function isActive(): bool
     {
         $tutuBrandPermissions = new BrandsPartnerPermissions();
-        $tutuBrandPermissions->brand_id = Subscriptions::TP_TUTU_ID;
+        $tutuBrandPermissions->brand_id = CampaignsSubscriptionsEndpoint::TP_TUTU_ID;
 
         if(TRAVELPAYOUTS_DEBUG){
             return true;

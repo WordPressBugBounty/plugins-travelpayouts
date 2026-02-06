@@ -78,20 +78,12 @@ class ColumnAirlineLogo extends ColumnAirline
     {
         return HtmlHelper::tagArrayContent('div',
             [
-                'style' => HtmlHelper::cssStyleFromArray([
-                    'display' => 'flex',
-                    'align-items' => 'center',
-                ]),
+                'class'=> 'tp-flex tp-items-center tp-gap-2',
             ],
             [
                 $this->getLogoElement($value, 30, 30),
                 HtmlHelper::tag('div', [
-                    'class' => 'tp-table-cell--no-break',
-                    'style' => HtmlHelper::cssStyleFromArray([
-                        'padding' => '0 0 0 5px',
-                        'flex' => '1',
-                    ]),
-
+                    'class' => 'tp-break-normal tp-flex-grow-1'
                 ], $this->getAirlineName($value)),
             ]);
     }

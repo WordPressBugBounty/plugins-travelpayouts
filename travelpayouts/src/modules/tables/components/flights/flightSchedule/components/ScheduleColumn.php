@@ -37,7 +37,7 @@ class ScheduleColumn extends GridColumn
 
         if (is_array($flightDays) && ArrayHelper::isIndexed($flightDays)) {
             return Html::tag('span', [
-                'class' => 'tp-schedule-column',
+                'class' => 'tp-flex tp-items-center tp-gap-1 tp-flex-nowrap',
             ], $this->renderScheduleDays($flightDays));
         }
 
@@ -61,8 +61,7 @@ class ScheduleColumn extends GridColumn
                         'span',
                         [
                             'class' => Html::classNames([
-                                'tp-schedule-column__day',
-                                !$isActive ? 'tp-schedule-column__day--inactive': null,
+                                !$isActive ? 'tp-opacity-40 tp-line-through': null,
                             ]),
                             'title' => $fullDayName,
                         ],

@@ -4,6 +4,7 @@ namespace Travelpayouts\components\base\cache;
 
 use Exception;
 use Travelpayouts;
+use Travelpayouts\components\Logger;
 use Travelpayouts\components\Logs;
 
 /**
@@ -68,7 +69,7 @@ class FileCache extends Cache
                 }
             }
         } catch (Exception $e) {
-            Travelpayouts::getInstance()->rollbar->error($e->getMessage());
+            Logger::getInstance()->error($e->getMessage());
         }
     }
 

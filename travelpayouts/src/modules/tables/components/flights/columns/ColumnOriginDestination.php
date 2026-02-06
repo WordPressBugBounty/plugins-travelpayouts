@@ -4,15 +4,16 @@
  */
 
 namespace Travelpayouts\modules\tables\components\flights\columns;
-use Travelpayouts\Vendor\Glook\YiiGrid\Helpers\Html;
+
 use Travelpayouts\components\formatters\AirportNameFormatter;
 use Travelpayouts\components\formatters\DirectionNameFormatter;
 use Travelpayouts\components\grid\columns\GridColumn;
+use Travelpayouts\components\HtmlHelper;
 
 class ColumnOriginDestination extends GridColumn
 {
-    const ONE_WAY_ARROW = '&#8594;';
-    const ROUND_TRIP_ARROW = '&#8596;';
+    const ONE_WAY_ARROW = '<i class="tp-i-tabler:arrow-right"></i>';
+    const ROUND_TRIP_ARROW = '<i class="tp-i-tabler:arrows-horizontal"></i>';
 
     protected $locale = 'en';
     /**
@@ -35,10 +36,11 @@ class ColumnOriginDestination extends GridColumn
         $originValue = $model->{$this->originAttribute};
         $destinationValue = $model->{$this->destinationAttribute};
 
-        return Html::tag('span', implode(Html::tag('span', " {$this->delimiter} ", ['style' => 'margin: 0 2px;']), [
-            Html::tag('span', $this->getName($originValue), ['style' => 'white-space: nowrap;']),
-            Html::tag('span', $this->getName($destinationValue), ['style' => 'white-space: nowrap;']),
-        ]));
+        return HtmlHelper::tagArrayContent('div', ['class' => 'tp-flex tp-items-center tp-gap-1'], [
+            HtmlHelper::tag('span', ['class' => 'tp-whitespace-nowrap'], $this->getName($originValue)),
+            HtmlHelper::tag('span', [], $this->delimiter),
+            HtmlHelper::tag('span', ['class' => 'tp-whitespace-nowrap'], $this->getName($destinationValue)),
+        ]);
     }
 
     protected function getName($value): ?string

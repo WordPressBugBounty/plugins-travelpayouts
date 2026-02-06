@@ -3,13 +3,14 @@
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
 use Travelpayouts\Vendor\League\Plates\Engine;
-use Travelpayouts\Vendor\Rollbar\Rollbar;
-use Travelpayouts\Vendor\Rollbar\RollbarLogger;
+use Rollbar\Rollbar;
+use Rollbar\RollbarLogger;
 use Travelpayouts\admin\AdminHooks;
 use Travelpayouts\admin\components\AirtableDistribution;
 use Travelpayouts\components\Assets;
 use Travelpayouts\components\base\cache\Cache;
 use Travelpayouts\components\base\cache\CacheFromSettings;
+use Travelpayouts\components\Logger;
 use Travelpayouts\components\multilingual\MultiLang;
 use Travelpayouts\components\Rights;
 use Travelpayouts\components\snowplow\Tracker;
@@ -46,7 +47,7 @@ return [
     /** @see Engine::addFolder() */
     Engine::class => autowire()->method('addFolder', 'admin', Travelpayouts::getAlias('@src/admin/templates')),
     ReduxConfigurator::class => autowire()->constructor(TRAVELPAYOUTS_REDUX_OPTION, get('redux.config')),
-    RollbarLogger::class => autowire(Rollbar::class)->constructor(get('rollbar.config'), false, false, false),
+    Logger::class => autowire()->constructor(),
     Tracker::class => autowire()->constructor([
         'url' => TRAVELPAYOUTS_DEBUG
             ? 'beta.avsplow.com'

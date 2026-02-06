@@ -19,7 +19,7 @@ class SettingsSection extends ModuleSection
     {
         return [
             'title' => Travelpayouts::__('Settings'),
-            'icon' => 'el el-cog',
+            'icon' => 'tp-i-tabler:table-options',
         ];
     }
 
