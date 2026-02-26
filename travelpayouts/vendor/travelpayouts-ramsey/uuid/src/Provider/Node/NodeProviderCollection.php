@@ -57,4 +57,15 @@ class NodeProviderCollection extends AbstractCollection
             }
         );
     }
+
+    public function __serialize()
+    {
+        return $this->serialize();
+    }
+
+    public function __unserialize($data)
+    {
+        $this->unserialize($data);
+    }
+
 }

@@ -9,7 +9,7 @@ namespace Travelpayouts\modules\widgets\components\forms\flights;
 use Travelpayouts;
 use Travelpayouts\admin\redux\base\ModuleSection;
 use Travelpayouts\components\dictionary\Campaigns;
-use Travelpayouts\admin\redux\ReduxOptions;
+use Travelpayouts\components\widgets\AlertWidget;
 
 class Section extends ModuleSection
 {
@@ -29,7 +29,11 @@ class Section extends ModuleSection
         $campaign = Campaigns::getInstance()->getItem('100');
         return [
             'title' => $campaign ? $campaign->name : Travelpayouts::__('Flights'),
-            'desc' => ReduxOptions::widgetsSectionDesc(),
+            'desc' =>  AlertWidget::widget([
+                'content' => Travelpayouts::__('These settings are for default settings of widgets, those were embedded  via shortcodes (plugin version before v. 1). The current version of the plugin  embeds all widgets via scripts'),
+                'showRoundel' => true,
+                'type'=> 'info',
+            ]),
             'icon' => 'tp-i-tabler:plane',
         ];
     }

@@ -27,7 +27,7 @@ class WpRestRouteGroup extends BaseRouteCollection
                         $controller->render($controller->runAction($action, $request->get_params()));
                     },
                     'permission_callback' => function () {
-                        return true;
+                        return is_user_logged_in() && current_user_can('edit_posts');
                     },
 
                 ]);

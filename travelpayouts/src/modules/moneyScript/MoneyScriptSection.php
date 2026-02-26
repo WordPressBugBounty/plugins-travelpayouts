@@ -1,16 +1,14 @@
 <?php
 
 namespace Travelpayouts\modules\moneyScript;
-use Travelpayouts\Vendor\DI\Annotation\Inject;
+
 use Travelpayouts;
 use Travelpayouts\admin\redux\base\ModuleSection;
-use Travelpayouts\admin\redux\ReduxOptions;
-use Travelpayouts\components\HtmlHelper;
 use Travelpayouts\components\httpClient\CachedClient;
-use Travelpayouts\components\LanguageHelper;
 use Travelpayouts\helpers\StringHelper;
 use Travelpayouts\modules\account\AccountForm;
 use Travelpayouts\modules\moneyScript\components\SubscribedCampaign;
+use Travelpayouts\modules\moneyScript\widgets\MoneyScriptSectionDescriptionWidget;
 
 class MoneyScriptSection extends ModuleSection
 {
@@ -38,7 +36,7 @@ class MoneyScriptSection extends ModuleSection
         return [
             'title' => Travelpayouts::__('Money Script'),
             'icon' => 'tp-i-tabler:coin',
-            'desc' => $this->getSectionDescription(),
+            'desc' => MoneyScriptSectionDescriptionWidget::widget(),
         ];
     }
 
@@ -139,33 +137,6 @@ class MoneyScriptSection extends ModuleSection
 
         }
         return ksort($result) ? $result : [];
-    }
-
-    /**
-     * @return string
-     */
-    protected function getSectionDescription(): string
-    {
-        $url = LanguageHelper::isRuDashboard() ?
-            'https://support.travelpayouts.com/hc/ru/articles/360012913480' :
-            'https://support.travelpayouts.com/hc/en-us/articles/360012913480-Automatic-replacement-of-links-on-the-website';
-
-        $anchorLink = HtmlHelper::tag('a',
-            [
-                'class' => 'tp-link',
-                'href' => $url,
-                'target' => '_blank',
-            ],
-            Travelpayouts::_x('Knowledge Base', 'moneyscript knowledge url title')
-        );
-
-        return ReduxOptions::alert([
-            HtmlHelper::tag('div', [], Travelpayouts::_x('With Money Script you can quickly replace links to travel resources such as Booking.com, Kiwitaxi and others with Travelpayouts affiliate links.',
-                'moneyscript description text')),
-            HtmlHelper::tag('div', ['class' => 'tp-mt-2'], Travelpayouts::_x('Find out more in our {link}.', 'moneyscript description text', [
-                'link' => $anchorLink,
-            ])),
-        ], ['class' => 'tp-alert--info']);
     }
 
 }

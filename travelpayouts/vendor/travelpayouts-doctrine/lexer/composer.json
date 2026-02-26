@@ -27,7 +27,7 @@
     "homepage": "https://www.doctrine-project.org/projects/lexer.html",
     "require": {
         "php": "^7.1 || ^8.0",
-        "travelpayouts-doctrine/deprecations": "1.1.x-dev"
+        "travelpayouts-doctrine/deprecations": "1.2.x-dev"
     },
     "require-dev": {
         "doctrine/coding-standard": "^9 || ^12",

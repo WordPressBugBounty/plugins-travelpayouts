@@ -50,13 +50,17 @@ class Redux_Travelpayouts_Rest_Api_Builder {
 	 * Init the rest api.
 	 */
 	public function rest_api_init() {
+		$perm = function () {
+			return current_user_can('manage_options');
+		};
+
 		register_rest_route(
 			$this->get_namespace(),
 			'/fields',
 			array(
 				'methods'             => WP_REST_Server::READABLE,
 				'callback'            => array( $this, 'list_fields' ),
-				'permission_callback' => '__return_true',
+				'permission_callback' => $perm,
 			)
 		);
 		register_rest_route(
@@ -71,7 +75,7 @@ class Redux_Travelpayouts_Rest_Api_Builder {
 				),
 				'methods'             => WP_REST_Server::READABLE,
 				'callback'            => array( $this, 'get_field' ),
-				'permission_callback' => '__return_true',
+				'permission_callback' => $perm,
 			)
 		);
 		register_rest_route(
@@ -86,7 +90,7 @@ class Redux_Travelpayouts_Rest_Api_Builder {
 				),
 				'methods'             => WP_REST_Server::ALLMETHODS,
 				'callback'            => array( $this, 'render_field' ),
-				'permission_callback' => '__return_true',
+				'permission_callback' => $perm,
 			)
 		);
 	}

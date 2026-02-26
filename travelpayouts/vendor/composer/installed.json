@@ -236,12 +236,12 @@
         },
         {
             "name": "travelpayouts-apimatic/jsonmapper",
-            "version": "3.1.6",
-            "version_normalized": "3.1.6.0",
+            "version": "3.1.7",
+            "version_normalized": "3.1.7.0",
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-apimatic/jsonmapper",
-                "reference": "4c43157842f9305a421f00fccdb8c98964e90170"
+                "reference": "c071cc41f3b6883f4355631670cc90bba8e4d6ee"
             },
             "require": {
                 "ext-json": "*",
@@ -261,6 +261,9 @@
             "scripts": {
                 "test": [
                     "phpunit --coverage-text"
+                ],
+                "test-ci": [
+                    "phpunit --coverage-text --coverage-clover=coverage-clover.xml"
                 ],
                 "test-coverage": [
                     "phpunit --path-coverage --coverage-html=CodeCoverage"
@@ -483,24 +486,24 @@
         },
         {
             "name": "travelpayouts-doctrine/deprecations",
-            "version": "1.1.x-dev",
-            "version_normalized": "1.1.9999999.9999999-dev",
+            "version": "1.2.x-dev",
+            "version_normalized": "1.2.9999999.9999999-dev",
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-doctrine/deprecations",
-                "reference": "fbf1e607e1f890a2297d3b99562df6418d0f7af5"
+                "reference": "0f33ac826861d18f73dfa2c6bead7b13117c583b"
             },
             "require": {
                 "php": "^7.1 || ^8.0"
             },
             "conflict": {
-                "phpunit/phpunit": "<=7.5 || >=13"
+                "phpunit/phpunit": "<=7.5 || >=14"
             },
             "require-dev": {
                 "doctrine/coding-standard": "^9 || ^12 || ^14",
                 "phpstan/phpstan": "1.4.10 || 2.1.30",
                 "phpstan/phpstan-phpunit": "^1.0 || ^2",
-                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.6 || ^10.5 || ^11.5 || ^12.4",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.6 || ^10.5 || ^11.5 || ^12.4 || ^13.0",
                 "psr/log": "^1 || ^2 || ^3"
             },
             "suggest": {
@@ -537,11 +540,11 @@
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-doctrine/lexer",
-                "reference": "6ac2bc63094223163435cd4d101eb8a8df7fbaf4"
+                "reference": "e06add14110d184c7c05d89564df395abbaf96c9"
             },
             "require": {
                 "php": "^7.1 || ^8.0",
-                "travelpayouts-doctrine/deprecations": "1.1.x-dev"
+                "travelpayouts-doctrine/deprecations": "1.2.x-dev"
             },
             "require-dev": {
                 "doctrine/coding-standard": "^9 || ^12",

@@ -144,6 +144,11 @@ if ( ! class_exists( 'Redux_Travelpayouts_Field', false ) ) {
         public $args;
 
         /**
+         * @var bool
+         */
+        public $hidden = false;
+
+        /**
 		 * Make base descriptor.
 		 *
 		 * @return Redux_Travelpayouts_Descriptor

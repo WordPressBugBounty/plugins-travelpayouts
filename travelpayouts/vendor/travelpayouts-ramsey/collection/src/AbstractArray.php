@@ -84,6 +84,7 @@ abstract class AbstractArray implements ArrayInterface
      * @return T|null the value stored at the offset, or null if the offset
      *     does not exist.
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->data[$offset] ?? null;

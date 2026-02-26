@@ -7,6 +7,8 @@
  * @version     4.0.0
  */
 
+use Travelpayouts\components\widgets\AlertWidget;
+
 defined( 'ABSPATH' ) || exit;
 
 // Don't duplicate me!
@@ -75,7 +77,11 @@ if ( ! class_exists( 'Redux_Travelpayouts_Import_Export', false ) ) {
 			$id = $this->parent->args['opt_name'] . '-' . $this->field['id'];
 			?>
 			<div><h5 class='tp-text-sm tp-mt-0 tp-mb-3'><?php esc_html_e('Import Options', 'redux-framework'); ?></h5>
-				<?= \Travelpayouts\admin\redux\ReduxOptions::alert(esc_html(apply_filters('redux-import-warning', esc_html__('WARNING! This will overwrite all existing option values, please proceed with caution!', TRAVELPAYOUTS_TEXT_DOMAIN))), ['class' => 'tp-alert--error'], '⚠') ?>
+                <?= AlertWidget::widget([
+                    'type' => AlertWidget::TYPE_ERROR,
+                    'showRoundel' => true,
+                    'content' => esc_html__('WARNING! This will overwrite all existing option values, please proceed with caution!', TRAVELPAYOUTS_TEXT_DOMAIN),
+                ]);?>
 				<div class='tp-mt-3'>
 					<a
 						href="javascript:void(0);"

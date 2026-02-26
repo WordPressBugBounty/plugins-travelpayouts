@@ -47,7 +47,7 @@ class TypeCombination
 
     /**
      * Mapping of each discriminator value on types in this typeCombinator group.
-     * i.e. [typeName => discriminatorValue]
+     * i.e. [typeName => discriminatorValues]
      *
      * @var array
      */
@@ -137,7 +137,7 @@ class TypeCombination
      *                                                typeGroup string, Default: []
      *
      * @return array|null An array with format: discriminatorFieldName
-     *                    as element 1 and discriminatorValue as
+     *                    as element 1 and discriminatorValues as
      *                    element 2
      */
     public function getDiscriminator($type, $discriminatorSubs = [])
@@ -151,11 +151,16 @@ class TypeCombination
         if (isset($discriminatorSubs[$fieldName])) {
             $fieldName = $discriminatorSubs[$fieldName];
         }
-        $discValue = $this->_discriminatorMapping[$type];
-        if (isset($discriminatorSubs[$discValue])) {
-            $discValue = $discriminatorSubs[$discValue];
-        }
-        return [$fieldName, $discValue];
+        $discValues = array_map(
+            function ($value) use ($discriminatorSubs) {
+                if (isset($discriminatorSubs[$value])) {
+                    return $discriminatorSubs[$value];
+                }
+                return $value;
+            },
+            $this->_discriminatorMapping[$type]
+        );
+        return [$fieldName, $discValues];
     }
 
     /**
@@ -378,20 +383,50 @@ class TypeCombination
     {
         list($this->_groupName, $this->_discriminatorField)
             = self::_extractDiscriminator($this->_groupName);
-        $this->_types = array_map(
-            function ($type) {
-                if (!is_string($type)) {
+        $this->_types = $this->_filterUniqueTypes(
+            array_map(
+                function ($type) {
+                    if (!is_string($type)) {
+                        return $type;
+                    }
+                    list($type, $discriminator)
+                        = self::_extractDiscriminator($type);
+                    if (array_key_exists($type, $this->_discriminatorMapping)) {
+                        $this->_discriminatorMapping[$type][] = $discriminator;
+                    } else {
+                        $this->_discriminatorMapping[$type] = [$discriminator];
+                    }
                     return $type;
-                }
-                list($type, $discriminator) = self::_extractDiscriminator($type);
-                $this->_discriminatorMapping[$type] = $discriminator;
-                return $type;
-            },
-            $this->_types
+                },
+                $this->_types
+            )
         );
         if (isset($this->_discriminatorField)) {
             $this->_format .= '{' . $this->_discriminatorField . '}';
         }
+    }
+
+    /**
+     * Filter out the same types.
+     *
+     * @param array $types Types to be checked for uniqueness.
+     *
+     * @return array An array with all the unique types
+     */
+    private function _filterUniqueTypes($types)
+    {
+        $seenTypes = [];
+        $uniqueTypes = [];
+        foreach ($types as $type) {
+            if (is_string($type)) {
+                if (in_array($type, $seenTypes, true)) {
+                    continue;
+                }
+                $seenTypes[] = $type;
+            }
+            $uniqueTypes[] = $type;
+        }
+        return $uniqueTypes;
     }
 
     /**

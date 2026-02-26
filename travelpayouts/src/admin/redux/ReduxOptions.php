@@ -306,48 +306,4 @@ class ReduxOptions
         return $locations[$key];
     }
 
-    public static function widgetsSectionDesc()
-    {
-        return Travelpayouts\components\HtmlHelper::tagArrayContent(
-            'div',
-            ['class' => 'travelpayouts-warning-message tp-alert tp-alert--info'],
-            [
-                '<div class="tp-alert-sign">⚠️</div>',
-                '<div class="tp-alert-content">' . Travelpayouts::__('These settings are for default settings of widgets, those were embedded  via shortcodes (plugin version before v. 1). The current version of the plugin  embeds all widgets via scripts') . '</div>',
-            ]
-        );
-    }
-
-    /**
-     * @param string| array $content
-     * @param array $htmlOptions
-     * @param string $sign
-     * @return string
-     */
-    public static function alert($content, $htmlOptions = [], $sign = false)
-    {
-        $alertClassName = 'tp-alert';
-        $className = isset($htmlOptions['class']) ? $alertClassName . ' ' . $htmlOptions['class'] : $alertClassName;
-        $htmlOptions = array_merge($htmlOptions, ['class' => $className]);
-
-        if (($isArray = is_array($content)) || is_string($content)) {
-            if ($isArray) {
-                $content = Travelpayouts\components\HtmlHelper::tagArrayContent(
-                    'div',
-                    [],
-                    $content
-                );
-            }
-
-            return Travelpayouts\components\HtmlHelper::tagArrayContent(
-                'div',
-                $htmlOptions,
-                [
-                    $sign ? '<div class="tp-alert-sign">' . $sign . '</div>' : null,
-                    '<div class="tp-alert-content">' . $content . '</div>',
-                ]
-            );
-        }
-        return '';
-    }
 }

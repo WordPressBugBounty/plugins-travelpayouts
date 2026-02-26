@@ -8,10 +8,9 @@ namespace Travelpayouts\modules\widgets\components\forms\hotels;
 
 use Travelpayouts;
 use Travelpayouts\admin\redux\base\ModuleSection;
-use Travelpayouts\admin\redux\ReduxOptions;
 use Travelpayouts\components\brands\BrandSubscriptionService;
-use Travelpayouts\components\brands\CampaignsSubscriptionsEndpoint;
 use Travelpayouts\components\dictionary\Campaigns;
+use Travelpayouts\components\widgets\AlertWidget;
 
 class Section extends ModuleSection
 {
@@ -31,7 +30,11 @@ class Section extends ModuleSection
         $campaign = Campaigns::getInstance()->getItem('101');
         return [
             'title' => $campaign ? $campaign->name : Travelpayouts::__('Hotels'),
-            'desc' => ReduxOptions::widgetsSectionDesc(),
+            'desc' =>  AlertWidget::widget([
+                'content' => Travelpayouts::__('These settings are for default settings of widgets, those were embedded  via shortcodes (plugin version before v. 1). The current version of the plugin  embeds all widgets via scripts'),
+                'showRoundel' => true,
+                'type'=> 'info',
+            ]),
             'icon' => 'el el-home'
         ];
     }

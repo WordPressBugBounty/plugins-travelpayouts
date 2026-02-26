@@ -153,10 +153,14 @@ abstract class BasePluginCore extends BaseInjectedObject
 	 * @param string $text Text to translate.
 	 * @param array $params the parameters that will be used to replace the corresponding placeholders in the message.
 	 * @return string Translated text.
-	 * @since 2.1.0
+	 * @see __()
 	 */
 	public static function __($text, $params = [])
 	{
+		if (!did_action('init')) {
+			return self::parse_message_params($text, $params);
+		}
+
 		$domain = self::get_text_domain();
 		$message = __($text, $domain);
 		return self::parse_message_params($message, $params);
@@ -168,10 +172,14 @@ abstract class BasePluginCore extends BaseInjectedObject
 	 * @param string $text Text to translate.
 	 * @param array $params the parameters that will be used to replace the corresponding placeholders in the message.
 	 * @return string Translated text on success, original text on failure.
-	 * @since 2.8.0
+	 * @see esc_attr__()
 	 */
 	public static function esc_attr__($text, $params = [])
 	{
+		if (!did_action('init')) {
+			return self::parse_message_params(esc_attr($text), $params);
+		}
+
 		$domain = self::get_text_domain();
 		$message = esc_attr__($text, $domain);
 		return self::parse_message_params($message, $params);
@@ -184,10 +192,14 @@ abstract class BasePluginCore extends BaseInjectedObject
 	 * @param string $text Text to translate.
 	 * @param array $params the parameters that will be used to replace the corresponding placeholders in the message.
 	 * @return string Translated text
-	 * @since 2.8.0
+	 * @see esc_html__()
 	 */
 	public static function esc_html__($text, $params = [])
 	{
+		if (!did_action('init')) {
+			return self::parse_message_params(esc_html($text), $params);
+		}
+
 		$domain = self::get_text_domain();
 
 		$message = esc_html__($text, $domain);
@@ -198,10 +210,15 @@ abstract class BasePluginCore extends BaseInjectedObject
 	 * Display translated text.
 	 * @param string $text Text to translate.
 	 * @param array $params the parameters that will be used to replace the corresponding placeholders in the message.
-	 * @since 1.2.0
+	 * @see _e()
 	 */
 	public static function _e($text, $params = [])
 	{
+		if (!did_action('init')) {
+			echo self::parse_message_params($text, $params);
+			return;
+		}
+
 		$domain = self::get_text_domain();
 		$message = translate($text, $domain);
 		echo self::parse_message_params($message, $params);
@@ -211,10 +228,15 @@ abstract class BasePluginCore extends BaseInjectedObject
 	 * Display translated text that has been escaped for safe use in an attribute.
 	 * @param string $text Text to translate.
 	 * @param array $params the parameters that will be used to replace the corresponding placeholders in the message.
-	 * @since 2.8.0
+	 * @see esc_attr_e()
 	 */
 	public static function esc_attr_e($text, $params = [])
 	{
+		if (!did_action('init')) {
+			echo self::parse_message_params(esc_attr($text), $params);
+			return;
+		}
+
 		$domain = self::get_text_domain();
 		$message = esc_attr(translate($text, $domain));
 		echo self::parse_message_params($message, $params);
@@ -224,10 +246,15 @@ abstract class BasePluginCore extends BaseInjectedObject
 	 * Display translated text that has been escaped for safe use in HTML output.
 	 * @param string $text Text to translate.
 	 * @param array $params the parameters that will be used to replace the corresponding placeholders in the message.
-	 * @since 2.8.0
+	 * @see esc_html_e()
 	 */
 	public static function esc_html_e($text, $params = [])
 	{
+		if (!did_action('init')) {
+			echo self::parse_message_params(esc_html($text), $params);
+			return;
+		}
+
 		$domain = self::get_text_domain();
 
 		$message = esc_html(translate($text, $domain));
@@ -245,10 +272,14 @@ abstract class BasePluginCore extends BaseInjectedObject
 	 * @param array $params the parameters that will be used to replace the corresponding placeholders in the message.
 	 *                        Default 'default'.
 	 * @return string Translated context string without pipe.
-	 * @since 2.8.0
+	 * @see _x()
 	 */
 	public static function _x($text, $context, $params = [])
 	{
+		if (!did_action('init')) {
+			return self::parse_message_params($text, $params);
+		}
+
 		$domain = self::get_text_domain();
 		$message = _x($text, $context, $domain);
 		return self::parse_message_params($message, $params);
@@ -261,10 +292,15 @@ abstract class BasePluginCore extends BaseInjectedObject
 	 * @param array $params the parameters that will be used to replace the corresponding placeholders in the message.
 	 *                        Default 'default'.
 	 * @return string Translated context string without pipe.
-	 * @since 3.0.0
+	 * @see _ex()
 	 */
 	public static function _ex($text, $context, $params = [])
 	{
+		if (!did_action('init')) {
+			echo self::parse_message_params($text, $params);
+			return;
+		}
+
 		$domain = self::get_text_domain();
 
 		$message = _x($text, $context, $domain);
@@ -278,10 +314,14 @@ abstract class BasePluginCore extends BaseInjectedObject
 	 * @param array $params the parameters that will be used to replace the corresponding placeholders in the message.
 	 *                        Default 'default'.
 	 * @return string Translated text
-	 * @since 2.8.0
+	 * @see esc_attr_x()
 	 */
 	public static function esc_attr_x($text, $context, $params = [])
 	{
+		if (!did_action('init')) {
+			return self::parse_message_params(esc_attr($text), $params);
+		}
+
 		$domain = self::get_text_domain();
 		$message = esc_attr_x($text, $context, $domain);
 		return self::parse_message_params($message, $params);
@@ -294,10 +334,14 @@ abstract class BasePluginCore extends BaseInjectedObject
 	 * @param array $params the parameters that will be used to replace the corresponding placeholders in the message.
 	 *                        Default 'default'.
 	 * @return string Translated text.
-	 * @since 2.9.0
+	 * @see esc_html_x()
 	 */
 	public static function esc_html_x($text, $context, $params = [])
 	{
+		if (!did_action('init')) {
+			return self::parse_message_params(esc_html($text), $params);
+		}
+
 		$domain = self::get_text_domain();
 
 		$message = esc_html_x($text, $context, $domain);
@@ -315,10 +359,15 @@ abstract class BasePluginCore extends BaseInjectedObject
 	 * @param int $number The number to compare against to use either the singular or plural form.
 	 * @param array $params the parameters that will be used to replace the corresponding placeholders in the message.
 	 * @return string The translated singular or plural form.
-	 * @since 2.8.0
+	 * @see _n()
 	 */
 	public static function _n($single, $plural, $number, $params = [])
 	{
+		if (!did_action('init')) {
+			$message = ($number == 1) ? $single : $plural;
+			return self::parse_message_params($message, $params);
+		}
+
 		$domain = self::get_text_domain();
 		$message = _n($single, $plural, $number, $domain);
 		return self::parse_message_params($message, $params);
@@ -340,10 +389,15 @@ abstract class BasePluginCore extends BaseInjectedObject
 	 * @param array $params the parameters that will be used to replace the corresponding placeholders in the message.
 	 *                        Default 'default'.
 	 * @return string The translated singular or plural form.
-	 * @since 2.8.0
+	 * @see _nx()
 	 */
 	public static function _nx($single, $plural, $number, $context, $params = [])
 	{
+		if (!did_action('init')) {
+			$message = ($number == 1) ? $single : $plural;
+			return self::parse_message_params($message, $params);
+		}
+
 		$domain = self::get_text_domain();
 		$message = _nx($single, $plural, $number, $context, $domain);
 		return self::parse_message_params($message, $params);
@@ -359,8 +413,6 @@ abstract class BasePluginCore extends BaseInjectedObject
 	 *     printf( translate_nooped_plural( $message, $count, 'text-domain' ), number_format_i18n( $count ) );
 	 * @param string $singular Singular form to be localized.
 	 * @param string $plural Plural form to be localized.
-	 * @param array $params the parameters that will be used to replace the corresponding placeholders in the message.
-	 *                         Default null.
 	 * @return array {
 	 *     Array of translation information for the strings.
 	 * @type string $0        Singular form to be localized. No longer used.
@@ -370,13 +422,22 @@ abstract class BasePluginCore extends BaseInjectedObject
 	 * @type null $context Context information for the translators.
 	 * @type string $domain Text domain.
 	 * }
-	 * @since 2.5.0
+	 * @see _n_noop()
 	 */
-	public static function _n_noop($singular, $plural, $params = [])
+	public static function _n_noop($singular, $plural)
 	{
-		$domain = self::get_text_domain();
-		$message = _n_noop($singular, $plural, $domain);
-		return self::parse_message_params($message, $params);
+		if (!did_action('init')) {
+			return [
+				0 => $singular,
+				1 => $plural,
+				'singular' => $singular,
+				'plural' => $plural,
+				'context' => null,
+				'domain' => self::get_text_domain(),
+			];
+		}
+
+		return _n_noop($singular, $plural, self::get_text_domain());
 	}
 
 	/**
@@ -394,8 +455,6 @@ abstract class BasePluginCore extends BaseInjectedObject
 	 * @param string $singular Singular form to be localized.
 	 * @param string $plural Plural form to be localized.
 	 * @param string $context Context information for the translators.
-	 * @param array $params the parameters that will be used to replace the corresponding placeholders in the message.
-	 *                         Default null.
 	 * @return array {
 	 *     Array of translation information for the strings.
 	 * @type string $0        Singular form to be localized. No longer used.
@@ -406,13 +465,22 @@ abstract class BasePluginCore extends BaseInjectedObject
 	 * @type string $context Context information for the translators.
 	 * @type string $domain Text domain.
 	 * }
-	 * @since 2.8.0
+	 * @see _nx_noop()
 	 */
-	public static function _nx_noop($singular, $plural, $context, $params = [])
+	public static function _nx_noop($singular, $plural, $context)
 	{
-		$domain = self::get_text_domain();
-		$message = _nx_noop($singular, $plural, $context, $domain);
-		return self::parse_message_params($message, $params);
+		if (!did_action('init')) {
+			return [
+				0 => $singular,
+				1 => $plural,
+				'singular' => $singular,
+				'plural' => $plural,
+				'context' => $context,
+				'domain' => self::get_text_domain(),
+			];
+		}
+
+		return _nx_noop($singular, $plural, $context, self::get_text_domain());
 	}
 
 	protected static function get_text_domain()

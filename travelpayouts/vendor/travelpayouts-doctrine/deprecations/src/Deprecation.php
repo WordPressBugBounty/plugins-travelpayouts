@@ -39,6 +39,8 @@ use const E_USER_DEPRECATED;
  *
  * Packages that trigger deprecations should use the `trigger()` or
  * `triggerIfCalledFromOutside()` methods.
+ *
+ * @final since 1.2
  */
 class Deprecation
 {

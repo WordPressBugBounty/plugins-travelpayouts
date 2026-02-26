@@ -6,6 +6,7 @@
 namespace Travelpayouts\admin\redux\extensions;
 
 use Travelpayouts\admin\redux\base\ConfigurableField;
+use Travelpayouts\components\widgets\AlertWidget;
 
 /**
  * @deprecated
@@ -17,7 +18,10 @@ class AutocompleteField extends ConfigurableField
     public function render()
     {
         if (TRAVELPAYOUTS_DEBUG) {
-            echo '<div class="tp-alert tp-alert--warning">AutocompleteField is deprecated</div>';
+            echo AlertWidget::widget([
+                'type' => AlertWidget::TYPE_WARNING,
+                'content' => 'AutocompleteField is deprecated',
+            ]);
         }
     }
 }

@@ -35,9 +35,10 @@
     },
     "scripts": {
         "test": "phpunit --coverage-text",
+        "test-ci": "phpunit --coverage-text --coverage-clover=coverage-clover.xml",
         "test-coverage": "phpunit --path-coverage --coverage-html=CodeCoverage",
         "lint-fix": "phpcbf --standard=PEAR src/",
         "lint": "phpcs --standard=PEAR src/"
     },
-    "version": "3.1.6"
+    "version": "3.1.7"
 }
