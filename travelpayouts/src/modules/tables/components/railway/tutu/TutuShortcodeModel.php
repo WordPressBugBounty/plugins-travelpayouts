@@ -1,7 +1,7 @@
 <?php
 
 namespace Travelpayouts\modules\tables\components\railway\tutu;
-use Travelpayouts\Vendor\apimatic\jsonmapper\JsonMapperException;
+use Travelpayouts\Vendor\glook\jsonmapper\JsonMapperException;
 use Travelpayouts\Vendor\DI\Annotation\Inject;
 use Travelpayouts;
 use Travelpayouts\components\arrayQuery\ArrayQuery;
@@ -74,9 +74,9 @@ class TutuShortcodeModel extends RailwayShortcodeModel
         ]);
     }
 
-    public function attribute_labels()
+    public function attributeLabels()
     {
-        return array_merge(parent::attribute_labels(), [
+        return array_merge(parent::attributeLabels(), [
             'origin' => Travelpayouts::__('Train station of origin'),
             'destination' => Travelpayouts::__('Train station of destination'),
             'filter_train_number' => Travelpayouts::__('Filter by train number or name (enter manually)'),
@@ -149,7 +149,7 @@ class TutuShortcodeModel extends RailwayShortcodeModel
             ColumnLabels::ARRIVAL => 9,
             ColumnLabels::DURATION => 8,
             ColumnLabels::PRICES => 12,
-            // dates имеет наивысший приоритет отображения, является action column (кнопкой)
+            // dates is the action column (button), hence the highest priority
             ColumnLabels::DATES => self::MAX_PRIORITY,
             ColumnLabels::ORIGIN => 6,
             ColumnLabels::DESTINATION => 5,
@@ -169,7 +169,7 @@ class TutuShortcodeModel extends RailwayShortcodeModel
         $model = new TrainsSuggestApiModel();
         $model->term = $this->origin;
         $model->term2 = $this->destination;
-        $response = $model->getMappedResponse(TrainsSuggestApiResponse::class);
+        $response = $model->getModel(TrainsSuggestApiResponse::class);
         if (is_array($response->trips)) {
             $result = [];
             foreach ($response->trips as $trip) {
@@ -228,7 +228,7 @@ class TutuShortcodeModel extends RailwayShortcodeModel
             ColumnLabels::ARRIVAL => [
                 'class' => ColumnTime::class,
                 'attribute' => 'arrivalDate',
-                'compareAttribute'=> 'departureDate',
+                'compareAttribute' => 'departureDate',
             ],
             ColumnLabels::DEPARTURE_TIME => [
                 'class' => ColumnTime::class,
@@ -239,8 +239,8 @@ class TutuShortcodeModel extends RailwayShortcodeModel
                 'attribute' => 'arrivalTime',
             ],
             ColumnLabels::DURATION => [
-                'class'=> ColumnDuration::class,
-                'attribute'=> 'travelTimeInSeconds',
+                'class' => ColumnDuration::class,
+                'attribute' => 'travelTimeInSeconds',
             ],
             ColumnLabels::PRICES => [
                 'class' => ColumnPrice::class,
@@ -261,20 +261,20 @@ class TutuShortcodeModel extends RailwayShortcodeModel
                 'sortProperty' => [TutuApiResponse::class, 'getMinimalPrice'],
             ],
             ColumnLabels::ORIGIN => [
-                'class'=> ColumnStation::class,
-                'attribute'=> 'departureStation',
+                'class' => ColumnStation::class,
+                'attribute' => 'departureStation',
             ],
             ColumnLabels::DESTINATION => [
-                'class'=> ColumnStation::class,
-                'attribute'=> 'arrivalStation',
+                'class' => ColumnStation::class,
+                'attribute' => 'arrivalStation',
             ],
             ColumnLabels::ROUTE_FIRST_STATION => [
-                'class'=> ColumnStation::class,
-                'attribute'=> 'runDepartureStation',
+                'class' => ColumnStation::class,
+                'attribute' => 'runDepartureStation',
             ],
             ColumnLabels::ROUTE_LAST_STATION => [
-                'class'=> ColumnStation::class,
-                'attribute'=> 'runArrivalStation',
+                'class' => ColumnStation::class,
+                'attribute' => 'runArrivalStation',
             ],
         ];
     }
@@ -314,16 +314,15 @@ class TutuShortcodeModel extends RailwayShortcodeModel
         $gridColumns = $this->gridColumns();
         /** @var null| ColumnButton $buttonColumnInstance */
         $buttonColumnInstance = null;
-        // создаем колонку с кнопкой для получения корректной ссылки
         if (isset($gridColumns[ColumnLabels::DATES]) && $this->section->getUseRowAsLink()) {
             $buttonColumnInstance = BaseObject::createObject($gridColumns[ColumnLabels::DATES]);
         }
 
-        return array_merge(parent::gridOptions(),
+        return array_merge(
+            parent::gridOptions(),
             [
                 'emptyText' => '',
                 'rowOptions' => function ($model) use ($buttonColumnInstance) {
-                    // Добавляем возможность кликать по рядам если getUseRowAsLink === true
                     if ($buttonColumnInstance) {
                         return [
                             'class' => 'travelpayouts-row-link',

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -14,7 +15,6 @@ use Travelpayouts\components\HtmlHelper;
  */
 class GridTitleStyleConfig extends BaseObject
 {
-
     public $inlineCss = [];
     /**
      * @var string|null
@@ -58,20 +58,28 @@ class GridTitleStyleConfig extends BaseObject
             ]);
         }
         return [
-            'class'=> 'tp-widget-table-title',
+            'class' => 'tp-widget-table-title',
         ];
     }
 
     /**
-     * @return string
+     * Nullable to match `cssStyleFromArray()`, which returns null for an empty set precisely so
+     * that no empty `style` attribute is rendered. Declaring `string` made that a fatal.
+     *
+     * @return string|null
      */
-    protected function getStyleHtmlOption(): string
+    protected function getStyleHtmlOption(): ?string
     {
         $skipProperties = [
             'google',
         ];
         $result = [];
-        foreach (array_filter($this->inlineCss) as $key => $value) {
+        /**
+         * Coalesced, not just filtered: the typography setting is null until the site owner opens
+         * that section, callers pass it straight in, and `array_filter(null)` is fatal on PHP 8 -
+         * which left the whole table unrendered.
+         */
+        foreach (array_filter($this->inlineCss ?: []) as $key => $value) {
             if (!in_array($key, $skipProperties, true)) {
                 $result[$key] = "$value !important";
             }

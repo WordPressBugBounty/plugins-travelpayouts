@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -23,7 +24,7 @@ class SortByField extends ConfigurableField
     /**
      * @var bool
      */
-    public $multi= false;
+    public $multi = false;
     /**
      * @var
      */

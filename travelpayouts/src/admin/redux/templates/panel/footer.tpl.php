@@ -23,13 +23,13 @@ defined('ABSPATH') || exit;
                     'id' => 'redux_bottom_save',
                 ]);
             }
-            /*
-                        if ( false === $this->parent->args['hide_reset'] ) {
-                            submit_button( esc_html__( 'Reset Section', 'redux-framework' ), 'secondary', $this->parent->args['opt_name'] . '[defaults-section]', false, array( 'id' => 'redux-defaults-section-bottom' ) );
-                            submit_button( esc_html__( 'Reset All', 'redux-framework' ), 'secondary', $this->parent->args['opt_name'] . '[defaults]', false, array( 'id' => 'redux-defaults-bottom' ) );
-                        }
-            */
-            ?>
+/*
+            if ( false === $this->parent->args['hide_reset'] ) {
+                submit_button( esc_html__( 'Reset Section', 'redux-framework' ), 'secondary', $this->parent->args['opt_name'] . '[defaults-section]', false, array( 'id' => 'redux-defaults-section-bottom' ) );
+                submit_button( esc_html__( 'Reset All', 'redux-framework' ), 'secondary', $this->parent->args['opt_name'] . '[defaults]', false, array( 'id' => 'redux-defaults-bottom' ) );
+            }
+*/
+?>
         </div>
         <div class="redux-ajax-loading" alt="<?php Travelpayouts::esc_html__('Working...'); ?>">&nbsp;</div>
         <div class="clear"></div>

@@ -8,6 +8,7 @@ class PriceCalendarMatrixApiResponse extends ApiResponseObject
 {
     /**
      * @var int
+     * @required
      */
     public $value;
     /**

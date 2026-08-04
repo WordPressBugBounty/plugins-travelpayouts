@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -24,7 +25,7 @@ use Travelpayouts\traits\GetterSetterTrait;
 abstract class Dictionary extends BaseObject
 {
     use GetterSetterTrait;
-    const CACHE_TIME = 604800; // one week
+    public const CACHE_TIME = 604800; // one week
 
     public $_pk = 'code';
     protected $type;
@@ -41,7 +42,9 @@ abstract class Dictionary extends BaseObject
 
     public function init()
     {
-        if (!$this->itemClass) throw new Exception("[{$this->className}]: item_class property must be set");
+        if (!$this->itemClass) {
+            throw new Exception("[{$this->className}]: item_class property must be set");
+        }
     }
 
     /**
@@ -66,7 +69,9 @@ abstract class Dictionary extends BaseObject
 
     public function setLang($lang)
     {
-        if (!is_string($lang)) throw new Exception('Language param must be a string');
+        if (!is_string($lang)) {
+            throw new Exception('Language param must be a string');
+        }
         if (in_array($lang, $this->_locales, true)) {
             $this->_lang = $lang;
         } elseif (array_key_exists($lang, $this->_localesFallback)) {
@@ -104,6 +109,20 @@ abstract class Dictionary extends BaseObject
             ]);
         }
         return $this->_httpClient;
+    }
+
+    /**
+     * Seam for tests: the dictionaries are downloaded from `api.travelpayouts.com`, several
+     * megabytes each. Mirrors `ApiModel::setHttpClient()`.
+     *
+     * @param Client $client
+     * @return self
+     */
+    public function setHttpClient($client)
+    {
+        $this->_httpClient = $client;
+
+        return $this;
     }
 
     /**
@@ -149,7 +168,9 @@ abstract class Dictionary extends BaseObject
     {
         try {
             // load api response data
-            if (!$this->_data) $this->getData();
+            if (!$this->_data) {
+                $this->getData();
+            }
             $data = $this->_data->get($code);
             if ($data && class_exists($this->itemClass)) {
                 $itemInstance = $this->itemClass;

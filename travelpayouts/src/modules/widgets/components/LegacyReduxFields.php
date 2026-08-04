@@ -11,11 +11,11 @@ use Travelpayouts\components\LanguageHelper;
 
 class LegacyReduxFields
 {
-    const WIDGET_PREVIEW_TYPE_IFRAME = 'iframe';
-    const WIDGET_PREVIEW_TYPE_SCRIPT = 'iframe_script';
+    public const WIDGET_PREVIEW_TYPE_IFRAME = 'iframe';
+    public const WIDGET_PREVIEW_TYPE_SCRIPT = 'iframe_script';
 
-    const RADIO_LAYOUT_DEFAULT = 'full';
-    const RADIO_LAYOUT_INLINE = 'inline';
+    public const RADIO_LAYOUT_DEFAULT = 'full';
+    public const RADIO_LAYOUT_INLINE = 'inline';
 
     /**
      * @param $prefix

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInite582440d8947703b304ae42f33df0fae
+class ComposerStaticInit9c458fdce8032198d3f575ca3cebac8e
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -24,7 +24,7 @@ class ComposerStaticInite582440d8947703b304ae42f33df0fae
     public static $prefixLengthsPsr4 = array (
         'T' =>
         array (
-            'Travelpayouts\\Vendor\\apimatic\\jsonmapper\\' => 41,
+            'Travelpayouts\\Vendor\\glook\\jsonmapper\\' => 38,
             'Travelpayouts\\Vendor\\Symfony\\Contracts\\Translation\\' => 51,
             'Travelpayouts\\Vendor\\Symfony\\Component\\Yaml\\' => 44,
             'Travelpayouts\\Vendor\\Symfony\\Component\\Translation\\' => 51,
@@ -60,9 +60,9 @@ class ComposerStaticInite582440d8947703b304ae42f33df0fae
     );
 
     public static $prefixDirsPsr4 = array (
-        'Travelpayouts\\Vendor\\apimatic\\jsonmapper\\' =>
+        'Travelpayouts\\Vendor\\glook\\jsonmapper\\' =>
         array (
-            0 => __DIR__ . '/..' . '/travelpayouts-apimatic/jsonmapper/src',
+            0 => __DIR__ . '/..' . '/travelpayouts-glook/jsonmapper/src',
         ),
         'Travelpayouts\\Vendor\\Symfony\\Contracts\\Translation\\' =>
         array (
@@ -190,9 +190,9 @@ class ComposerStaticInite582440d8947703b304ae42f33df0fae
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInite582440d8947703b304ae42f33df0fae::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInite582440d8947703b304ae42f33df0fae::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInite582440d8947703b304ae42f33df0fae::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit9c458fdce8032198d3f575ca3cebac8e::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit9c458fdce8032198d3f575ca3cebac8e::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit9c458fdce8032198d3f575ca3cebac8e::$classMap;
 
         }, null, ClassLoader::class);
     }

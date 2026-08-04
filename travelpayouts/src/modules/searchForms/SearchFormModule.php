@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -7,7 +8,6 @@ namespace Travelpayouts\modules\searchForms;
 use Travelpayouts\Vendor\Adbar\Dot;
 use Travelpayouts\components\module\ModuleRedux;
 use Travelpayouts\includes\Router;
-use Travelpayouts\modules\searchForms\controllers\HotellookAutocomplete;
 use Travelpayouts\modules\searchForms\controllers\SearchFormsController;
 
 /**
@@ -60,7 +60,6 @@ class SearchFormModule extends ModuleRedux
             ['PUT', 'searchForms/delete', [$searchFormsController, 'actionDeleteById']],
             ['DELETE', 'searchForms/delete/{id:\d+}', [$searchFormsController, 'actionDelete']],
             ['GET', 'searchForms/translations', [$searchFormsController, 'actionGetTranslations']],
-            ['GET', 'hotellook/hotels-cities/autocomplete', [HotellookAutocomplete::getInstance(), 'actionIndex']],
         ]);
     }
 

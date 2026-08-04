@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Redux_Travelpayouts Transients Class
  *
@@ -7,35 +8,37 @@
  * @package Redux_Travelpayouts Framework
  */
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
-if ( ! class_exists( 'Redux_Travelpayouts_Transients', false ) ) {
+if (! class_exists('Redux_Travelpayouts_Transients', false)) {
 
-	/**
-	 * Class Redux_Travelpayouts_Transients
-	 */
-	class Redux_Travelpayouts_Transients extends Redux_Travelpayouts_Class {
+    /**
+     * Class Redux_Travelpayouts_Transients
+     */
+    class Redux_Travelpayouts_Transients extends Redux_Travelpayouts_Class
+    {
+        /**
+         * Get transients from database.
+         */
+        public function get()
+        {
+            $core = $this->core();
 
-		/**
-		 * Get transients from database.
-		 */
-		public function get() {
-			$core = $this->core();
+            if (empty($core->transients)) {
+                $core->transients = get_option($core->args['opt_name'] . '-transients', []);
+            }
+        }
 
-			if ( empty( $core->transients ) ) {
-				$core->transients = get_option( $core->args['opt_name'] . '-transients', array() );
-			}
-		}
+        /**
+         * Set transients in database.
+         */
+        public function set()
+        {
+            $core = $this->core();
 
-		/**
-		 * Set transients in database.
-		 */
-		public function set() {
-			$core = $this->core();
-
-			if ( ! isset( $core->transients ) || ! isset( $core->transients_check ) || $core->transients_check !== $core->transients ) {
-				update_option( $core->args['opt_name'] . '-transients', $core->transients );
-			}
-		}
-	}
+            if (! isset($core->transients) || ! isset($core->transients_check) || $core->transients_check !== $core->transients) {
+                update_option($core->args['opt_name'] . '-transients', $core->transients);
+            }
+        }
+    }
 }

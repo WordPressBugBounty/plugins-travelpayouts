@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -13,7 +14,6 @@ use Travelpayouts\components\section\fields\Raw;
 
 class HelpSection extends ModuleSection
 {
-
     /**
      * @inheritdoc
      */
@@ -29,12 +29,12 @@ class HelpSection extends ModuleSection
     {
         return [
             'helpSection' => (new Raw())->setContent(HtmlHelper::tagArrayContent('div', [
-				'style'=> 'margin: -15px -10px;'
-			],   HtmlHelper::reactWidget('TravelpayoutsZendeskFeed', [
-				'lang' => LanguageHelper::isRuDashboard()
-					? 'ru'
-					: 'en',
-			]))),
+                'style' => 'margin: -15px -10px;'
+            ], HtmlHelper::reactWidget('TravelpayoutsZendeskFeed', [
+                'lang' => LanguageHelper::isRuDashboard()
+                    ? 'ru'
+                    : 'en',
+            ]))),
         ];
     }
 

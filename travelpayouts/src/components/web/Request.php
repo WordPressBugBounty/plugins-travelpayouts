@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -38,6 +39,16 @@ class Request
             }
         }
         return $this->_inputParams;
+    }
+
+    /**
+     * Sets the request body parameters, which are otherwise read from `php://input`.
+     * @param array $values
+     * @see getInputData()
+     */
+    public function setInputData($values)
+    {
+        $this->_inputParams = $values;
     }
 
     /**

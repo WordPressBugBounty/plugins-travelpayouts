@@ -14,8 +14,8 @@ use Travelpayouts\modules\links\components;
  */
 class LegacyLinkShortcode extends ShortcodeModel
 {
-    const TYPE_FLIGHTS = 1;
-    const TYPE_HOTELS = 2;
+    public const TYPE_FLIGHTS = 1;
+    public const TYPE_HOTELS = 2;
 
     /**
      * @var string

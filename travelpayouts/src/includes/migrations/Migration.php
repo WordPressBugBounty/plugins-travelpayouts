@@ -12,27 +12,27 @@ use Travelpayouts\includes\ReduxConfigurator;
 use Travelpayouts\modules\searchForms\models\SearchFormMigrationItem;
 use Travelpayouts\modules\searchForms\models\SearchFormModel;
 use Travelpayouts\modules\tables\components\flights\ColumnLabels as FlightsColumnLabels;
-use Travelpayouts\modules\tables\components\hotels\ColumnLabels as HotelsColumnLabels;
 use Travelpayouts\modules\tables\components\railway\ColumnLabels as RailwayColumnLabels;
 
 /**
- * Class Migration
- * @package Travelpayouts\includes\migrations
  * @property-read ReduxConfigurator $redux
  * @property-read Dot $source
  */
 class Migration extends BaseObject
 {
-    const SOURCE_OPTION_NAME = 'travelpayouts_options';
-    const IMPORT_DONE_OPTION_NAME = 'travelpayouts_options_import_done';
-    const IMPORT_DONE_TRUE = 1;
-    const IMPORT_DONE_FALSE = 0;
-    const CITY_URL = 'https://autocomplete.travelpayouts.com/places2?locale={lang}&types[]=city&term={term}';
-    const HOTEL_CITY_URL = 'https://yasen.hotellook.com/autocomplete?term={term}&lang={lang}';
+    public const SOURCE_OPTION_NAME = 'travelpayouts_options';
+    public const IMPORT_DONE_OPTION_NAME = 'travelpayouts_options_import_done';
+    public const IMPORT_DONE_TRUE = 1;
+    public const IMPORT_DONE_FALSE = 0;
+    public const CITY_URL = 'https://autocomplete.travelpayouts.com/places2?locale={lang}&types[]=city&term={term}';
 
     public $redux;
     public $source;
     protected $_lang;
+    /**
+     * @var CachedClient
+     */
+    protected $_httpClient;
 
     public function init()
     {
@@ -263,8 +263,6 @@ class Migration extends BaseObject
         $type = array_shift($keyArray);
 
         switch ($type) {
-            case 'shortcodes_hotels':
-                return HotelsColumnLabels::getInstance()->getDashboardColumnLabels();
             case 'shortcodes_railway':
                 return RailwayColumnLabels::getInstance()->getDashboardColumnLabels();
             default:
@@ -342,10 +340,9 @@ class Migration extends BaseObject
             $this->ourSiteSearch(),
             $this->fromOurCityFlight(),
             $this->inOurCityFlight(),
-            $this->hotelsDiscount(),
-            $this->hotelsDates(),
+            // No hotel table settings here: the sections went away with the
+            // HotelLook integration, so old values have nowhere to land.
             $this->railwaySchedule(),
-
             $this->flightsMap(),
             $this->hotelMap(),
             $this->priceCalendar(),
@@ -354,15 +351,14 @@ class Migration extends BaseObject
             $this->popularRoutes(),
             $this->hotelSelections(),
             $this->flightsDucklett(),
-
             $this->account(),
-
             $this->settings(),
             $this->settingsLocal(),
             $this->settingsTables()
         );
 
-        return array_filter($options,
+        return array_filter(
+            $options,
             function ($value) {
                 return !is_null($value) && $value !== '';
             }
@@ -375,7 +371,8 @@ class Migration extends BaseObject
     // old - Цены на месяц по направлению, в одну сторону
     private function priceCalendarMonth()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'title' => 'title.{lang}',
             'title_tag' => 'tag',
             'columns' => 'sortable_fields',
@@ -395,7 +392,8 @@ class Migration extends BaseObject
     // old - Билеты по направлению на ближайшие дни
     private function priceCalendarWeek()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'title' => 'title.{lang}',
             'title_tag' => 'tag',
             'columns' => 'sortable_fields',
@@ -417,7 +415,8 @@ class Migration extends BaseObject
     // old - Самые дешевые билеты по направлению
     private function cheapestFlights()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'title' => 'title.{lang}',
             'title_tag' => 'tag',
             'columns' => 'sortable_fields',
@@ -436,7 +435,8 @@ class Migration extends BaseObject
     // old - Самые дешевые билеты по направлению в этом месяце
     private function cheapestTicket()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'title' => 'title.{lang}',
             'title_tag' => 'tag',
             'columns' => 'sortable_fields',
@@ -456,7 +456,8 @@ class Migration extends BaseObject
     // old - Цены на билеты по месяцам
     private function cheapestTicketYear()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'title' => 'title.{lang}',
             'title_tag' => 'tag',
             'columns' => 'sortable_fields',
@@ -475,7 +476,8 @@ class Migration extends BaseObject
     // old - Билеты без пересадок по направлению
     private function directFlightsRoute()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'title' => 'title.{lang}',
             'title_tag' => 'tag',
             'columns' => 'sortable_fields',
@@ -494,7 +496,8 @@ class Migration extends BaseObject
     // old - Билеты без пересадок ИЗ
     private function directFlights()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'title' => 'title.{lang}',
             'title_tag' => 'tag',
             'columns' => 'sortable_fields',
@@ -513,7 +516,8 @@ class Migration extends BaseObject
     // old - Популярные направления из города
     private function popularFromCity()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'title' => 'title.{lang}',
             'title_tag' => 'tag',
             'columns' => 'sortable_fields',
@@ -532,7 +536,8 @@ class Migration extends BaseObject
     // old - Популярные направления авиакомпании
     private function popularDestinationsAirlines()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'title' => 'title.{lang}',
             'title_tag' => 'tag',
             'columns' => 'sortable_fields',
@@ -551,7 +556,8 @@ class Migration extends BaseObject
     // old - На нашем сайте искали
     private function ourSiteSearch()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'title' => 'title.{lang}',
             'title_tag' => 'tag',
             'columns' => 'sortable_fields',
@@ -571,7 +577,8 @@ class Migration extends BaseObject
     // old - Дешевые перелеты из города
     private function fromOurCityFlight()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'title' => 'title.{lang}',
             'title_tag' => 'tag',
             'columns' => 'sortable_fields',
@@ -591,7 +598,8 @@ class Migration extends BaseObject
     // old - Дешевые перелеты в город
     private function inOurCityFlight()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'title' => 'title.{lang}',
             'title_tag' => 'tag',
             'columns' => 'sortable_fields',
@@ -607,44 +615,10 @@ class Migration extends BaseObject
         );
     }
 
-    private function hotelsDiscount()
-    {
-        return $this->arrayMapAssoc([
-            'title' => 'title.{lang}',
-            'title_tag' => 'tag',
-            'columns' => 'sortable_fields',
-            'button_title' => 'title_button.{lang}',
-            'sort_by' => 'sort_column',
-            'use_pagination' => 'paginate_switch',
-            'pagination_size' => 'paginate',
-            'assign_dates' => 'link_without_dates',
-            'subid' => 'extra_table_marker',
-        ],
-            'tables_hotels_tp_hotels_selections_discount_shortcodes_',
-            'shortcodes_hotels.1.'
-        );
-    }
-
-    private function hotelsDates()
-    {
-        return $this->arrayMapAssoc([
-            'title' => 'title.{lang}',
-            'title_tag' => 'tag',
-            'columns' => 'sortable_fields',
-            'button_title' => 'title_button.{lang}',
-            'sort_by' => 'sort_column',
-            'use_pagination' => 'paginate_switch',
-            'pagination_size' => 'paginate',
-            'subid' => 'extra_table_marker',
-        ],
-            'tables_hotels_tp_hotels_selections_date_shortcodes_',
-            'shortcodes_hotels.2.'
-        );
-    }
-
     private function railwaySchedule()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'title' => 'title.{lang}',
             'title_tag' => 'tag',
             'columns' => 'sortable_fields',
@@ -661,7 +635,8 @@ class Migration extends BaseObject
     /* Widgets */
     private function flightsMap()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'only_direct_flight' => 'direct',
             'show_logo' => 'hide_logo',
             'map_dimensions' => 'scalling_width',
@@ -673,7 +648,8 @@ class Migration extends BaseObject
 
     private function hotelMap()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'allow_dragging' => 'draggable',
             'enable_zooming' => 'disable_zoom',
             'zooming_during_scrolling' => 'scrollwheel',
@@ -690,7 +666,8 @@ class Migration extends BaseObject
 
     private function priceCalendar()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'city_departure' => 'origin',
             'city_arrive' => 'destination',
             'travel_time' => 'period_day',
@@ -708,7 +685,8 @@ class Migration extends BaseObject
 
     private function priceChangeSub()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'city_departure' => 'origin',
             'city_arrive' => 'destination',
             'scalling_width_toggle' => 'responsive',
@@ -722,7 +700,8 @@ class Migration extends BaseObject
 
     private function hotelWidget()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'scalling_width_toggle' => 'responsive',
             'scalling_width' => 'scalling_width',
         ],
@@ -733,7 +712,8 @@ class Migration extends BaseObject
 
     private function popularRoutes()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'scalling_width_toggle' => 'responsive',
             'scalling_width' => 'scalling_width',
             'widget_count' => 'count',
@@ -745,7 +725,8 @@ class Migration extends BaseObject
 
     private function hotelSelections()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'scalling_width_toggle' => 'responsive',
             'scalling_width' => 'scalling_width',
             'selection_hotel_count' => 'limit',
@@ -758,7 +739,8 @@ class Migration extends BaseObject
 
     private function flightsDucklett()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'scalling_width_toggle' => 'responsive',
             'scalling_width' => 'scalling_width',
             'limit_special_offer' => 'limit',
@@ -775,7 +757,8 @@ class Migration extends BaseObject
     /* Account */
     private function account()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'api_token' => 'token',
             'api_marker' => 'marker',
             'flights_domain' => 'white_label',
@@ -789,7 +772,8 @@ class Migration extends BaseObject
     /* Settings */
     private function settings()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'date_format' => 'format_date',
             'distance_units' => 'distance',
             'flights_after_url' => 'after_url',
@@ -812,7 +796,8 @@ class Migration extends BaseObject
 
     private function settingsLocal()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'flights_source' => 'host',
             'hotels_source' => 'host_hotel',
             'language' => 'localization',
@@ -826,7 +811,8 @@ class Migration extends BaseObject
 
     private function settingsTables()
     {
-        return $this->arrayMapAssoc([
+        return $this->arrayMapAssoc(
+            [
             'tables_settings_flights_theme' => 'themes_table.name',
             'tables_settings_hotels_theme' => 'themes_table_hotels.name',
 
@@ -841,6 +827,37 @@ class Migration extends BaseObject
         );
     }
 
+
+    /**
+     * @return CachedClient
+     */
+    protected function getHttpClient()
+    {
+        if (!$this->_httpClient) {
+            $this->_httpClient = new CachedClient([
+                'timeout' => 15,
+                'headers' => [
+                    'Accept-Encoding' => 'gzip, deflate',
+                    'Accept-Language' => '*'
+                ]
+            ]);
+        }
+        return $this->_httpClient;
+    }
+
+    /**
+     * Seam for tests: every widget origin and destination of the previous version is resolved
+     * against a live suggest endpoint. Mirrors `ApiModel::setHttpClient()`.
+     *
+     * @param CachedClient $client
+     * @return self
+     */
+    public function setHttpClient($client)
+    {
+        $this->_httpClient = $client;
+
+        return $this;
+    }
 
     private function prepareUrl($url, $term)
     {
@@ -866,14 +883,7 @@ class Migration extends BaseObject
      */
     private function getFirstValueFormSuggest($url)
     {
-        $client = new CachedClient([
-            'timeout' => 15,
-            'headers' => [
-                'Accept-Encoding' => 'gzip, deflate',
-                'Accept-Language' => '*'
-            ]
-        ]);
-        $response = $client->get($url);
+        $response = $this->getHttpClient()->get($url);
 
         if (!$response->isError && $response->statusCode === 200 && $response->json) {
             $data = $response->json;
@@ -891,7 +901,9 @@ class Migration extends BaseObject
 
     public function import()
     {
-        if (!class_exists('Redux_Travelpayouts')) return;
+        if (!class_exists('Redux_Travelpayouts')) {
+            return;
+        }
 
         $this->importSettings();
         $this->importSearchForms();
@@ -910,7 +922,9 @@ class Migration extends BaseObject
 
     public function importAccount()
     {
-        if (!class_exists('Redux_Travelpayouts')) return;
+        if (!class_exists('Redux_Travelpayouts')) {
+            return;
+        }
 
         if (!empty($this->source)) {
             $account = Travelpayouts::getInstance()->account->section->data;
@@ -944,5 +958,3 @@ class Migration extends BaseObject
         return empty($searchFormsData) ? (new MigrationQuery())->getSearchForms() : $searchFormsData;
     }
 }
-
-

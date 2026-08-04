@@ -44,7 +44,7 @@ class Query extends BaseObject
     public function count($table)
     {
         $tableName = $this->getTableName($table);
-        return  $this->tableExists($table) ? (int) $this->getConnection()->get_row("select COUNT(*) as count from $tableName")->count: 0;
+        return  $this->tableExists($table) ? (int) $this->getConnection()->get_row("select COUNT(*) as count from $tableName")->count : 0;
     }
 
     public function drop($table)

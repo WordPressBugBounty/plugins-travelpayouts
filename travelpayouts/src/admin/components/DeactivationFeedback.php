@@ -8,8 +8,8 @@ use Travelpayouts\components\LanguageHelper;
 
 class DeactivationFeedback extends BaseInjectedObject
 {
-    const EN_FORM_ID = 'qgiWODqO';
-    const RU_FORM_ID = 'zJGtoYPO';
+    public const EN_FORM_ID = 'qgiWODqO';
+    public const RU_FORM_ID = 'zJGtoYPO';
 
     /**
      * @Inject

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -59,7 +60,7 @@ class ColumnHumanDate extends GridColumn
     public function renderDataCellContent($model, $key, $index)
     {
         $value = $this->getDataCellValue($model, $key, $index);
-        return $value instanceof Carbon ? $value->locale($this->locale)->translatedFormat($this->dateFormat): null;
+        return $value instanceof Carbon ? $value->locale($this->locale)->translatedFormat($this->dateFormat) : null;
     }
 
     protected function getComputedCellValue($model, $value)

@@ -30,6 +30,8 @@ use Travelpayouts\components\Rights;
 use Travelpayouts\components\snowplow\Tracker;
 use Travelpayouts\includes\HooksLoader;
 use Travelpayouts\includes\migrations\Migration;
+use Travelpayouts\includes\migrations\MigrationQuery;
+use Travelpayouts\modules\searchForms\models\SearchFormModel;
 use Travelpayouts\includes\ReduxConfigurator;
 use Travelpayouts\modules\account\Account;
 use Travelpayouts\modules\settings\Settings;
@@ -132,7 +134,7 @@ class AdminHooks extends Travelpayouts\components\HookableObject
                 'clearPlatformsSelectCache',
             ])
             ->addAdminAjaxEndpoint('travelpayouts_migrate_search_forms', [$this, 'migrateSearchForms'])
-            ->addAction('plugins_loaded', [$this, 'loadReduxOptions'])
+            ->addAction('init', [$this, 'loadReduxOptions'], 1)
             ->addAction('admin_menu', [$this->get_landing_page(), 'add_page'])
             ->addAction('admin_notices', [$this, 'renderNotices'])
             ->addAction('redux_travelpayouts/page/' . TRAVELPAYOUTS_REDUX_OPTION . '/enqueue', [
@@ -140,10 +142,12 @@ class AdminHooks extends Travelpayouts\components\HookableObject
                 'overrideReduxCss',
             ])
             ->addAction(
-                'admin_action_' . LandingPage::ACTION, [
+                'admin_action_' . LandingPage::ACTION,
+                [
                 $this,
                 'landing_page_action',
-            ])
+            ]
+            )
             ->addAction(
                 'update_option_' . TRAVELPAYOUTS_REDUX_OPTION,
                 [
@@ -227,7 +231,36 @@ class AdminHooks extends Travelpayouts\components\HookableObject
         $pluginOptionVersion = get_option(TRAVELPAYOUTS_VERSION_KEY);
 
         if (empty($pluginOptionVersion) || $pluginOptionVersion != TRAVELPAYOUTS_VERSION) {
+            $this->reofferLostSearchFormImport();
             update_option(TRAVELPAYOUTS_VERSION_KEY, TRAVELPAYOUTS_VERSION);
+        }
+    }
+
+    /**
+     * Releases 1.2.1 and 1.2.2 rejected every legacy search form during import yet still marked the
+     * import done, so the forms disappeared with no way to retry. The source data is only ever read,
+     * so clearing the flag is enough to bring the import notice back.
+     *
+     * Fires once per version change and only on the exact fingerprint: import done, source has
+     * forms, collection empty. Someone who imported successfully and then deleted every form by
+     * hand looks the same and will see the notice again - it is dismissable.
+     */
+    private function reofferLostSearchFormImport(): void
+    {
+        if (get_option(Migration::IMPORT_DONE_OPTION_NAME) != Migration::IMPORT_DONE_TRUE) {
+            return;
+        }
+
+        if (SearchFormModel::getInstance()->findAll()) {
+            return;
+        }
+
+        $source = get_option(Migration::SOURCE_OPTION_NAME);
+        $hasLegacyForms = !empty($source['search_forms'])
+            || (new MigrationQuery())->getSearchFormsCount() > 0;
+
+        if ($hasLegacyForms) {
+            delete_option(Migration::IMPORT_DONE_OPTION_NAME);
         }
     }
 
@@ -260,7 +293,7 @@ class AdminHooks extends Travelpayouts\components\HookableObject
             'status' => 'success',
             'action' => 'reload',
         ]);
-        die ();
+        die();
     }
 
     public function migrateCancel()
@@ -275,7 +308,7 @@ class AdminHooks extends Travelpayouts\components\HookableObject
             'status' => 'success',
             'action' => 'reload',
         ]);
-        die ();
+        die();
     }
 
     public function clearPlatformsSelectCache()
@@ -292,7 +325,7 @@ class AdminHooks extends Travelpayouts\components\HookableObject
             'status' => 'success',
             'action' => 'reload',
         ]);
-        die ();
+        die();
     }
 
     public function migrateSearchForms()
@@ -306,7 +339,7 @@ class AdminHooks extends Travelpayouts\components\HookableObject
             'status' => 'success',
             'action' => 'reload',
         ]);
-        die ();
+        die();
     }
 
     /**
@@ -371,7 +404,7 @@ class AdminHooks extends Travelpayouts\components\HookableObject
                         ->setType(Notice::NOTICE_TYPE_ERROR)
                         ->setTitle(Travelpayouts::__('Import failed'))
                 );
-                die ();
+                die();
             }
         }
 
@@ -385,7 +418,7 @@ class AdminHooks extends Travelpayouts\components\HookableObject
             'status' => 'success',
             'action' => 'reload',
         ]);
-        die ();
+        die();
     }
 
     /**
@@ -418,7 +451,7 @@ class AdminHooks extends Travelpayouts\components\HookableObject
 
         $screen = get_current_screen();
         // Не показывать уведомления плагина в редакторе
-        if ( ! $screen || 'post' === $screen->base ) {
+        if (! $screen || 'post' === $screen->base) {
             return;
         }
 
@@ -545,7 +578,7 @@ class AdminHooks extends Travelpayouts\components\HookableObject
                                 ->setUrl(add_query_arg([
                                     'page' => 'travelpayouts_options',
                                     'section' => 'settings',
-                                    'field'=> 'settings_use_fileCache'
+                                    'field' => 'settings_use_fileCache'
                                 ], admin_url('admin.php')))
                         )
                         ->setCloseable()
@@ -572,7 +605,7 @@ class AdminHooks extends Travelpayouts\components\HookableObject
                             ->setUrl(add_query_arg([
                                 'page' => 'travelpayouts_options',
                                 'section' => 'account',
-                                'field'=> 'account_platform'
+                                'field' => 'account_platform'
                             ], admin_url('admin.php')))
                     )
                     ->setCloseable()

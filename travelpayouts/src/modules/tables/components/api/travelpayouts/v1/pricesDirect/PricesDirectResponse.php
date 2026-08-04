@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -11,6 +12,7 @@ class PricesDirectResponse extends ApiResponseObject
 {
     /**
      * @var int
+     * @required
      */
     public $price;
     /**

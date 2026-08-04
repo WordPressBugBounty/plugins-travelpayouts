@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -59,7 +60,7 @@ class GridBuilder extends InjectedModel
         return StringHelper::toBoolean($shortcodeModel->debug)
             ? [
                 'shortcodeName' => $shortcodeModel->tag,
-                'shortcodeAttributes' => array_filter($shortcodeModel->toArray($shortcodeModel->safe_attributes())),
+                'shortcodeAttributes' => array_filter($shortcodeModel->toArray($shortcodeModel->safeAttributes())),
             ]
             : null;
     }
@@ -84,10 +85,12 @@ class GridBuilder extends InjectedModel
         $onLoadScript = $this->globalSettings->table_load_event;
 
         if ($onLoadScript) {
-            $htmlOptions = array_merge($htmlOptions,
+            $htmlOptions = array_merge(
+                $htmlOptions,
                 [
                     'data-onload' => $onLoadScript,
-                ]);
+                ]
+            );
         }
         return HtmlHelper::tag(
             'div',
@@ -151,7 +154,7 @@ class GridBuilder extends InjectedModel
         $gridConfig = [
             'dataProvider' => $dataProvider,
             'columns' => $this->getGridColumns(),
-            'options'=>  ['class' => 'tp-widget-table-grid'],
+            'options' =>  ['class' => 'tp-widget-table-grid'],
             'tableOptions' => [
                 'class' => 'tp-widget-table',
                 'data-options' => \json_encode(

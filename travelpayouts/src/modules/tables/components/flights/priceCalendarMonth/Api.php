@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -11,7 +12,6 @@ use Travelpayouts\modules\tables\components\api\travelpayouts\v2\pricesMonthMatr
 
 class Api extends BaseTokenApiModel
 {
-    protected $responseClass = PriceCalendarMonthApiResponse::class;
     public $currency;
     public $origin;
     public $destination;
@@ -51,7 +51,6 @@ class Api extends BaseTokenApiModel
             ]);
             $nextMonthResult = $nextMonthModel->sendRequest();
             $this->addRequestUrl($nextMonthModel->getDebugData());
-            // Склеиваем результаты с предыдущим периодом
             if (is_array($nextMonthResult) && !empty($nextMonthResult)) {
                 $results = array_merge($results, $nextMonthResult);
             }
@@ -61,7 +60,7 @@ class Api extends BaseTokenApiModel
     }
 
     /**
-     * Прошло больше половины месяца?
+     * Past the middle of the month?
      * @return bool
      */
     protected function isNeedToFetchNextMonth(): bool

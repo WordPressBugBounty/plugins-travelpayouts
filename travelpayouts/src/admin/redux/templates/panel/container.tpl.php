@@ -48,7 +48,7 @@ echo Travelpayouts::getInstance()->assets->loader->registerAsset('admin-panel')-
                         name="<?php echo esc_attr($this->parent->args['opt_name']); ?>[redux-no_panel]"
                         value="<?php echo esc_attr(implode('|', $this->parent->options_class->no_panel)); ?>"/>
             <?php } ?>
-            <?php $this->init_settings_fields(); // Must run or the page won't redirect properly. ?>
+            <?php $this->init_settings_fields(); // Must run or the page won't redirect properly.?>
             <input
                     type="hidden" id="last_tab"
                     name="<?php echo esc_attr($this->parent->args['opt_name']); ?>[last_tab]"

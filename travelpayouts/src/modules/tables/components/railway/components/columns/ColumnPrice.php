@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -15,7 +16,6 @@ use Travelpayouts\modules\tables\components\api\travelpayouts\trainsSuggest\resp
  */
 class ColumnPrice extends GridColumn
 {
-
     public function renderDataCellContent($model, $key, $index)
     {
         $value = $this->getDataCellValue($model, $key, $index);

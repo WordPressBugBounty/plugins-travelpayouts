@@ -1,2 +1,3 @@
 <?php
-	// Shim file for bad theme developers.
+
+// Shim file for bad theme developers.

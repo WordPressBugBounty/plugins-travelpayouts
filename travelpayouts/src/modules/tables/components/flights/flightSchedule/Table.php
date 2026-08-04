@@ -58,9 +58,9 @@ class Table extends FlightsShortcodeModel
         $this->paginate = StringHelper::toBoolean($this->section->use_pagination);
     }
 
-    public function attribute_labels()
+    public function attributeLabels()
     {
-        return array_merge(parent::attribute_labels(), [
+        return array_merge(parent::attributeLabels(), [
             'off_subtitle' => Travelpayouts::__('Hide subtitle'),
         ]);
     }
@@ -147,7 +147,7 @@ class Table extends FlightsShortcodeModel
             $model->locale = $this->locale;
             $model->airline = $this->filter_airline;
             $model->non_direct_flights = !$this->getOneWay();
-            $mappedResponse = $model->getMappedResponse(FlightScheduleApiResponse::class);
+            $mappedResponse = $model->getModel(FlightScheduleApiResponse::class);
             if ($mappedResponse !== null) {
                 $this->_response = $mappedResponse;
             }
@@ -221,7 +221,6 @@ class Table extends FlightsShortcodeModel
                 'span',
                 ['class' => 'tp-destination-city tp-font-bold'],
                 $this->getResponse()->subtitle->destination->city
-
             ) . ', ' . HtmlHelper::tag(
                 'span',
                 ['class' => 'tp-destination-country'],
@@ -247,7 +246,8 @@ class Table extends FlightsShortcodeModel
     public function gridColumns(): array
     {
         return Travelpayouts\helpers\ArrayHelper::mergeRecursive(
-            parent::gridColumns(), [
+            parent::gridColumns(),
+            [
                 ColumnLabels::FLIGHT_NUMBER => [
                     'attribute' => 'fullFlightNumber',
                 ],

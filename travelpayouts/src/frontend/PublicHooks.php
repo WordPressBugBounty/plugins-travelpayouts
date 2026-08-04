@@ -25,7 +25,6 @@ use Travelpayouts\modules\settings\SettingsForm;
 use Travelpayouts\admin\components\AirtableDistribution;
 use Travelpayouts\modules\tables\components\settings\CustomTableStylesSection;
 use Travelpayouts\modules\tables\components\settings\FlightsSettingsSection;
-use Travelpayouts\modules\tables\components\settings\HotelSettingsSection;
 use Travelpayouts\Vendor\League\Plates\Engine;
 
 /**
@@ -49,12 +48,6 @@ class PublicHooks extends HookableObject
      * @Inject
      */
     protected $flightsSettings;
-
-    /**
-     * @var HotelSettingsSection
-     * @Inject
-     */
-    protected $hotelsSettings;
 
     /**
      * @Inject
@@ -88,7 +81,6 @@ class PublicHooks extends HookableObject
 
     public function init()
     {
-        // Регистрируем контроллер
         new LinksController();
     }
 
@@ -132,7 +124,7 @@ class PublicHooks extends HookableObject
         $this->addTableEvents();
 
         /**
-         * TODO проверить если jquery не registered или wp_deregister_script или подменен другим
+         * TODO check the cases where jquery is not registered, deregistered or replaced
          */
         if (wp_script_is('jquery', 'registered')) {
             wp_enqueue_script('jquery');

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -53,7 +54,8 @@ class Accordion extends BaseField
             [
                 (new AccordionClose())
                     ->setID("{$id}_close"),
-            ]);
+            ]
+        );
         return $this->resolveFields($fields, $this->_predefinedFields);
     }
 

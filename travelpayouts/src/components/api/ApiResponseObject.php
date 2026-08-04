@@ -1,10 +1,11 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
 
 namespace Travelpayouts\components\api;
-use Travelpayouts\Vendor\apimatic\jsonmapper\JsonMapper;
+
 use ArrayAccess;
 use Travelpayouts\components\BaseInjectedObject;
 use Travelpayouts\interfaces\Arrayable;
@@ -57,11 +58,15 @@ abstract class ApiResponseObject extends BaseInjectedObject implements Arrayable
      */
     public static function createFromArray(array $response)
     {
-        $mapper = new JsonMapper();
-        $mapper->bEnforceMapType = false;
-        $mapper->bExceptionOnMissingData = false;
-        /** @var self $mappedResponse */
-        $mappedResponse = $mapper->map(json_decode(json_encode($response)), new static);
+        // Static method, no error bag here, and callers already expect nullable,
+        // so a parse failure returns null instead of escaping to a public page.
+        try {
+            /** @var static $mappedResponse */
+            $mappedResponse = ResponseMapper::map($response, static::class);
+        } catch (\Throwable $e) {
+            return null;
+        }
+
         return $mappedResponse;
     }
 }

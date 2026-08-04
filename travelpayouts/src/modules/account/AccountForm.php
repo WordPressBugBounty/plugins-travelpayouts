@@ -64,14 +64,14 @@ class AccountForm extends ModuleSection
             'platform' => $this->fieldTrafficSource()
                 ->setTitle(Travelpayouts::__('Projects'))
                 ->setSubtitle(HtmlHelper::tag(
-                        'p',
-                        [],
-                        Travelpayouts::__('Select your relevant channel')
-                    ) . HtmlHelper::tag(
-                        'p',
-                        [],
-                        Travelpayouts::__('<a href="https://support.travelpayouts.com/hc/en-us/articles/360015015439-Traffic-sources" target="_blank" class="tp-link">What are Projects?</a>')
-                    ))
+                    'p',
+                    [],
+                    Travelpayouts::__('Select your relevant channel')
+                ) . HtmlHelper::tag(
+                    'p',
+                    [],
+                    Travelpayouts::__('<a href="https://support.travelpayouts.com/hc/en-us/articles/360015015439-Traffic-sources" target="_blank" class="tp-link">What are Projects?</a>')
+                ))
                 ->setDesc(Travelpayouts::__('Select Project with your channel, where you use brands’ affiliate tools. This enables an accurate tracking of your views, clicks and other performance stats. Create and edit Projects through your account on <a href="https://www.travelpayouts.com/profile/sources" class="tp-link" target="_blank">Travelpayouts.com</a>'))
                 ->setOptions(PlatformsEndpoint::getInstance()->getSelectOptions()),
             'wl_domain_start' => $this->fieldSection()

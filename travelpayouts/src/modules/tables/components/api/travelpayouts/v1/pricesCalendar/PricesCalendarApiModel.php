@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -7,14 +8,10 @@ namespace Travelpayouts\modules\tables\components\api\travelpayouts\v1\pricesCal
 
 use Travelpayouts\modules\tables\components\api\travelpayouts\BaseTravelpayoutsApiModel;
 
-/**
- * @method PricesCalendarApiResponse[] getResponseModels()
- */
 class PricesCalendarApiModel extends BaseTravelpayoutsApiModel
 {
-    protected $responseClass = PricesCalendarApiResponse::class;
-    const CALENDAR_TYPE_DEPARTURE = 'departure_date';
-    const CALENDAR_TYPE_RETURN = 'return_date';
+    public const CALENDAR_TYPE_DEPARTURE = 'departure_date';
+    public const CALENDAR_TYPE_RETURN = 'return_date';
 
     public $currency = 'RUB';
     public $origin;
@@ -48,6 +45,6 @@ class PricesCalendarApiModel extends BaseTravelpayoutsApiModel
      */
     protected function endpointUrl()
     {
-        return 'http://api.travelpayouts.com/v1/prices/calendar';
+        return 'https://api.travelpayouts.com/v1/prices/calendar';
     }
 }

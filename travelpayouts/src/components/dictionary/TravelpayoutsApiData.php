@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -10,12 +11,12 @@ use Exception;
 
 class TravelpayoutsApiData extends Dictionary
 {
-    const CASE_NOMINATIVE = false; // именительный падеж
-    const CASE_GENITIVE = 'ro'; // родительный
-    const CASE_ACCUSATIVE = 'vi'; // винительный
-    const CASE_DATIVE = 'da'; // дательный
-    const CASE_INSTRUMENTAL = 'tv'; // творительный
-    const CASE_PREPOSITIONAL = 'pr'; // предложный
+    public const CASE_NOMINATIVE = false; // именительный падеж
+    public const CASE_GENITIVE = 'ro'; // родительный
+    public const CASE_ACCUSATIVE = 'vi'; // винительный
+    public const CASE_DATIVE = 'da'; // дательный
+    public const CASE_INSTRUMENTAL = 'tv'; // творительный
+    public const CASE_PREPOSITIONAL = 'pr'; // предложный
 
     protected $_localesFallback = [
         'be' => 'ru',
@@ -85,7 +86,9 @@ class TravelpayoutsApiData extends Dictionary
     public function init()
     {
         parent::init();
-        if (!$this->lang) throw new Exception("[{$this->className}]: lang property must be set");
+        if (!$this->lang) {
+            throw new Exception("[{$this->className}]: lang property must be set");
+        }
     }
 
     /**

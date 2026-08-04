@@ -122,12 +122,11 @@ class Table extends FlightsShortcodeModel
     protected function getCollection(): array
     {
         $model = new PricesMonthlyApiModel($this->apiModelOptions());
-        $model->setResponseClass(CheapestTicketEachDayMonthApiResponse::class);
         $model->currency = $this->currency;
         $model->origin = $this->origin;
         $model->destination = $this->destination;
         /** @var CheapestTicketEachDayMonthApiResponse[] $responseModels */
-        $responseModels = $model->getResponseModels();
+        $responseModels = $model->getModels(CheapestTicketEachDayMonthApiResponse::class);
         $result = [];
         foreach ($responseModels as $responseModel) {
             $responseModel->shortcodeModel = $this;
@@ -190,7 +189,7 @@ class Table extends FlightsShortcodeModel
                 'attribute' => 'fullFlightNumber',
             ],
             ColumnLabels::FLIGHT => [
-                'attribute'=>'flight_number',
+                'attribute' => 'flight_number',
                 'airlineCodeAttribute' => 'airline',
             ],
             ColumnLabels::PRICE => [

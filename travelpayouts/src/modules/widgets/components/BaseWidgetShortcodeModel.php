@@ -1,10 +1,10 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
 
 namespace Travelpayouts\modules\widgets\components;
-
 
 use Travelpayouts\components\widgets\WidgetModel;
 

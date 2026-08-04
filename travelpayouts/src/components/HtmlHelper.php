@@ -4,7 +4,7 @@ namespace Travelpayouts\components;
 
 class HtmlHelper
 {
-    const ID_PREFIX = 'tp';
+    public const ID_PREFIX = 'tp';
 
     /**
      * @var boolean whether to close single tags. Defaults to true. Can be set to false for HTML5.
@@ -43,10 +43,11 @@ class HtmlHelper
     public static function tag($tag, $htmlOptions = [], $content = false, $closeTag = true)
     {
         $html = '<' . $tag . self::renderAttributes($htmlOptions);
-        if ($content === false)
+        if ($content === false) {
             return $closeTag && self::$closeSingleTags ? $html . ' />' : $html . '>';
-        else
+        } else {
             return $closeTag ? $html . '>' . $content . '</' . $tag . '>' : $html . '>' . $content;
+        }
     }
 
     /**
@@ -161,15 +162,17 @@ class HtmlHelper
             'typemustmatch' => 1,
         ];
 
-        if ($htmlOptions === [])
+        if ($htmlOptions === []) {
             return '';
+        }
 
         $html = '';
         if (isset($htmlOptions['encode'])) {
             $raw = !$htmlOptions['encode'];
             unset($htmlOptions['encode']);
-        } else
+        } else {
             $raw = false;
+        }
 
         foreach ($htmlOptions as $name => $value) {
             if (isset($specialAttributes[$name])) {
@@ -177,11 +180,13 @@ class HtmlHelper
                     $html .= ' ' . $name . '="false"';
                 } elseif ($value) {
                     $html .= ' ' . $name;
-                    if (self::$renderSpecialAttributesValue)
+                    if (self::$renderSpecialAttributesValue) {
                         $html .= '="' . $name . '"';
+                    }
                 }
-            } elseif ($value !== null)
+            } elseif ($value !== null) {
                 $html .= ' ' . $name . '="' . ($raw ? $value : self::encode($value)) . '"';
+            }
         }
 
         return $html;
@@ -201,10 +206,11 @@ class HtmlHelper
         $htmlOptions['type'] = $type;
         $htmlOptions['value'] = $value;
         $htmlOptions['name'] = $name;
-        if (!isset($htmlOptions['id']))
+        if (!isset($htmlOptions['id'])) {
             $htmlOptions['id'] = self::getIdByName($name);
-        elseif ($htmlOptions['id'] === false)
+        } elseif ($htmlOptions['id'] === false) {
             unset($htmlOptions['id']);
+        }
         return self::tag('input', $htmlOptions);
     }
 
@@ -221,10 +227,11 @@ class HtmlHelper
     public static function textArea($name, $value = '', $htmlOptions = [])
     {
         $htmlOptions['name'] = $name;
-        if (!isset($htmlOptions['id']))
+        if (!isset($htmlOptions['id'])) {
             $htmlOptions['id'] = self::getIdByName($name);
-        elseif ($htmlOptions['id'] === false)
+        } elseif ($htmlOptions['id'] === false) {
             unset($htmlOptions['id']);
+        }
         return self::tag('textarea', $htmlOptions, isset($htmlOptions['encode']) && !$htmlOptions['encode'] ? $value : self::encode($value));
     }
 
@@ -241,10 +248,11 @@ class HtmlHelper
     public static function input($name, $value = '', $htmlOptions = [])
     {
         $htmlOptions['name'] = $name;
-        if (!isset($htmlOptions['id']))
+        if (!isset($htmlOptions['id'])) {
             $htmlOptions['id'] = self::getIdByName($name);
-        elseif ($htmlOptions['id'] === false)
+        } elseif ($htmlOptions['id'] === false) {
             unset($htmlOptions['id']);
+        }
         return self::tag('input', $htmlOptions, isset($htmlOptions['encode']) && !$htmlOptions['encode'] ? $value : self::encode($value));
     }
 
@@ -301,23 +309,26 @@ class HtmlHelper
     {
         $htmlOptions['name'] = $name;
 
-        if (!isset($htmlOptions['id']))
+        if (!isset($htmlOptions['id'])) {
             $htmlOptions['id'] = self::getIdByName($name);
-        elseif ($htmlOptions['id'] === false)
+        } elseif ($htmlOptions['id'] === false) {
             unset($htmlOptions['id']);
+        }
 
         self::clientChange('change', $htmlOptions);
         $options = "\n" . self::listOptions($select, $data, $htmlOptions);
         $hidden = '';
 
         if (!empty($htmlOptions['multiple'])) {
-            if (substr($htmlOptions['name'], -2) !== '[]')
+            if (substr($htmlOptions['name'], -2) !== '[]') {
                 $htmlOptions['name'] .= '[]';
+            }
 
             if (isset($htmlOptions['unselectValue'])) {
                 $hiddenOptions = isset($htmlOptions['id']) ? ['id' => self::ID_PREFIX . $htmlOptions['id']] : ['id' => false];
-                if (!empty($htmlOptions['disabled']))
+                if (!empty($htmlOptions['disabled'])) {
                     $hiddenOptions['disabled'] = $htmlOptions['disabled'];
+                }
                 $hidden = self::hiddenField(substr($htmlOptions['name'], 0, -2), $htmlOptions['unselectValue'], $hiddenOptions);
                 unset($htmlOptions['unselectValue']);
             }
@@ -370,45 +381,53 @@ class HtmlHelper
             unset($htmlOptions['prompt']);
         }
         if (isset($htmlOptions['empty'])) {
-            if (!is_array($htmlOptions['empty']))
+            if (!is_array($htmlOptions['empty'])) {
                 $htmlOptions['empty'] = ['' => $htmlOptions['empty']];
-            foreach ($htmlOptions['empty'] as $value => $label)
+            }
+            foreach ($htmlOptions['empty'] as $value => $label) {
                 $content .= '<option value="' . self::encode($value) . '">' . strtr($label, [
                         '<' => '&lt;',
                         '>' => '&gt;',
                     ]) . "</option>\n";
+            }
             unset($htmlOptions['empty']);
         }
 
         if (isset($htmlOptions['options'])) {
             $options = $htmlOptions['options'];
             unset($htmlOptions['options']);
-        } else
+        } else {
             $options = [];
+        }
 
         $key = isset($htmlOptions['key']) ? $htmlOptions['key'] : 'primaryKey';
         if (is_array($selection)) {
             foreach ($selection as $i => $item) {
-                if (is_object($item))
+                if (is_object($item)) {
                     $selection[$i] = $item->$key;
+                }
             }
-        } elseif (is_object($selection))
+        } elseif (is_object($selection)) {
             $selection = $selection->$key;
+        }
 
         foreach ($listData as $key => $value) {
             if (is_array($value)) {
                 $content .= '<optgroup label="' . ($raw ? $key : self::encode($key)) . "\">\n";
                 $dummy = ['options' => $options];
-                if (isset($htmlOptions['encode']))
+                if (isset($htmlOptions['encode'])) {
                     $dummy['encode'] = $htmlOptions['encode'];
+                }
                 $content .= self::listOptions($selection, $value, $dummy);
                 $content .= '</optgroup>' . "\n";
             } else {
                 $attributes = ['value' => (string)$key, 'encode' => !$raw];
-                if (!is_array($selection) && !strcmp($key, $selection) || is_array($selection) && in_array($key, $selection))
+                if (!is_array($selection) && !strcmp($key, $selection) || is_array($selection) && in_array($key, $selection)) {
                     $attributes['selected'] = 'selected';
-                if (isset($options[$key]))
+                }
+                if (isset($options[$key])) {
                     $attributes = array_merge($attributes, $options[$key]);
+                }
                 $content .= self::tag('option', $attributes, $raw ? (string)$value : self::encode((string)$value)) . "\n";
             }
         }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -9,9 +10,7 @@ use Travelpayouts\modules\tables\components\api\travelpayouts\BaseTravelpayoutsA
 
 class PricesDirectApiModel extends BaseTravelpayoutsApiModel
 {
-    protected $responseClass = PricesDirectResponse::class;
-
-    const SCENARIO_DIRECT_FLIGHTS_ROUTE = 'directFlightsRoute';
+    public const SCENARIO_DIRECT_FLIGHTS_ROUTE = 'directFlightsRoute';
 
     public $currency = 'RUB';
     public $origin;
@@ -46,13 +45,7 @@ class PricesDirectApiModel extends BaseTravelpayoutsApiModel
     }
 
     /**
-     * Переводим выдачу вида
-     *  ['AAQ' =>[
-     *      flight1,
-     *      flight2,
-     *  ]]
-     *  к виду
-     *  [flight1,flight2]
+     * Flattens `['AAQ' => [flight1, flight2]]` into `[flight1, flight2]`.
      * @param $response
      * @return \Closure
      */
@@ -78,6 +71,6 @@ class PricesDirectApiModel extends BaseTravelpayoutsApiModel
      */
     protected function endpointUrl()
     {
-        return 'http://api.travelpayouts.com/v1/prices/direct';
+        return 'https://api.travelpayouts.com/v1/prices/direct';
     }
 }

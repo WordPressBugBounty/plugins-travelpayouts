@@ -1,8 +1,8 @@
 <?php return array(
     'root' => array(
         'name' => 'travelpayouts/wp-plugin',
-        'pretty_version' => '1.1.4',
-        'version' => '1.1.4.0',
+        'pretty_version' => '1.2.3',
+        'version' => '1.2.3.0',
         'reference' => null,
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
@@ -70,15 +70,6 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'travelpayouts-apimatic/jsonmapper' => array(
-            'pretty_version' => '3.1.7',
-            'version' => '3.1.7.0',
-            'reference' => 'c071cc41f3b6883f4355631670cc90bba8e4d6ee',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../travelpayouts-apimatic/jsonmapper',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
         'travelpayouts-brick/math' => array(
             'pretty_version' => '0.9.3',
             'version' => '0.9.3.0',
@@ -121,6 +112,15 @@
             'reference' => 'e06add14110d184c7c05d89564df395abbaf96c9',
             'type' => 'library',
             'install_path' => __DIR__ . '/../travelpayouts-doctrine/lexer',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'travelpayouts-glook/jsonmapper' => array(
+            'pretty_version' => '3.2.1',
+            'version' => '3.2.1.0',
+            'reference' => 'dae6ee5e3d32d18628bfbc2fddb26a1c6f6220ad',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../travelpayouts-glook/jsonmapper',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -296,8 +296,8 @@
             'dev_requirement' => false,
         ),
         'travelpayouts/wp-plugin' => array(
-            'pretty_version' => '1.1.4',
-            'version' => '1.1.4.0',
+            'pretty_version' => '1.2.3',
+            'version' => '1.2.3.0',
             'reference' => null,
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',

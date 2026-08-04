@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -12,8 +13,8 @@ use Travelpayouts\components\LanguageHelper;
 
 class HeadWayWidget extends BaseObject
 {
-    const ACCOUNT_ID_RU = 'Jrn8zJ';
-    const ACCOUNT_ID_EN = 'JVpvjx';
+    public const ACCOUNT_ID_RU = 'Jrn8zJ';
+    public const ACCOUNT_ID_EN = 'JVpvjx';
 
     public static function render()
     {

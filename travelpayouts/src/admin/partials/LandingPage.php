@@ -13,7 +13,7 @@ use Travelpayouts\components\LanguageHelper;
  */
 class LandingPage
 {
-    const ACTION = 'travelpayouts_landing_settings';
+    public const ACTION = 'travelpayouts_landing_settings';
 
     protected $_admin;
     protected $_model;

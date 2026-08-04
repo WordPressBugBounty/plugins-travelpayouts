@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -14,7 +15,8 @@ class MoneyScriptSectionDescriptionWidget extends BaseWidget
     {
         return LanguageHelper::isRuDashboard() ?
             'https://support.travelpayouts.com/hc/ru/articles/360012913480' :
-            'https://support.travelpayouts.com/hc/en-us/articles/360012913480-Automatic-replacement-of-links-on-the-website';;
+            'https://support.travelpayouts.com/hc/en-us/articles/360012913480-Automatic-replacement-of-links-on-the-website';
+        ;
 
     }
 

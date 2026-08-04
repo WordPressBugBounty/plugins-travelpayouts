@@ -13,7 +13,7 @@
  * Plugin Name:       Travelpayouts
  * Plugin URI:        https://wordpress.org/plugins/travelpayouts/
  * Description:       Earn money and make your visitors happy! Offer them useful tools for their travel needs. Earn on commission for each booking.
- * Version:           1.2.2
+ * Version:           1.2.3
  * Author:            travelpayouts
  * Author URI:        http://www.travelpayouts.com/?locale=en
  * License:           GPL-2.0+
@@ -45,4 +45,4 @@ if (!defined('WPINC')) {
 
 register_activation_hook(__FILE__, [Activator::class, 'onActivate']);
 register_deactivation_hook(__FILE__, [Deactivator::class, 'onDeactivation']);
-Travelpayouts::getInstance();
+add_action('init', ['Travelpayouts', 'getInstance'], 0);

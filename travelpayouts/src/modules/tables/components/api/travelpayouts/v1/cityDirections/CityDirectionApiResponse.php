@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -19,6 +20,7 @@ class CityDirectionApiResponse extends ApiResponseObject
     public $destination;
     /**
      * @var float
+     * @required
      */
     public $price;
     /**

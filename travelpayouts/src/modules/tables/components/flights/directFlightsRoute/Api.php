@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -10,14 +11,9 @@ use DateTime;
 use Exception;
 use Travelpayouts\modules\tables\components\api\BaseTokenApiModel;
 use Travelpayouts\modules\tables\components\api\travelpayouts\v1\pricesDirect\PricesDirectApiModel;
-use Travelpayouts\modules\tables\components\flights\directFlights\DirectFlightsResponse;
 
-/**
- * @method DirectFlightsResponse[] getResponseModels()
- */
 class Api extends BaseTokenApiModel
 {
-    protected $responseClass = DirectFlightsResponse::class;
     public $currency;
     public $origin;
     public $destination;
@@ -31,8 +27,6 @@ class Api extends BaseTokenApiModel
     }
 
     /**
-     * Запрашиваем данные из directFlights с различными интервалами
-     * Если текущая дата больше 20, то запрашиваем на 4 месяца, если нет, на 3
      * @return array|bool
      * @throws Exception
      */
@@ -41,14 +35,12 @@ class Api extends BaseTokenApiModel
         $results = [];
         $modelAttributes = $this->attributes;
         $currentDate = new DateTime();
-        // Количество запросов
         $monthCount = (int)$currentDate->format('j') < 20
             ? 3
             : 4;
 
         for ($i = 1; $i <= $monthCount; $i++) {
             if ($i > 1) {
-                // К каждой последующей итерации добавляем 1 месяц
                 $currentDate->add(new DateInterval('P1M'));
             }
             $currentDateFormatted = $currentDate->format('Y-m');

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -71,7 +72,7 @@ class BaseObject
             return new $type($params);
         }
         if (is_callable($type, true)) {
-            return call_user_func_array($type,$params);
+            return call_user_func_array($type, $params);
         }
 
         if (!is_array($type)) {

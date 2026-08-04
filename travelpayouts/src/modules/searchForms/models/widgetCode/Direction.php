@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -14,25 +15,25 @@ class Direction extends \Travelpayouts\components\InjectedModel
     /**
      * @var string
      */
-	public $iata;
+    public $iata;
 
-	public function rules()
-	{
-		return [
-			[['name', 'iata'], 'string'],
-			[
-				['iata'],
-				'string',
-				'min' => 3,
-				'max' => 3,
-			],
-		];
-	}
+    public function rules()
+    {
+        return [
+            [['name', 'iata'], 'string'],
+            [
+                ['iata'],
+                'string',
+                'min' => 3,
+                'max' => 3,
+            ],
+        ];
+    }
 
-	public function setCode($value)
-	{
-		if (is_string($value)) {
-			$this->iata = $value;
-		}
-	}
+    public function setCode($value)
+    {
+        if (is_string($value)) {
+            $this->iata = $value;
+        }
+    }
 }

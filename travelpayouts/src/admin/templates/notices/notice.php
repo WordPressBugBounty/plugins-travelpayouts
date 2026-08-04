@@ -37,7 +37,7 @@ $classNames = HtmlHelper::classNames(array_filter([
             foreach ($buttons as $button) {
                 echo $button;
             }
-            ?>
+        ?>
         </div>
     <?php endif; ?>
     <?php if ($allowClose): ?>

@@ -29,7 +29,7 @@ class GutenbergModulesModel extends Model
     {
         if (empty($this->modulesInstanceList)) {
             $this->modulesInstanceList = array_map(static function ($moduleClassName) {
-                return new $moduleClassName;
+                return new $moduleClassName();
             }, $this->modulesClassList);
         }
         return $this->modulesInstanceList;

@@ -6,12 +6,12 @@ use Travelpayouts;
 
 class LanguageHelper
 {
-    const DASHBOARD_RUSSIAN = 'ru';
-    const DASHBOARD_ENGLISH = 'en';
-    const DASHBOARD_UKRAINIAN = 'uk';
-    const DASHBOARD_BELORUSSIAN = 'be';
-    const DASHBOARD_BULGARIAN = 'bg';
-    const TABLE_DEFAULT = 'en';
+    public const DASHBOARD_RUSSIAN = 'ru';
+    public const DASHBOARD_ENGLISH = 'en';
+    public const DASHBOARD_UKRAINIAN = 'uk';
+    public const DASHBOARD_BELORUSSIAN = 'be';
+    public const DASHBOARD_BULGARIAN = 'bg';
+    public const TABLE_DEFAULT = 'en';
 
     protected static $fallbackLocales = [
         self::DASHBOARD_BELORUSSIAN => self::DASHBOARD_RUSSIAN,

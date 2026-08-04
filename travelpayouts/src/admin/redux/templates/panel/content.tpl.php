@@ -27,7 +27,7 @@ use Travelpayouts\admin\redux\extensions\OscAccordionField;
     <div class="redux-sections"><?php foreach ($this->parent->sections as $k => $section) { ?>
             <?php if (isset($section['customizer_only']) && true === $section['customizer_only']) { ?>
                 <?php continue; ?>
-            <?php } // phpcs:ignore Squiz.PHP.NonExecutableCode.Unreachable ?>
+            <?php } // phpcs:ignore Squiz.PHP.NonExecutableCode.Unreachable?>
 
             <?php $section['class'] = isset($section['class'])
                 ? ' ' . $section['class']
@@ -45,7 +45,7 @@ use Travelpayouts\admin\redux\extensions\OscAccordionField;
 
                 <?php $display = true; ?>
 
-                <?php if (isset($_GET['page']) && $this->parent->args['page_slug'] === $_GET['page']) { // phpcs:ignore WordPress.Security.NonceVerification ?>
+                <?php if (isset($_GET['page']) && $this->parent->args['page_slug'] === $_GET['page']) { // phpcs:ignore WordPress.Security.NonceVerification?>
                     <?php if (isset($section['panel']) && false === $section['panel']) { ?>
                         <?php $display = false; ?>
                     <?php } ?>
@@ -81,7 +81,7 @@ use Travelpayouts\admin\redux\extensions\OscAccordionField;
                     // phpcs:ignore WordPress.NamingConventions.ValidHookName
                     do_action("redux_travelpayouts/page/{$this->parent->args['opt_name']}/section/after", $section);
                 }
-                ?>
+        ?>
             </div> <!-- section group -->
         <?php } ?>
 
@@ -94,7 +94,7 @@ use Travelpayouts\admin\redux\extensions\OscAccordionField;
 
         // phpcs:ignore WordPress.NamingConventions.ValidHookName
         do_action("redux_travelpayouts/page/{$this->parent->args['opt_name']}/sections/after", $this);
-        ?></div>
+?></div>
     <div class="clear"></div>
     <!-- Footer Block -->
     <?php $this->get_template('footer.tpl.php'); ?>

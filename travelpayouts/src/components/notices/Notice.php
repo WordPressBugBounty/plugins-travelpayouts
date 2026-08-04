@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -11,10 +12,10 @@ use Travelpayouts\components\interfaces\IBuilderResult;
 
 class Notice implements IBuilderResult
 {
-    const NOTICE_TYPE_WARNING = 'warning';
-    const NOTICE_TYPE_ERROR = 'error';
-    const NOTICE_TYPE_SUCCESS = 'success';
-    const NOTICE_TYPE_INFO = 'info';
+    public const NOTICE_TYPE_WARNING = 'warning';
+    public const NOTICE_TYPE_ERROR = 'error';
+    public const NOTICE_TYPE_SUCCESS = 'success';
+    public const NOTICE_TYPE_INFO = 'info';
 
     public $name;
     public $type;
@@ -41,34 +42,34 @@ class Notice implements IBuilderResult
         $this->name = $name;
     }
 
-	/**
-	 * @param string $value
-	 * @return $this
-	 */
-	public function setType($value)
-	{
-		if (is_string($value)) {
-			$this->type = $value;
-		}
+    /**
+     * @param string $value
+     * @return $this
+     */
+    public function setType($value)
+    {
+        if (is_string($value)) {
+            $this->type = $value;
+        }
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * @param string $value
-	 * @return $this
-	 */
-	public function setTitle($value)
-	{
-		if (is_string($value)) {
-			$this->title = $value;
-		}
-		return $this;
-	}
+    /**
+     * @param string $value
+     * @return $this
+     */
+    public function setTitle($value)
+    {
+        if (is_string($value)) {
+            $this->title = $value;
+        }
+        return $this;
+    }
 
-	/**
-	 * @param string $value
-	 * @return $this
+    /**
+     * @param string $value
+     * @return $this
      */
     public function setDescription($value)
     {

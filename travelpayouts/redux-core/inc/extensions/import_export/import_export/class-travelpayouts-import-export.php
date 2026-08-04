@@ -9,73 +9,77 @@
 
 use Travelpayouts\components\widgets\AlertWidget;
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
 // Don't duplicate me!
-if ( ! class_exists( 'Redux_Travelpayouts_Import_Export', false ) ) {
+if (! class_exists('Redux_Travelpayouts_Import_Export', false)) {
 
-	/**
-	 * Main Redux_Travelpayouts_import_export class
-	 *
-	 * @since       1.0.0
-	 */
-	class Redux_Travelpayouts_Import_Export extends Redux_Travelpayouts_Field {
+    /**
+     * Main Redux_Travelpayouts_import_export class
+     *
+     * @since       1.0.0
+     */
+    class Redux_Travelpayouts_Import_Export extends Redux_Travelpayouts_Field
+    {
         public $is_field;
 
         /**
-		 * Redux_Travelpayouts_Import_Export constructor.
-		 *
-		 * @param array  $field Field array.
-		 * @param string $value Value array.
-		 * @param object $parent TravelpayoutsSettingsFramework object.
-		 *
-		 * @throws ReflectionException .
-		 */
-		public function __construct( $field, $value, $parent ) {
-			parent::__construct( $field, $value, $parent );
+         * Redux_Travelpayouts_Import_Export constructor.
+         *
+         * @param array  $field Field array.
+         * @param string $value Value array.
+         * @param object $parent TravelpayoutsSettingsFramework object.
+         *
+         * @throws ReflectionException .
+         */
+        public function __construct($field, $value, $parent)
+        {
+            parent::__construct($field, $value, $parent);
 
-			$this->is_field = $this->parent->extensions['import_export']->is_field;
-		}
+            $this->is_field = $this->parent->extensions['import_export']->is_field;
+        }
 
-		/**
-		 * Set field defaults.
-		 */
-		public function set_defaults() {
-			// Set default args for this field to avoid bad indexes. Change this to anything you use.
-			$defaults = array(
-				'options'          => array(),
-				'stylesheet'       => '',
-				'output'           => true,
-				'enqueue'          => true,
-				'enqueue_frontend' => true,
-			);
+        /**
+         * Set field defaults.
+         */
+        public function set_defaults()
+        {
+            // Set default args for this field to avoid bad indexes. Change this to anything you use.
+            $defaults = [
+                'options'          => [],
+                'stylesheet'       => '',
+                'output'           => true,
+                'enqueue'          => true,
+                'enqueue_frontend' => true,
+            ];
 
-			$this->field = wp_parse_args( $this->field, $defaults );
-		}
+            $this->field = wp_parse_args($this->field, $defaults);
+        }
 
-		/**
-		 * Field Render Function.
-		 * Takes the vars and outputs the HTML for the field in the settings
-		 *
-		 * @since       1.0.0
-		 * @access      public
-		 * @return      void
-		 */
-		public function render() {
-			$secret = md5( md5( Redux_Travelpayouts_Functions_Ex::hash_key() ) . '-' . $this->parent->args['opt_name'] );
+        /**
+         * Field Render Function.
+         * Takes the vars and outputs the HTML for the field in the settings
+         *
+         * @since       1.0.0
+         * @access      public
+         * @return      void
+         */
+        public function render()
+        {
+            $secret = md5(md5(Redux_Travelpayouts_Functions_Ex::hash_key()) . '-' . $this->parent->args['opt_name']);
 
-			// No errors please.
-			$defaults = [
-				'full_width' => true,
-				'overflow' => 'inherit',
-			];
+            // No errors please.
+            $defaults = [
+                'full_width' => true,
+                'overflow' => 'inherit',
+            ];
 
-			$this->field = wp_parse_args($this->field, $defaults);
+            $this->field = wp_parse_args($this->field, $defaults);
 
-			$do_close = false;
+            $do_close = false;
 
-			$id = $this->parent->args['opt_name'] . '-' . $this->field['id'];
-			?>
+            $id = $this->parent->args['opt_name'] . '-' . $this->field['id'];
+            ?>
 			<div><h5 class='tp-text-sm tp-mt-0 tp-mb-3'><?php esc_html_e('Import Options', 'redux-framework'); ?></h5>
                 <?= AlertWidget::widget([
                     'type' => AlertWidget::TYPE_ERROR,
@@ -100,7 +104,7 @@ if ( ! class_exists( 'Redux_Travelpayouts_Import_Export', false ) ) {
 				<div id="redux-import-code-wrapper" class='tp-mb-4 tp-mt-3'>
 					<p class="tp-my-1 tp-text--bold" id="import-code-description">
 
-						<?php // phpcs:ignore WordPress.NamingConventions.ValidHookName ?>
+						<?php // phpcs:ignore WordPress.NamingConventions.ValidHookName?>
 						<?php echo esc_html(apply_filters('redux-import-file-description', esc_html__('Input your backup file below and hit Import to restore your sites options from a backup.', 'redux-framework'))); ?>
 					</p>
 					<textarea
@@ -110,7 +114,7 @@ if ( ! class_exists( 'Redux_Travelpayouts_Import_Export', false ) ) {
 				</div>
 				<div id="redux-import-link-wrapper" class='tp-mb-4 tp-mt-3'>
 					<p class="tp-my-1 tp-text--bold" id="import-link-description">
-						<?php // phpcs:ignore WordPress.NamingConventions.ValidHookName ?>
+						<?php // phpcs:ignore WordPress.NamingConventions.ValidHookName?>
 						<?php echo esc_html(apply_filters('redux-import-link-description', esc_html__('Input the URL to another sites options set and hit Import to load the options from that site.', 'redux-framework'))); ?>
 					</p>
 					<textarea
@@ -134,7 +138,7 @@ if ( ! class_exists( 'Redux_Travelpayouts_Import_Export', false ) ) {
 			<div><h5 class='tp-fs-5 tp-mt-0 tp-mb-3'><?php esc_html_e('Export Options', 'redux-framework'); ?></h5>
 				<div class="redux-section-desc">
 					<p class="description tp-m-0" style='line-height: 1.5em;'>
-						<?php // phpcs:ignore WordPress.NamingConventions.ValidHookName ?>
+						<?php // phpcs:ignore WordPress.NamingConventions.ValidHookName?>
 						<?php echo esc_html(apply_filters('redux-backup-description', esc_html__('Here you can copy/download your current option settings. Keep this safe as you can use it as a backup should anything go wrong, or you can use it to restore your settings on this site (or any other site).', 'redux-framework'))); ?>
 					</p>
 				</div>
@@ -159,32 +163,33 @@ if ( ! class_exists( 'Redux_Travelpayouts_Import_Export', false ) ) {
 					data-url="<?php echo esc_url($link); ?>"
 					rows="2"><?php echo esc_url($link); ?></textarea></div>
 			<?php
-		}
+        }
 
-		/**
-		 * Enqueue Function.
-		 * If this field requires any scripts, or css define this function and register/enqueue the scripts/css
-		 *
-		 * @since       1.0.0
-		 * @access      public
-		 * @return      void
-		 */
-		public function enqueue() {
-			wp_enqueue_script(
-				'redux-extension-import-export-js',
-				$this->url . 'redux-import-export' . Redux_Travelpayouts_Functions::is_min() . '.js',
-				array( 'jquery', 'redux-js' ),
-				Redux_Travelpayouts_Extension_Import_Export::$version,
-				true
-			);
+        /**
+         * Enqueue Function.
+         * If this field requires any scripts, or css define this function and register/enqueue the scripts/css
+         *
+         * @since       1.0.0
+         * @access      public
+         * @return      void
+         */
+        public function enqueue()
+        {
+            wp_enqueue_script(
+                'redux-extension-import-export-js',
+                $this->url . 'redux-import-export' . Redux_Travelpayouts_Functions::is_min() . '.js',
+                [ 'jquery', 'redux-js' ],
+                Redux_Travelpayouts_Extension_Import_Export::$version,
+                true
+            );
 
-			wp_enqueue_style(
-				'redux-import-export',
-				$this->url . 'redux-import-export.css',
-				array(),
-				Redux_Travelpayouts_Extension_Import_Export::$version,
-				'all'
-			);
-		}
-	}
+            wp_enqueue_style(
+                'redux-import-export',
+                $this->url . 'redux-import-export.css',
+                [],
+                Redux_Travelpayouts_Extension_Import_Export::$version,
+                'all'
+            );
+        }
+    }
 }

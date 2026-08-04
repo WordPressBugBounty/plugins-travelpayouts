@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -83,7 +84,8 @@ class EditorHooks extends HookableObject
      */
     public function localizeScripts()
     {
-        wp_localize_script('jquery',
+        wp_localize_script(
+            'jquery',
             $this->pluginName . 'Data',
             [
                 'context' => $this->snowPlowContext,
@@ -99,7 +101,8 @@ class EditorHooks extends HookableObject
                 ->assets
                 ->getAssetByName('admin-gutenberg-injector')
                 ->registerStyle(['wp-editor'], null)
-                ->registerScript([
+                ->registerScript(
+                    [
                     'wp-blocks',
                     'wp-i18n',
                     'wp-element',
@@ -124,7 +127,8 @@ class EditorHooks extends HookableObject
              */
             if (function_exists('register_block_type')) {
                 register_block_type(
-                    $this->pluginName . '/shortcodes', [
+                    $this->pluginName . '/shortcodes',
+                    [
                         'editor_style' => $gutenbergAsset->styleHandlerName,
                         'editor_script' => $gutenbergAsset->scriptHandlerName,
                     ]

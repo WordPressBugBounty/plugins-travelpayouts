@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -10,7 +11,6 @@ use Travelpayouts\includes\Router;
 
 class RouteGroup extends BaseRouteCollection
 {
-
     /**
      * @Inject
      * @var Router

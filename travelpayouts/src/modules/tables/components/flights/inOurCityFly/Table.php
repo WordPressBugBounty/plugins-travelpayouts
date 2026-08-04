@@ -124,9 +124,8 @@ class Table extends FlightsShortcodeModel
         $model->period_type = $this->period_type;
         $model->limit = $this->limit;
         $model->one_way = $this->getOneWay();
-        $model->setResponseClass(FromOurCityFlyResponse::class);
         /** @var FromOurCityFlyResponse[] $responseModels */
-        $responseModels = $model->getResponseModels();
+        $responseModels = $model->getModels(FromOurCityFlyResponse::class);
         $result = [];
         foreach ($responseModels as $responseModel) {
             $responseModel->shortcodeModel = $this;

@@ -40,10 +40,12 @@ class HooksLoader
      */
     public function addAction($hook, $callable, $priority = 10, $acceptedArgsCount = 1)
     {
-        add_action($hook,
+        add_action(
+            $hook,
             $callable,
             $priority,
-            $acceptedArgsCount);
+            $acceptedArgsCount
+        );
 
         return $this;
     }
@@ -60,7 +62,7 @@ class HooksLoader
     public function addFilter($hook, $callable, $priority = 10, $acceptedArgsCount = 1)
     {
 
-        add_filter($hook, $callable, $priority,$acceptedArgsCount);
+        add_filter($hook, $callable, $priority, $acceptedArgsCount);
         return $this;
     }
 
@@ -71,7 +73,7 @@ class HooksLoader
      */
     public function addShortcode($name, $callable)
     {
-        add_shortcode($name,$callable);
+        add_shortcode($name, $callable);
         return $this;
     }
 

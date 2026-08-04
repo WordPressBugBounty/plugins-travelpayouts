@@ -105,7 +105,8 @@ class Table extends FlightsShortcodeModel
     public function gridColumns(): array
     {
         return ArrayHelper::mergeRecursive(
-            parent::gridColumns(), [
+            parent::gridColumns(),
+            [
                 ColumnLabels::BUTTON => [
                     'departDate' => function ($model) {
                         /** @var $model CheapestFlightsResponse */
@@ -163,15 +164,12 @@ class Table extends FlightsShortcodeModel
     protected function getCollection(): array
     {
         $model = new PricesCheapApiModel($this->apiModelOptions());
-        // подменяем класс для ответа
-        $model->responseClass = CheapestFlightsResponse::class;
         $model->currency = $this->currency;
         $model->origin = $this->origin;
         $model->destination = $this->destination;
         /** @var $models CheapestFlightsResponse[] */
-        $models = $model->getResponseModels();
+        $models = $model->getModels(CheapestFlightsResponse::class);
         foreach ($models as $responseModel) {
-            // прокидываем shortcodeModel
             $responseModel->shortcodeModel = $this;
         }
         return $models;

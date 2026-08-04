@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -19,7 +20,7 @@ class ColumnDuration extends GridColumn
                 'join' => ' ',
                 'parts' => 2,
                 'syntax' => CarbonInterface::DIFF_ABSOLUTE,
-            ],true);
+            ], true);
         }
 
         return null;

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -66,9 +67,9 @@ trait ShortcodeGutenbergTrait
             if (!$field instanceof BaseField) {
                 throw new InvalidConfigException(get_class($this) . ' Field property must be an instance of BaseField');
             }
-            $this->set_scenario(ShortcodeModel::SCENARIO_GENERATE_SHORTCODE);
+            $this->setScenario(ShortcodeModel::SCENARIO_GENERATE_SHORTCODE);
             if ($field instanceof BaseValueField) {
-                $activeValidators = $this->get_active_validators($id);
+                $activeValidators = $this->getActiveValidators($id);
                 // Проставляем значение required на основании валидаторов
                 $requiredValidatorInList = ArrayHelper::find($activeValidators, static function ($validator) {
                     return $validator instanceof ValidatorRequired;
@@ -82,11 +83,11 @@ trait ShortcodeGutenbergTrait
                 // Проставляем остальные необходимые аттрибуты на основе данных модели
                 $field->id = $id;
 
-                if (!$field->isDefaultValueChanged() && $this->is_attribute_safe($id) && $this->{$id} !== null) {
+                if (!$field->isDefaultValueChanged() && $this->isAttributeSafe($id) && $this->{$id} !== null) {
                     $field->default = $this->{$id};
                 }
                 if (!$field->label) {
-                    $field->setLabel($this->get_attribute_label($id));
+                    $field->setLabel($this->getAttributeLabel($id));
                 }
             }
             $result[] = $field;

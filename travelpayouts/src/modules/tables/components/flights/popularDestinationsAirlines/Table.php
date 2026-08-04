@@ -114,7 +114,7 @@ class Table extends FlightsShortcodeModel
         $model = new AirlineDirectionsApiModel($this->apiModelOptions());
         $model->airline_code = $this->airline;
         $model->limit = $this->limit;
-        return $model->getResponseModels();
+        return $model->getModels(AirlineDirectionsApiResponse::class);
     }
 
     /**

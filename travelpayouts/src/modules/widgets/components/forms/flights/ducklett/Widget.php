@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -15,8 +16,8 @@ class Widget extends BaseWidgetShortcodeModel
 {
     use WidgetDimensionTrait;
 
-    const FILTER_BY_AIRLINE = '0';
-    const FILTER_BY_ROUTE = '1';
+    public const FILTER_BY_AIRLINE = '0';
+    public const FILTER_BY_ROUTE = '1';
 
     public $limit;
     public $type;
@@ -133,7 +134,7 @@ class Widget extends BaseWidgetShortcodeModel
         if (isset($params['allowed'])) {
             $value = $this->$attribute;
             if (!in_array($value, $params['allowed'], true)) {
-                $this->add_error($attribute, 'non correct filter value');
+                $this->addError($attribute, 'non correct filter value');
             }
         }
     }
@@ -153,7 +154,7 @@ class Widget extends BaseWidgetShortcodeModel
             if ($renderResult) {
                 return $renderResult;
             }
-            $this->add_errors($widgetModel->getErrors());
+            $this->addErrors($widgetModel->getErrors());
         }
         return $this->render_errors();
     }

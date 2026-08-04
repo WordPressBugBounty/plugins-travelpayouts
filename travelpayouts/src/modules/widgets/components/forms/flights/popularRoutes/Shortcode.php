@@ -12,7 +12,7 @@ class Shortcode extends BaseShortcode
         $destinations = [];
         $shortcodes = [];
 
-        if(isset($this->attributes['destinations']) && !empty($this->attributes['destinations'])) {
+        if (isset($this->attributes['destinations']) && !empty($this->attributes['destinations'])) {
             $destinations = $this->attributes['destinations'];
         }
 

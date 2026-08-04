@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -17,17 +18,14 @@ class TutuApiResponse extends Trip
     public $shortcodeModel;
 
     /**
-     * @var Trip
-     */
-    protected $_responseModel;
-
-    /**
+     * The parsed response is not stored: only its properties, copied into this
+     * object, are needed.
+     *
      * @param Trip $responseModel
      */
     public function setResponseModel(ApiResponseObject $responseModel): void
     {
         self::configure($this, get_object_vars($responseModel));
-        $this->_responseModel = $responseModel;
     }
 
     public function getMinimalPrice(): ?float

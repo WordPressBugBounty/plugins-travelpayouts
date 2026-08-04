@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -41,7 +42,7 @@ abstract class BaseTokenApiModel extends ApiModel
         $length = strlen($this->$attribute);
 
         if (!($length === 32 || $length === 40)) {
-            $this->add_error($attribute, Travelpayouts::__('Your Travelpayouts API token should contain {first_number} or {second_number} characters. Please check that it is entered correctly.', [
+            $this->addError($attribute, Travelpayouts::__('Your Travelpayouts API token should contain {first_number} or {second_number} characters. Please check that it is entered correctly.', [
                 'first_number' => 32,
                 'second_number' => 40,
             ]));

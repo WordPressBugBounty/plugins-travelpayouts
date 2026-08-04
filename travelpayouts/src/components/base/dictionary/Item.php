@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -38,8 +39,9 @@ class Item extends BaseObject
     public function __get($name)
     {
         $attributeData = $this->_dataDot->get($name);
-        if ($attributeData)
+        if ($attributeData) {
             return $attributeData;
+        }
         return $this->traitGet($name);
     }
 

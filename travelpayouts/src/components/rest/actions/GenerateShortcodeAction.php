@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -91,7 +92,7 @@ class GenerateShortcodeAction extends CheckAccessAction
     {
         /** @var ShortcodeModel $model */
         $model = new $this->modelClass();
-        $model->set_scenario(ShortcodeModel::SCENARIO_GENERATE_SHORTCODE);
+        $model->setScenario(ShortcodeModel::SCENARIO_GENERATE_SHORTCODE);
         if (!$model instanceof ShortcodeModel) {
             throw new InvalidConfigException('modelClass must be instance of ShortcodeModel');
         }

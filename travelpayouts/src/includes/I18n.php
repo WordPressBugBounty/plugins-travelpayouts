@@ -25,33 +25,35 @@ use Travelpayouts\components\BaseObject;
  */
 class I18n extends BaseObject
 {
-	/**
-	 * @var string
-	 */
-	protected $domain;
-	/**
-	 * @var string
-	 */
-	protected $localePath;
+    /**
+     * @var string
+     */
+    protected $domain;
+    /**
+     * @var string
+     */
+    protected $localePath;
 
-	public function register()
-	{
-		$this->loadTextDomain($this->domain, $this->localePath);
-	}
+    public function register()
+    {
+        $this->loadTextDomain($this->domain, $this->localePath);
+    }
 
-	protected function loadTextDomain($domain, $localeSourcePath)
-	{
-		$locale = $this->getLocale($domain);
-		$moFileName = $domain . '-' . $locale . '.mo';
-		$moFilePath = $localeSourcePath . '/' . $moFileName;
+    protected function loadTextDomain($domain, $localeSourcePath)
+    {
+        $locale = $this->getLocale($domain);
+        $moFileName = $domain . '-' . $locale . '.mo';
+        $moFilePath = $localeSourcePath . '/' . $moFileName;
 
-		return is_readable($moFilePath)
-			? load_textdomain($domain, $moFilePath)
-			: false;
-	}
+        return is_readable($moFilePath)
+            ? load_textdomain($domain, $moFilePath)
+            : false;
+    }
 
-	protected function getLocale($domain)
-	{
-		return apply_filters('plugin_locale', get_locale(), $domain);
-	}
+    protected function getLocale($domain)
+    {
+        $locale = function_exists('determine_locale') ? determine_locale() : get_locale();
+
+        return apply_filters('plugin_locale', $locale, $domain);
+    }
 }

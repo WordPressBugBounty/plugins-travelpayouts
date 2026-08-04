@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -11,12 +12,13 @@ use Travelpayouts\modules\widgets\components\forms\flights\popularRoutes\Widget 
 
 class TpPopularRoutesSummaryWidget extends BaseWidgetShortcodeModel
 {
-    const DESTINATIONS_DELIMITER = '|';
+    public const DESTINATIONS_DELIMITER = '|';
     public $destinationsList = [];
 
     public function rules()
     {
-        return array_merge(parent::rules(),
+        return array_merge(
+            parent::rules(),
             [
                 [
                     [
@@ -31,7 +33,8 @@ class TpPopularRoutesSummaryWidget extends BaseWidgetShortcodeModel
                     'skipOnEmpty' => false,
                     'stopOnFirstError' => false,
                 ],
-            ]);
+            ]
+        );
     }
 
     public function render()

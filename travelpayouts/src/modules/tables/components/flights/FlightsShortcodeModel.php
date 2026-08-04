@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -35,7 +36,6 @@ use Travelpayouts\modules\tables\components\settings\FlightsSettingsSection;
 
 abstract class FlightsShortcodeModel extends TableShortcode
 {
-
     public $tableWrapperClassName = 'tp-widget-table-flights';
     /**
      * @Inject
@@ -54,9 +54,9 @@ abstract class FlightsShortcodeModel extends TableShortcode
         $this->theme = $this->flightsSettings->theme;
     }
 
-    public function attribute_labels()
+    public function attributeLabels()
     {
-        return array_merge(parent::attribute_labels(), [
+        return array_merge(parent::attributeLabels(), [
             'filter_airline' => Travelpayouts::__('Filter by airline'),
             'filter_flight_number' => Travelpayouts::__('Filter by flight # (enter manually)'),
             'stops' => Travelpayouts::__('Number of stops'),
@@ -195,7 +195,8 @@ abstract class FlightsShortcodeModel extends TableShortcode
             $buttonColumnInstance = BaseObject::createObject($gridColumns[ColumnLabels::BUTTON]);
         }
 
-        return array_merge(parent::gridOptions(),
+        return array_merge(
+            parent::gridOptions(),
             [
                 'emptyText' => $this->getGridEmptyValue(),
                 'rowOptions' => function ($model) use ($buttonColumnInstance) {
@@ -312,12 +313,12 @@ abstract class FlightsShortcodeModel extends TableShortcode
             ],
             ColumnLabels::DEPARTURE_AT => [
                 'class' => ColumnHumanDate::class,
-                'contentWrap'=> false,
+                'contentWrap' => false,
                 'locale' => $this->locale,
             ],
             ColumnLabels::RETURN_AT => [
                 'class' => ColumnHumanDate::class,
-                'contentWrap'=> false,
+                'contentWrap' => false,
                 'locale' => $this->locale,
             ],
             ColumnLabels::AIRLINE_LOGO => [
@@ -419,7 +420,7 @@ abstract class FlightsShortcodeModel extends TableShortcode
 
     protected function predefinedGutenbergFields(): array
     {
-        return array_merge(parent::predefinedGutenbergFields(),[
+        return array_merge(parent::predefinedGutenbergFields(), [
             'origin' => $this->fieldDirectionAutocomplete(),
             'destination' => $this->fieldDirectionAutocomplete(),
             'filter_airline' => $this->fieldInputAutocomplete()->setAsync([

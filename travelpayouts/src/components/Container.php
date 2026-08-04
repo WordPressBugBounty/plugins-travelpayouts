@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -17,56 +18,56 @@ use Travelpayouts\traits\SingletonTrait;
  */
 class Container extends BaseObject
 {
-	use SingletonTrait;
+    use SingletonTrait;
 
-	/**
-	 * @var DiContainer
-	 */
-	protected $_container;
+    /**
+     * @var DiContainer
+     */
+    protected $_container;
 
-	/**
-	 * @return string[]
-	 */
-	protected function definitions()
-	{
-		return [
-			dirname(__DIR__) . '/config/definitions.php',
-			dirname(__DIR__) . '/config/definitions.translations.php',
-			dirname(__DIR__) . '/config/definitions.components.php',
-			dirname(__DIR__) . '/config/definitions.modules.php',
-		];
-	}
+    /**
+     * @return string[]
+     */
+    protected function definitions()
+    {
+        return [
+            dirname(__DIR__) . '/config/definitions.php',
+            dirname(__DIR__) . '/config/definitions.translations.php',
+            dirname(__DIR__) . '/config/definitions.components.php',
+            dirname(__DIR__) . '/config/definitions.modules.php',
+        ];
+    }
 
-	public function init()
-	{
-		$builder = new ContainerBuilder();
-		$builder->useAnnotations(true);
-		foreach ($this->definitions() as $definition) {
-			$builder->addDefinitions($definition);
-		}
-		$container = $builder->build();
-		$this->_container = $container;
-	}
+    public function init()
+    {
+        $builder = new ContainerBuilder();
+        $builder->useAnnotations(true);
+        foreach ($this->definitions() as $definition) {
+            $builder->addDefinitions($definition);
+        }
+        $container = $builder->build();
+        $this->_container = $container;
+    }
 
-	/**
-	 * @return DiContainer
-	 */
-	public function getContainer()
-	{
-		return $this->_container;
-	}
+    /**
+     * @return DiContainer
+     */
+    public function getContainer()
+    {
+        return $this->_container;
+    }
 
-	/**
-	 * @param object $instance
-	 * @throws DependencyException
-	 */
-	public function inject($instance)
-	{
-		$container = $this->container;
-		if ($container instanceof DiContainer) {
-			$container->injectOn($instance);
-		} else {
-			throw new Exception('Cant find container');
-		}
-	}
+    /**
+     * @param object $instance
+     * @throws DependencyException
+     */
+    public function inject($instance)
+    {
+        $container = $this->container;
+        if ($container instanceof DiContainer) {
+            $container->injectOn($instance);
+        } else {
+            throw new Exception('Cant find container');
+        }
+    }
 }

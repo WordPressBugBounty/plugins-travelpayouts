@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -31,8 +32,6 @@ class GutenbergRestController extends WpRestController
         \Travelpayouts\modules\tables\components\flights\popularRoutesFromCity\Table::class,
         \Travelpayouts\modules\tables\components\flights\priceCalendarMonth\Table::class,
         \Travelpayouts\modules\tables\components\flights\priceCalendarWeek\Table::class,
-        \Travelpayouts\modules\tables\components\hotels\selectionsDate\Table::class,
-        \Travelpayouts\modules\tables\components\hotels\selectionsDiscount\Table::class,
         \Travelpayouts\modules\tables\components\railway\tutu\TutuShortcodeModel::class,
         \Travelpayouts\modules\searchForms\components\SearchFormShortcode::class,
         \Travelpayouts\modules\searchForms\components\SearchFormHotelsShortcode::class,
@@ -89,8 +88,8 @@ class GutenbergRestController extends WpRestController
                 'method' => 'POST',
                 'checkAccess' => [$this, 'isUserCanCreatePosts'],
             ],
-            'editShortcode'=>[
-                'class'=> EditShortcodeAction::class,
+            'editShortcode' => [
+                'class' => EditShortcodeAction::class,
                 'shortcodeList' => $this->shortcodes,
                 'method' => 'POST',
                 'checkAccess' => [$this, 'isUserCanCreatePosts'],

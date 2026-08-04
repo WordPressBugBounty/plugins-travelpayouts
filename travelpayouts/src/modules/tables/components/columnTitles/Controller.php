@@ -3,14 +3,12 @@
 namespace Travelpayouts\modules\tables\components\columnTitles;
 use Travelpayouts\Vendor\DI\Annotation\Inject;
 use Travelpayouts;
-use Travelpayouts\components\brands\BrandSubscriptionService;
 use Travelpayouts\components\Controller as BaseController;
 use Travelpayouts\components\LanguageHelper;
 use Travelpayouts\components\tables\BaseColumnLabels;
 use Travelpayouts\components\Translator;
 use Travelpayouts\helpers\ArrayHelper;
 use Travelpayouts\modules\tables\components\flights\ColumnLabels as FlightLabels;
-use Travelpayouts\modules\tables\components\hotels\ColumnLabels as HotelLabels;
 use Travelpayouts\modules\tables\components\railway\ColumnLabels as RailwayLabels;
 
 class Controller extends BaseController
@@ -39,19 +37,15 @@ class Controller extends BaseController
 
         if ($localeId) {
             $supportedLocales = $this->translator->getLocaleNames();
-            $isHoteLookSubscribed = BrandSubscriptionService::isHotelLookAvailable();
 
             if (isset($supportedLocales[$localeId])) {
+                // No hotels group: those tables went away with the HotelLook
+                // integration. The front end builds the list with `map()`, so a
+                // missing group changes nothing for it.
                 $this->response(true, [
                     [
                         'label' => Travelpayouts::__('Flights'),
                         'data' => $this->getColumnLabelsByLocaleName(FlightLabels::getInstance(), $localeId),
-                    ],
-                    [
-                        'label' => Travelpayouts::__('Hotels column titles'),
-                        'data' => $isHoteLookSubscribed ?
-                            $this->getColumnLabelsByLocaleName(HotelLabels::getInstance(), $localeId)
-                            : [],
                     ],
                     [
                         'label' => Travelpayouts::__('Railways column titles'),
@@ -71,10 +65,9 @@ class Controller extends BaseController
     protected function getColumnLabelsByLocaleName(BaseColumnLabels $labelsInstance, $localeName)
     {
         $result = [];
-        // Заголовки таблиц по умолчанию
         $defaultTranslations = $labelsInstance->defaultTranslations();
         $groupedColumnNames = $this->groupColumnLabelsByTranslationKey($labelsInstance);
-        // Заголовки таблиц полученные из symfony translator
+        // Labels coming from the symfony translator
         $customTranslations = $labelsInstance->getColumnLabels(null, $localeName);
 
         foreach ($groupedColumnNames as $translationKey => $columnNames) {
@@ -92,7 +85,6 @@ class Controller extends BaseController
     }
 
     /**
-     * Объединяем колонки с одинаковыми названиями ключей для перевода
      * @param BaseColumnLabels $labelsInstance
      * @return array<string, array<int,string>>
      */
@@ -107,7 +99,6 @@ class Controller extends BaseController
     }
 
     /**
-     * Получаем дефолтные заголовки колонок
      * @param string[] $defaultTranslations
      * @param string[] $columnNames
      * @return array
@@ -119,7 +110,6 @@ class Controller extends BaseController
         foreach ($columnNames as $columnName) {
             if (isset($defaultTranslations[$columnName])) {
                 $columnLabel = $defaultTranslations[$columnName];
-                // пропускаем колонки с одинаковыми названиями
                 if (!in_array($columnLabel, $result, true)) {
                     $result[$columnName] = $columnLabel;
                 }
@@ -130,7 +120,8 @@ class Controller extends BaseController
 
     public function actionGetData()
     {
-        $this->response(true,
+        $this->response(
+            true,
             [
                 'i18n' => $this->translations(),
                 'availableLocales' => $this->getAvailableLocales(),

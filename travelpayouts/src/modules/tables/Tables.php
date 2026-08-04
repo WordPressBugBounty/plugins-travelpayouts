@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -8,8 +9,6 @@ use Travelpayouts\Vendor\Adbar\Dot;
 use Travelpayouts\components\module\ModuleRedux;
 
 /**
- * Class Tables
- * @package Travelpayouts\src\modules\tables
  * @property-read Dot $data
  */
 class Tables extends ModuleRedux
@@ -86,16 +85,6 @@ class Tables extends ModuleRedux
     public $tp_flights_schedule_shortcodes;
     /**
      * @Inject
-     * @var components\hotels\selectionsDate\Section
-     */
-    public $tp_hotels_selections_date_shortcodes;
-    /**
-     * @Inject
-     * @var components\hotels\selectionsDiscount\Section
-     */
-    public $tp_hotels_selections_discount_shortcodes;
-    /**
-     * @Inject
      * @var components\railway\tutu\Section
      */
     public $tp_tutu_shortcodes;
@@ -104,11 +93,6 @@ class Tables extends ModuleRedux
      * @var components\settings\FlightsSettingsSection
      */
     public $settingsFlights;
-    /**
-     * @Inject
-     * @var components\settings\HotelSettingsSection
-     */
-    public $settingsHotels;
     /**
      * @Inject
      * @var components\settings\CustomTableStylesSection
@@ -139,10 +123,19 @@ class Tables extends ModuleRedux
         components\flights\priceCalendarMonth\Table::class,
         components\flights\priceCalendarWeek\Table::class,
 
-        components\hotels\selectionsDate\Table::class,
-        components\hotels\selectionsDiscount\Table::class,
-
         components\railway\tutu\TutuShortcodeModel::class,
+    ];
+
+    /**
+     * Hotel tables went away with the HotelLook integration: the service stopped
+     * answering and the classes are gone. Their tags stay registered as empty
+     * stubs, so pages that already embed them show nothing instead of raw text.
+     *
+     * @inheritdoc
+     */
+    protected $disabledShortcodeList = [
+        'tp_hotels_selections_date_shortcodes',
+        'tp_hotels_selections_discount_shortcodes',
     ];
 
     /**

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -7,7 +8,6 @@ namespace Travelpayouts\components\web;
 
 class WpRestRouteGroup extends BaseRouteCollection
 {
-
     /**
      * @inheritDoc
      */

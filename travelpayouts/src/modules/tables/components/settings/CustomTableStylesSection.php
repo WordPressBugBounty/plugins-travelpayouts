@@ -11,7 +11,7 @@ use Travelpayouts\helpers\StringHelper;
  */
 class CustomTableStylesSection extends Fields
 {
-    const CUSTOM_THEME = 'custom';
+    public const CUSTOM_THEME = 'custom';
 
     /**
      * @var string
@@ -112,7 +112,7 @@ class CustomTableStylesSection extends Fields
                 ->setTitle(Travelpayouts::__('Table body text color'))
                 ->setDefault('#6c7a87')
                 ->setRequired($requireForTableBody),
-            'border_color'=> $this->fieldColor()
+            'border_color' => $this->fieldColor()
                 ->setTitle(Travelpayouts::__('Table body border color'))
                 ->setDefault('#eaeaea')
                 ->setRequired($requireForTableBody),
@@ -177,7 +177,7 @@ class CustomTableStylesSection extends Fields
     {
         $result = [];
 
-        if($this->getCustomizeHeader()){
+        if ($this->getCustomizeHeader()) {
             $result = array_merge($result, [
                 'tp-table-custom-header-bg' => $this->bg_header,
                 'tp-table-custom-header-color' => $this->text_header,
@@ -186,7 +186,7 @@ class CustomTableStylesSection extends Fields
             ]);
         }
 
-        if($this->getCustomizeBody()){
+        if ($this->getCustomizeBody()) {
             $result = array_merge($result, [
                 'tp-table-custom-body-bg-odd' => $this->bg_body_odd,
                 'tp-table-custom-body-bg-even' => $this->bg_body_even,
@@ -196,7 +196,7 @@ class CustomTableStylesSection extends Fields
             ]);
         }
 
-        if($this->getCustomizeButtons()){
+        if ($this->getCustomizeButtons()) {
             $result = array_merge($result, [
                 'tp-table-custom-button-bg' => $this->bg_button,
                 'tp-table-custom-button-bg-hover' => $this->bg_button_hover,

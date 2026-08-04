@@ -43,7 +43,6 @@ class TpMapWidget extends Fields
                     'width' => '100%',
                     'height' => '300px',
                 ]
-
             ),
             LegacyReduxFields::dimensions(
                 'map_dimensions',

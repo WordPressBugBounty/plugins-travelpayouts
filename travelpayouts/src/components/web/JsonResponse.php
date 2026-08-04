@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -6,6 +7,7 @@
 namespace Travelpayouts\components\web;
 
 use Travelpayouts\components\exceptions\HttpException;
+
 use function wp_send_json;
 
 class JsonResponse extends Response

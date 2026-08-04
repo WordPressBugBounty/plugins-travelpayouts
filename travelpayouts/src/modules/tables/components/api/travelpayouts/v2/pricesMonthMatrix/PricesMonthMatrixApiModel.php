@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -9,7 +10,6 @@ use Travelpayouts\modules\tables\components\api\travelpayouts\BaseTravelpayoutsA
 
 class PricesMonthMatrixApiModel extends BaseTravelpayoutsApiModel
 {
-    protected $responseClass = PriceCalendarMatrixApiResponse::class;
     /**
      * @var string
      */

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -46,7 +47,7 @@ class RangeValidator extends Validator
             throw new \Exception('The "range" property must be set.');
         }
         if ($this->message === null) {
-            $this->message = Travelpayouts::_x( '{attribute} is invalid.', 'validator.rangeValidator');
+            $this->message = Travelpayouts::_x('{attribute} is invalid.', 'validator.rangeValidator');
         }
     }
 

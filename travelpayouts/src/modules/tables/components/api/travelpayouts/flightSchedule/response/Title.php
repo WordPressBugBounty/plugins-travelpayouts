@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -10,7 +11,6 @@ use Travelpayouts\components\api\ApiResponseObject;
 
 class Title extends ApiResponseObject
 {
-
     /**
      * @var bool
      */
@@ -47,7 +47,10 @@ class Title extends ApiResponseObject
     protected function translate($key, $locale): string
     {
         return Travelpayouts::t(
-            $key, [], 'tables', $locale
+            $key,
+            [],
+            'tables',
+            $locale
         );
     }
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -17,7 +18,6 @@ class GutenbergRestModule extends BaseGutenbergRestModule
     {
         return [
             flights\GutenbergRestCampaign::class,
-            hotels\GutenbergRestCampaign::class,
             railway\GutenbergRestCampaign::class,
         ];
     }

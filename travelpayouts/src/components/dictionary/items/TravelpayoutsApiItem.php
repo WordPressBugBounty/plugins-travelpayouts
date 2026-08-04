@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -15,7 +16,6 @@ use Travelpayouts\components\base\dictionary\Item;
  */
 abstract class TravelpayoutsApiItem extends Item
 {
-
     public function init()
     {
         parent::init();

@@ -98,8 +98,8 @@ abstract class Cache extends BaseObject implements CacheInterface
         }
 
         if ($this->serializer === null) {
-            $value = unserialize($value,[
-                'allowed_classes'=> true,
+            $value = unserialize($value, [
+                'allowed_classes' => true,
             ]);
         }
 

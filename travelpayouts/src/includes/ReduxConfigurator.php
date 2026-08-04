@@ -23,7 +23,9 @@ class ReduxConfigurator
          */
         $this->opt_name = $opt_name;
 
-        if (!class_exists('Redux_Travelpayouts')) return;
+        if (!class_exists('Redux_Travelpayouts')) {
+            return;
+        }
 
         Redux_Travelpayouts::setArgs($this->opt_name, $args);
     }
@@ -58,7 +60,7 @@ class ReduxConfigurator
              * Зачищаем закешированное значение для повторного получения значений из getOptions
              * в случае успешного сохранения
              */
-            if($isSuccess && ''!==$this->opt_name && ""!== $key){
+            if ($isSuccess && '' !== $this->opt_name && "" !== $key) {
                 $optionName = $this->opt_name;
                 global $$optionName;
                 $$optionName = null;

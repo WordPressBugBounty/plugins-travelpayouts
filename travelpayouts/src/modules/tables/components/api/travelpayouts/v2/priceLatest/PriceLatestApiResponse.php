@@ -8,6 +8,7 @@ class PriceLatestApiResponse extends ApiResponseObject
 {
     /**
      * @var int
+     * @required
      */
     public $value;
 
@@ -31,7 +32,7 @@ class PriceLatestApiResponse extends ApiResponseObject
     public $return_date;
 
     /**
-     * @var string
+     * @var int
      */
     public $distance;
 
@@ -46,7 +47,7 @@ class PriceLatestApiResponse extends ApiResponseObject
     public $trip_class;
 
     /**
-     * @var string
+     * @var int
      */
     public $number_of_changes;
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -15,9 +16,7 @@ use Travelpayouts\helpers\ArrayHelper;
 use Travelpayouts\modules\links\components\BaseLinkShortcode;
 
 /**
- * Class PreviewShortcodeAction
- * @package Travelpayouts\components\rest
- * Действие для рендеринга шорткода внутри гутенберга
+ * Renders a shortcode preview inside Gutenberg.
  */
 class PreviewShortcodeAction extends CheckAccessAction
 {
@@ -106,7 +105,16 @@ class PreviewShortcodeAction extends CheckAccessAction
      */
     protected function renderShortcode(ShortcodeModel $model): string
     {
-        return $this->renderAssets($model) . "\n" . $model->render();
+        // Second render boundary: the Gutenberg preview calls render() directly,
+        // bypassing `TableShortcode::render_shortcode_static()`.
+        try {
+            return $this->renderAssets($model) . "\n" . $model->render();
+        } catch (\Throwable $e) {
+            // Text, not emptiness: only the post editor sees the preview, and
+            // admin notices are skipped on that screen by AdminHooks.
+            // Escaping is mandatory - the message may carry the API response body.
+            return '[' . $model->tag . '] ' . esc_html($e->getMessage());
+        }
     }
 
     /**
@@ -119,13 +127,10 @@ class PreviewShortcodeAction extends CheckAccessAction
         Travelpayouts::getInstance()->assets->getAssetByName('runtime')->enqueueScript();
 
         if ($model instanceof TableShortcode) {
-            // Регистрируем jquery для таблиц
             wp_enqueue_script('jquery');
-            // Выводим кастомные стили для таблиц
             $this->publicHooks->appendCustomTableStyles();
         }
 
-        // Добавляем стили для ссылок
         if ($model instanceof BaseLinkShortcode) {
             $inlineLinkStyles = <<<CSS
   a { 
@@ -145,7 +150,7 @@ CSS;
     }
 
     /**
-     * Регистрируем стиль пустышку, чтобы можно было добавить инлайн стили
+     * Dummy style handle so inline styles have something to attach to.
      * @return string
      */
     protected function getStylesHandlerName(): string

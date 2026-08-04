@@ -89,10 +89,11 @@ class UrlHelper extends BaseInjectedObject
     /**
      * Redirect domain/travelpayouts_redirect?https://google.com
      */
-    public function externalRedirectAction(){
-        if($this->useRedirect){
+    public function externalRedirectAction()
+    {
+        if ($this->useRedirect) {
             $redirectUrl = \Travelpayouts::getInstance()->request->getQueryParam($this->getRedirectParamName());
-            if($redirectUrl){
+            if ($redirectUrl) {
                 wp_safe_redirect(urldecode($redirectUrl), 301);
                 exit;
             }

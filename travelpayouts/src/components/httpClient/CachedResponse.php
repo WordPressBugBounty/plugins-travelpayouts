@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -44,7 +45,7 @@ class CachedResponse extends Response
     public function deleteCache()
     {
         if (($cache = $this->getCache()) && ($cacheKey = $this->getCacheKey())) {
-           return $cache->delete($cacheKey);
+            return $cache->delete($cacheKey);
         }
         return false;
     }

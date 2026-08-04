@@ -217,9 +217,8 @@ class Table extends FlightsShortcodeModel
         $model->currency = $this->currency;
         $model->origin = $this->origin;
         $model->destination = $this->destination;
-        $model->setResponseClass(CheapestTicketEachDayMonthApiResponse::class);
         $result = [];
-        foreach ($model->getResponseModels() as $responseModel) {
+        foreach ($model->getModels(CheapestTicketEachDayMonthApiResponse::class) as $responseModel) {
             /** @var CheapestTicketEachDayMonthApiResponse $responseModel */
             $responseModel->shortcodeModel = $this;
             $result[] = $responseModel;

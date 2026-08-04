@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -20,7 +21,7 @@ use Travelpayouts\components\Translator;
  */
 class Settings extends ModuleRedux
 {
-    const DEFAULT_CURRENCY = 'USD';
+    public const DEFAULT_CURRENCY = 'USD';
 
     /**
      * @Inject
@@ -73,6 +74,6 @@ class Settings extends ModuleRedux
 
     public function getScriptLocation()
     {
-        return ReduxOptions::script_locations_values($this->data->get('script_location','in_footer'));
+        return ReduxOptions::script_locations_values($this->data->get('script_location', 'in_footer'));
     }
 }

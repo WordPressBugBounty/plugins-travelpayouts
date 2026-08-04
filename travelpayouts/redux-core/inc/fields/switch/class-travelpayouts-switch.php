@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Switch Field
  * @package     Redux Framework
@@ -15,7 +16,6 @@ if (!class_exists('Redux_Travelpayouts_Switch', false)) {
      */
     class Redux_Travelpayouts_Switch extends Redux_Travelpayouts_Field
     {
-
         /**
          * Field Render Function.
          * Takes the vars and outputs the HTML for the field in the settings

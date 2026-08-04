@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -39,7 +40,7 @@ class LinksController extends PublicJsonController
 
     public function actionLinkReplacementStatistics()
     {
-        if(!$this->settings->getUseFilterRef()){
+        if (!$this->settings->getUseFilterRef()) {
             return false;
         }
 

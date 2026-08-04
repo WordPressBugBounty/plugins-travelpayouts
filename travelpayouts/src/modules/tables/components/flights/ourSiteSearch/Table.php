@@ -106,16 +106,14 @@ class Table extends FlightsShortcodeModel
     protected function getCollection(): array
     {
         $model = new PricesLatestApiModel($this->apiModelOptions());
-        $model->setResponseClass(FromOurCityFlyResponse::class);
         $model->currency = $this->currency;
         $model->one_way = $this->getOneWay();
         $model->limit = $this->limit;
         $model->beginning_of_period = date('Y-m-01');
         $model->period_type = 'month';
         /** @var $models FromOurCityFlyResponse[] */
-        $models = $model->getResponseModels();
+        $models = $model->getModels(FromOurCityFlyResponse::class);
         foreach ($models as $responseModel) {
-            // прокидываем shortcodeModel
             $responseModel->shortcodeModel = $this;
         }
         return $models;
@@ -127,7 +125,8 @@ class Table extends FlightsShortcodeModel
     public function gridColumns(): array
     {
         return ArrayHelper::mergeRecursive(
-            parent::gridColumns(), [
+            parent::gridColumns(),
+            [
                 ColumnLabels::DEPARTURE_AT => [
                     'attribute' => 'depart_date'
                 ],

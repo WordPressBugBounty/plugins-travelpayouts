@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -61,7 +62,7 @@ class ScheduleColumn extends GridColumn
                         'span',
                         [
                             'class' => Html::classNames([
-                                !$isActive ? 'tp-opacity-40 tp-line-through': null,
+                                !$isActive ? 'tp-opacity-40 tp-line-through' : null,
                             ]),
                             'title' => $fullDayName,
                         ],

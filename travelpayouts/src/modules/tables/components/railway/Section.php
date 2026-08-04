@@ -45,7 +45,7 @@ class Section extends ModuleSection
         $tutuBrandPermissions = new BrandsPartnerPermissions();
         $tutuBrandPermissions->brand_id = CampaignsSubscriptionsEndpoint::TP_TUTU_ID;
 
-        if(TRAVELPAYOUTS_DEBUG){
+        if (TRAVELPAYOUTS_DEBUG) {
             return true;
         }
         return $tutuBrandPermissions->hasRule('can_promote_trains');

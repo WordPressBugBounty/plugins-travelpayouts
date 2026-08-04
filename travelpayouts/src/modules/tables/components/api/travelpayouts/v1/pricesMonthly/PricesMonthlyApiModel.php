@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -9,7 +10,6 @@ use Travelpayouts\modules\tables\components\api\travelpayouts\BaseTravelpayoutsA
 
 class PricesMonthlyApiModel extends BaseTravelpayoutsApiModel
 {
-    protected $responseClass = PricesMonthlyApiResponse::class;
     public $currency = 'RUB';
     public $origin;
     public $destination;
@@ -27,7 +27,7 @@ class PricesMonthlyApiModel extends BaseTravelpayoutsApiModel
      */
     protected function endpointUrl()
     {
-        return 'http://api.travelpayouts.com/v1/prices/monthly';
+        return 'https://api.travelpayouts.com/v1/prices/monthly';
     }
 
 }

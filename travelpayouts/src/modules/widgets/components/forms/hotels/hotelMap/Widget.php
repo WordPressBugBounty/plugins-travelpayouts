@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -56,7 +57,7 @@ class Widget extends HotelLookWidgetShortcodeModel
         $this->draggable = $this->bool_to_string($draggable);
 
         $mapColor = $sectionData->get('color_pallete');
-        if($mapColor == 'custom') {
+        if ($mapColor == 'custom') {
             $this->map_color = $sectionData->get('pins_color');
             $this->color = $sectionData->get('pins_color');
             $this->contrast_color = $sectionData->get('texts_color');

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -44,7 +45,7 @@ class TrainsSuggestApiModel extends ApiModel
         ];
     }
 
-    public function attribute_labels()
+    public function attributeLabels()
     {
         return [
             'term' => 'origin',

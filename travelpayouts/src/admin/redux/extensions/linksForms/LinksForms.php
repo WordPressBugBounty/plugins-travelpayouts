@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -37,13 +38,13 @@ class LinksForms extends ConfigurableField
 
         $x = 0;
 
-        if (isset ($this->value) && is_array($this->value) && !empty ($this->value)) {
+        if (isset($this->value) && is_array($this->value) && !empty($this->value)) {
 
             $slides = $this->value;
 
             foreach ($slides as $slide) {
 
-                if (empty ($slide)) {
+                if (empty($slide)) {
                     continue;
                 }
 

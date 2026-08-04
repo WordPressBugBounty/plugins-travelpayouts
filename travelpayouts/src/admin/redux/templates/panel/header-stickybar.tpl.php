@@ -38,7 +38,7 @@ $optionName = $this->parent->args['opt_name'];
                     'id' => 'redux_top_save',
                 ]);
             }
-            ?>
+?>
         </div>
         <div class="redux-ajax-loading" alt="<?php Travelpayouts::esc_attr_e('Working...'); ?>">
             &nbsp;

@@ -8,7 +8,6 @@ use Travelpayouts\components\section\fields\BaseField;
 
 class FieldsHelper
 {
-
     public static function pre($content, $classNames = [])
     {
         $classNames = array_merge(['tp-pre'], $classNames);

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -46,7 +47,7 @@ class HumanDateFormatter extends BaseInjectedObject
     public function format($value, $locale): ?string
     {
         $value = $this->parseStringIntoDate($value);
-        return $value !== null ? $value->locale($locale ?? $this->locale)->translatedFormat($this->dateFormat): null;
+        return $value !== null ? $value->locale($locale ?? $this->locale)->translatedFormat($this->dateFormat) : null;
 
 
     }

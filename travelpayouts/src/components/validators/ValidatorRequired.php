@@ -1,6 +1,7 @@
 <?php
 
 namespace Travelpayouts\components\validators;
+
 use Travelpayouts;
 
 /**
@@ -8,7 +9,7 @@ use Travelpayouts;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-Class ValidatorRequired extends Validator
+class ValidatorRequired extends Validator
 {
     /**
      * @var bool whether to skip this validator if the value being validated is empty.

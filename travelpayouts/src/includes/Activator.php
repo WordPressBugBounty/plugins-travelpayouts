@@ -38,7 +38,7 @@ class Activator
     {
         Travelpayouts::getInstance()->snowTracker->trackStructEvent(
             Tracker::CATEGORY_INSTALL,
-			Tracker::ACTION_INSTALLED
+            Tracker::ACTION_INSTALLED
         );
     }
 }

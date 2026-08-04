@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -10,8 +11,6 @@ use Travelpayouts\modules\tables\components\api\travelpayouts\BaseTravelpayoutsA
 
 class AirlineDirectionsApiModel extends BaseTravelpayoutsApiModel
 {
-    protected $responseClass = AirlineDirectionsApiResponse::class;
-
     /**
      * @var string|int
      * Records limit per page. Default value is 100. Not less than 1000.
@@ -41,7 +40,7 @@ class AirlineDirectionsApiModel extends BaseTravelpayoutsApiModel
      */
     protected function endpointUrl()
     {
-        return 'http://api.travelpayouts.com/v1/airline-directions';
+        return 'https://api.travelpayouts.com/v1/airline-directions';
     }
 
     public function afterRequest()

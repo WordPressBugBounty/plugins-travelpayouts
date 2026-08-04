@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -14,7 +15,6 @@ use Travelpayouts\Vendor\Adbar\Dot;
  */
 abstract class ModuleSection extends Base implements IModuleSection
 {
-
     /**
      * @var Dot
      */
@@ -77,6 +77,15 @@ abstract class ModuleSection extends Base implements IModuleSection
     }
 
     /**
+     * Drops the memoised Dot. Without it a section built once keeps answering from the first read
+     * for the rest of the process, so options written afterwards stay invisible.
+     */
+    public function clearCache()
+    {
+        $this->_data = null;
+    }
+
+    /**
      * Получаем данные дочерних элементов
      * @return array
      */
@@ -124,7 +133,7 @@ abstract class ModuleSection extends Base implements IModuleSection
     {
         $this->registerSectionInRedux();
         foreach ($this->getChildren() as $instance) {
-            if($instance instanceof self) {
+            if ($instance instanceof self) {
                 $instance->registerSectionInRedux();
             }
         }

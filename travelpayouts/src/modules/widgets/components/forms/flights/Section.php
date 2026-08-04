@@ -32,7 +32,7 @@ class Section extends ModuleSection
             'desc' =>  AlertWidget::widget([
                 'content' => Travelpayouts::__('These settings are for default settings of widgets, those were embedded  via shortcodes (plugin version before v. 1). The current version of the plugin  embeds all widgets via scripts'),
                 'showRoundel' => true,
-                'type'=> 'info',
+                'type' => 'info',
             ]),
             'icon' => 'tp-i-tabler:plane',
         ];

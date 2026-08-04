@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -22,15 +23,15 @@ class TimeAndStopsColumn extends GridColumn
             $stopsCountFormatted = StopsNameFormatter::getInstance()
                 ->format($this->getStopsCount($model), $this->locale);
             return Html::tagArrayContent(
-                    'div',
-                    ['class' => GridColumn::COLUMN_NOWRAP_CLASSNAME . ' tp-time tp-flex tp-items-center tp-gap-1'],
-                    [
+                'div',
+                ['class' => GridColumn::COLUMN_NOWRAP_CLASSNAME . ' tp-time tp-flex tp-items-center tp-gap-1'],
+                [
                         $model->depart_time,
                         '<i class="tp-i-tabler:arrow-right"></i>',
                         $model->arrival_time,
                         $model->arrival_day_indicator ? Html::tag('sup', ['class' => 'tp-indicator'], '+1') : null,
                     ]
-                ) . Html::tag('div', [
+            ) . Html::tag('div', [
                     'class' => 'tp-stops',
                     'style' => Html::cssStyleFromArray(['margin' => '5px 0 0 0']),
                 ], $stopsCountFormatted);

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -12,7 +13,7 @@ use Travelpayouts\components\HtmlHelper;
 
 class ElementorControl extends Base_Data_Control
 {
-    const CONTROL_ID = 'travelpayouts_widget';
+    public const CONTROL_ID = 'travelpayouts_widget';
     /**
      * @Inject
      * @var Assets

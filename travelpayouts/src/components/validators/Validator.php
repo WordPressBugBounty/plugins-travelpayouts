@@ -64,7 +64,7 @@ class Validator extends Component
         'each' => ValidatorEach::class,
         'compare' => CompareValidator::class,
         'in' => RangeValidator::class,
-        'match'=> RegularExpressionValidator::class
+        'match' => RegularExpressionValidator::class
     ];
 
     public function __construct($params = [])
@@ -90,7 +90,7 @@ class Validator extends Component
         $attributes = $this->getValidationAttributes($attributes);
 
         foreach ($attributes as $attribute) {
-            $skip = ($this->skipOnError && $model->has_errors($attribute))
+            $skip = ($this->skipOnError && $model->hasErrors($attribute))
                 || ($this->skipOnEmpty && $this->isEmpty($model->$attribute));
             if (!$skip) {
                 if ($this->when === null || call_user_func($this->when, $model, $attribute)) {
@@ -197,7 +197,7 @@ class Validator extends Component
      */
     public function addError($model, $attribute, $message, $params = [])
     {
-        $params['attribute'] = $model->get_attribute_label($attribute);
+        $params['attribute'] = $model->getAttributeLabel($attribute);
         if (!isset($params['value'])) {
             $value = $model->$attribute;
             if (is_array($value)) {
@@ -208,7 +208,7 @@ class Validator extends Component
                 $params['value'] = $value;
             }
         }
-        $model->add_error($attribute, $this->formatMessage($message, $params));
+        $model->addError($attribute, $this->formatMessage($message, $params));
     }
 
     /**

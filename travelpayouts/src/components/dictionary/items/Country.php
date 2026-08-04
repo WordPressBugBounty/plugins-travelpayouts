@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
 
 namespace Travelpayouts\components\dictionary\items;
+
 /**
  * Class Country
  * @package Travelpayouts\src\components\dictionary\items
@@ -12,13 +14,13 @@ namespace Travelpayouts\components\dictionary\items;
  */
 class Country extends TravelpayoutsApiItem
 {
-
     public function getName($case = false)
     {
         if ($case) {
             $case_path = "cases.{$case}";
-            if ($this->dataDot->has($case_path))
+            if ($this->dataDot->has($case_path)) {
                 return $this->dataDot->get($case_path);
+            }
         }
         return $this->dataDot->get('name', '');
     }
@@ -28,7 +30,8 @@ class Country extends TravelpayoutsApiItem
         return $this->getName($case);
     }
 
-    public function getCurrency(){
+    public function getCurrency()
+    {
         return $this->dataDot->get('currency', '');
     }
 

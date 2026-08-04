@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -10,7 +11,6 @@ use Travelpayouts\components\section\fields\Select;
 
 class HotelSourceField extends Select
 {
-
     public function init()
     {
         parent::init();

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -16,9 +17,9 @@ use Travelpayouts\components\api\ApiResponseObject;
  */
 class CampaignsSubscriptionsEndpoint extends ApiEndpoint
 {
-    const TP_TUTU_ID = 45;
-    const HOTELLOOK_ID = 101;
-    const AVIASALES_ID = 100;
+    public const TP_TUTU_ID = 45;
+    public const HOTELLOOK_ID = 101;
+    public const AVIASALES_ID = 100;
 
     public function getResponse(): ?Travelpayouts\components\httpClient\CachedResponse
     {

@@ -6,7 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Travelpayouts\\Vendor\\apimatic\\jsonmapper\\' => array($vendorDir . '/travelpayouts-apimatic/jsonmapper/src'),
+    'Travelpayouts\\Vendor\\glook\\jsonmapper\\' => array($vendorDir . '/travelpayouts-glook/jsonmapper/src'),
     'Travelpayouts\\Vendor\\Symfony\\Contracts\\Translation\\' => array($vendorDir . '/travelpayouts-symfony/translation-contracts'),
     'Travelpayouts\\Vendor\\Symfony\\Component\\Yaml\\' => array($vendorDir . '/travelpayouts-symfony/yaml'),
     'Travelpayouts\\Vendor\\Symfony\\Component\\Translation\\' => array($vendorDir . '/travelpayouts-symfony/translation'),

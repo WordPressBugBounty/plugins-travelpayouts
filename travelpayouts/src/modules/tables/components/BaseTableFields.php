@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -307,7 +308,8 @@ abstract class BaseTableFields extends SectionFields implements IBaseTableFields
     /**
      * @return TableShortcode|null
      */
-    protected function getShortcode(): ?TableShortcode{
+    protected function getShortcode(): ?TableShortcode
+    {
         return null;
     }
 

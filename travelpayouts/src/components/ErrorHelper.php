@@ -18,7 +18,7 @@ class ErrorHelper
         foreach ($shortcode_errors as $key => $error) {
 
             $error_msg = implode(' ', $error);
-            if($show_key) {
+            if ($show_key) {
                 $error_msg = Html::tag('span', [], "\"{$key}\": ") . $error_msg;
             }
 

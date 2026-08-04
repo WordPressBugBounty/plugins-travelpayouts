@@ -10,8 +10,8 @@ use Travelpayouts\components\db\Query;
  */
 class MigrationQuery extends Query
 {
-    const TABLE_SEARCH_FORM = 'tp_search_shortcodes';
-    const TABLE_LINKS = 'tp_auto_replac_links';
+    public const TABLE_SEARCH_FORM = 'tp_search_shortcodes';
+    public const TABLE_LINKS = 'tp_auto_replac_links';
 
     /**
      * @return array|object|null
@@ -67,5 +67,3 @@ class MigrationQuery extends Query
         return null;
     }
 }
-
-

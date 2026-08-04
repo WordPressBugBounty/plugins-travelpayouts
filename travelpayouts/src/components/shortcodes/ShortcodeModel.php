@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -223,4 +224,3 @@ abstract class ShortcodeModel extends InjectedModel implements IShortcodeModel
         return is_string($tag) ? $tag : null;
     }
 }
-

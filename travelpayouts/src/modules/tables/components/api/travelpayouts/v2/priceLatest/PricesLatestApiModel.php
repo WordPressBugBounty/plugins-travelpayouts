@@ -2,7 +2,6 @@
 
 namespace Travelpayouts\modules\tables\components\api\travelpayouts\v2\priceLatest;
 
-
 use Travelpayouts\modules\tables\components\api\travelpayouts\BaseTravelpayoutsApiModel;
 
 class PricesLatestApiModel extends BaseTravelpayoutsApiModel
@@ -79,7 +78,6 @@ class PricesLatestApiModel extends BaseTravelpayoutsApiModel
      */
     public $page = 1;
 
-    protected $responseClass = PriceLatestApiResponse::class;
 
     public function rules()
     {
@@ -100,7 +98,7 @@ class PricesLatestApiModel extends BaseTravelpayoutsApiModel
      */
     protected function endpointUrl()
     {
-        return 'http://api.travelpayouts.com/v2/prices/latest';
+        return 'https://api.travelpayouts.com/v2/prices/latest';
     }
 
     public static function availablePeriodTypes(): array

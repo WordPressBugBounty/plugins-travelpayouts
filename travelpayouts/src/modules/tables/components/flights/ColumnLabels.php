@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -14,30 +15,30 @@ use Travelpayouts\components\tables\BaseColumnLabels;
  */
 class ColumnLabels extends BaseColumnLabels
 {
-    const DEPARTURE_AT = 'departure_at';
-    const NUMBER_OF_CHANGES = 'number_of_changes';
-    const BUTTON = 'button';
-    const PRICE = 'price';
-    const TRIP_CLASS = 'trip_class';
-    const DISTANCE = 'distance';
-    const RETURN_AT = 'return_at';
-    const AIRLINE_LOGO = 'airline_logo';
-    const FLIGHT_NUMBER = 'flight_number';
-    const FLIGHT = 'flight';
-    const AIRLINE = 'airline';
-    const DESTINATION = 'destination';
-    const ORIGIN_DESTINATION = 'origin_destination';
-    const PLACE = 'place';
-    const DIRECTION = 'direction';
-    const ORIGIN = 'origin';
-    const FOUND_AT = 'found_at';
-    const PRICE_DISTANCE = 'price_distance';
-    const TIME_AND_STOPS = 'time_and_stops';
-    const ROUTE = 'route';
-    const SCHEDULE = 'schedule';
-    const FULL_AIRLINE_LOGO = 'full_airline_logo';
-    const COMPACT_AIRLINE_LOGO = 'compact_airline_logo';
-    const AIRLINE_NAME = 'airline_name_string';
+    public const DEPARTURE_AT = 'departure_at';
+    public const NUMBER_OF_CHANGES = 'number_of_changes';
+    public const BUTTON = 'button';
+    public const PRICE = 'price';
+    public const TRIP_CLASS = 'trip_class';
+    public const DISTANCE = 'distance';
+    public const RETURN_AT = 'return_at';
+    public const AIRLINE_LOGO = 'airline_logo';
+    public const FLIGHT_NUMBER = 'flight_number';
+    public const FLIGHT = 'flight';
+    public const AIRLINE = 'airline';
+    public const DESTINATION = 'destination';
+    public const ORIGIN_DESTINATION = 'origin_destination';
+    public const PLACE = 'place';
+    public const DIRECTION = 'direction';
+    public const ORIGIN = 'origin';
+    public const FOUND_AT = 'found_at';
+    public const PRICE_DISTANCE = 'price_distance';
+    public const TIME_AND_STOPS = 'time_and_stops';
+    public const ROUTE = 'route';
+    public const SCHEDULE = 'schedule';
+    public const FULL_AIRLINE_LOGO = 'full_airline_logo';
+    public const COMPACT_AIRLINE_LOGO = 'compact_airline_logo';
+    public const AIRLINE_NAME = 'airline_name_string';
 
     public function translationKeys()
     {

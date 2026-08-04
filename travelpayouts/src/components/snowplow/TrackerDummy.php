@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -24,14 +25,15 @@ class TrackerDummy extends Tracker
     /**
      * @inheritdoc
      */
-    public function trackStructEvent($category,
-                                     $action,
-                                     $label = null,
-                                     $property = null,
-                                     $value = null,
-                                     $context = [],
-                                     $tstamp = null)
-    {
+    public function trackStructEvent(
+        $category,
+        $action,
+        $label = null,
+        $property = null,
+        $value = null,
+        $context = [],
+        $tstamp = null
+    ) {
         $this->log('trackStructEvent', [
             'category' => $category,
             'action' => $action,
@@ -47,10 +49,11 @@ class TrackerDummy extends Tracker
     /**
      * @inheritdoc
      */
-    public function trackUnstructEvent($event_json,
-                                       $context = [],
-                                       $tstamp = null)
-    {
+    public function trackUnstructEvent(
+        $event_json,
+        $context = [],
+        $tstamp = null
+    ) {
         $this->log('trackUnstructEvent', [
             'event_json' => $event_json,
             'context' => $this->mergeContext($context),
@@ -61,19 +64,20 @@ class TrackerDummy extends Tracker
     /**
      * @inheritdoc
      */
-    public function trackEcommerceTransaction($order_id,
-                                              $total_value,
-                                              $currency = null,
-                                              $affiliation = null,
-                                              $tax_value = null,
-                                              $shipping = null,
-                                              $city = null,
-                                              $state = null,
-                                              $country = null,
-                                              $items,
-                                              $context = [],
-                                              $tstamp = null)
-    {
+    public function trackEcommerceTransaction(
+        $order_id,
+        $total_value,
+        $currency = null,
+        $affiliation = null,
+        $tax_value = null,
+        $shipping = null,
+        $city = null,
+        $state = null,
+        $country = null,
+        $items = [],
+        $context = [],
+        $tstamp = null
+    ) {
         $this->log('trackEcommerceTransaction', [
             'order_id' => $order_id,
             'total_value' => $total_value,
@@ -97,9 +101,9 @@ class TrackerDummy extends Tracker
     protected function log($methodName, $params)
     {
         print_r([
-            'trackerInstance'=> get_class($this),
+            'trackerInstance' => get_class($this),
             'methodName' => $methodName,
-            'params'=> $params,
+            'params' => $params,
         ]);
     }
 

@@ -123,7 +123,7 @@ class Table extends FlightsShortcodeModel
         $model->currency = $this->currency;
 
         $result = [];
-        foreach ($model->getResponseModels() as $responseModel) {
+        foreach ($model->getModels(DirectFlightsResponse::class) as $responseModel) {
             $responseModel->shortcodeModel = $this;
             $result[] = $responseModel;
         }

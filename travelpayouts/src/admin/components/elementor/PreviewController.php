@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -15,7 +16,7 @@ use Travelpayouts\helpers\StringHelper;
  */
 class PreviewController extends Component
 {
-    const ACTION_ID = 'travelpayouts_elementor_preview';
+    public const ACTION_ID = 'travelpayouts_elementor_preview';
 
     public function run()
     {

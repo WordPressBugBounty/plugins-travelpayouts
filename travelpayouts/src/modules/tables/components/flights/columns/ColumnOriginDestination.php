@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -12,8 +13,8 @@ use Travelpayouts\components\HtmlHelper;
 
 class ColumnOriginDestination extends GridColumn
 {
-    const ONE_WAY_ARROW = '<i class="tp-i-tabler:arrow-right"></i>';
-    const ROUND_TRIP_ARROW = '<i class="tp-i-tabler:arrows-horizontal"></i>';
+    public const ONE_WAY_ARROW = '<i class="tp-i-tabler:arrow-right"></i>';
+    public const ROUND_TRIP_ARROW = '<i class="tp-i-tabler:arrows-horizontal"></i>';
 
     protected $locale = 'en';
     /**

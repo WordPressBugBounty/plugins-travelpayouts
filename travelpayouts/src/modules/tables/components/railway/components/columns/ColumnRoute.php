@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -11,7 +12,6 @@ use Travelpayouts\modules\tables\components\api\travelpayouts\trainsSuggest\resp
 
 class ColumnRoute extends GridColumn
 {
-
     protected function renderDataCellContent($model, $key, $index)
     {
         /** @var mixed|Station[] $value */
@@ -67,7 +67,9 @@ class ColumnRoute extends GridColumn
      */
     protected function renderStationWrapper(Station $station, string $content, bool $isFirst = false, bool $isLast = false): string
     {
-        return Html::tagArrayContent('div', [
+        return Html::tagArrayContent(
+            'div',
+            [
             'class' =>
                 Html::classNames([
                     'tp-train-route tp-flex tp-items-center tp-gap-2 tp-flex-nowrap sm:tp-gap-1 tp-justify-between sm:tp-justify-start',
@@ -77,7 +79,8 @@ class ColumnRoute extends GridColumn
                     $station->type === Station::STATION_TYPE_SECONDARY ? 'tp-train-route-secondary tp-opacity-60' : null,
                 ]),
         ],
-            $content);
+            $content
+        );
     }
 
     /**

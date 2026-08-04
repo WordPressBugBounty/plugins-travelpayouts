@@ -188,7 +188,7 @@ class Shortcode extends BaseLinkShortcode
         ];
     }
 
-    public function before_validate()
+    public function beforeValidate()
     {
         if ($this->oneWay) {
             $this->destination_date = null;
@@ -210,9 +210,9 @@ class Shortcode extends BaseLinkShortcode
         );
     }
 
-    public function attribute_labels()
+    public function attributeLabels()
     {
-        return array_merge(parent::attribute_labels(), [
+        return array_merge(parent::attributeLabels(), [
             'text_link' => Travelpayouts::__('Link text'),
             'origin' => Travelpayouts::__('Origin'),
             'destination' => Travelpayouts::__('Destination'),

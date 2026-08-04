@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -28,7 +29,9 @@ class InputWithVariablesInDescription extends Input
     {
         $result = [];
         foreach ($this->variables as $variableName => $variableLabel) {
-            $result[] = HtmlHelper::tagArrayContent('div', [
+            $result[] = HtmlHelper::tagArrayContent(
+                'div',
+                [
                 'class' => HtmlHelper::classNames([
                     'tp-align-items-center',
                     'tp-flex',
@@ -47,7 +50,8 @@ class InputWithVariablesInDescription extends Input
                             ]),
                     ], '{' . $variableName . '}'),
                     HtmlHelper::tag('div', ['class' => HtmlHelper::classNames(['tp-text--black'])], $variableLabel),
-                ]);
+                ]
+            );
         }
         return $result;
     }
@@ -55,14 +59,17 @@ class InputWithVariablesInDescription extends Input
     public function renderVariablesList(): ?string
     {
         if (!empty($this->variables)) {
-            return HtmlHelper::tagArrayContent('div',
+            return HtmlHelper::tagArrayContent(
+                'div',
                 [
                     'class' => 'tp-input-with-tags__variables-list tp-stack-3',
-                ], array_merge([
+                ],
+                array_merge([
                     HtmlHelper::tag('div', [
                         'class' => HtmlHelper::classNames(['tp-font-rubik', 'tp-fs-em-7','tp-text--black']),
                     ], Travelpayouts::__('You can use the following variables in this field:')),
-                ], $this->renderVariables()));
+                ], $this->renderVariables())
+            );
         }
 
         return null;

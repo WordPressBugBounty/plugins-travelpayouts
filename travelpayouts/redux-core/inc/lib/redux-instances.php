@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Redux_Travelpayouts_Instances Functions
  *
@@ -16,10 +17,11 @@
  *
  * @return object                TravelpayoutsSettingsFramework
  */
-function get_Redux_Travelpayouts_instance( $opt_name ) {
-	_deprecated_function( __FUNCTION__, '4.0', 'Redux_Travelpayouts::instance($opt_name)' );
+function get_Redux_Travelpayouts_instance($opt_name)
+{
+    _deprecated_function(__FUNCTION__, '4.0', 'Redux_Travelpayouts::instance($opt_name)');
 
-	return Redux_Travelpayouts::instance( $opt_name );
+    return Redux_Travelpayouts::instance($opt_name);
 }
 
 /**
@@ -29,8 +31,9 @@ function get_Redux_Travelpayouts_instance( $opt_name ) {
  * @depreciated
  * @return array        format ['opt_name' => $TravelpayoutsSettingsFramework]
  */
-function get_all_Redux_Travelpayouts_instances() {
-	_deprecated_function( __FUNCTION__, '4.0', 'Redux_Travelpayouts::all_instances()' );
+function get_all_Redux_Travelpayouts_instances()
+{
+    _deprecated_function(__FUNCTION__, '4.0', 'Redux_Travelpayouts::all_instances()');
 
-	return Redux_Travelpayouts::all_instances();
+    return Redux_Travelpayouts::all_instances();
 }

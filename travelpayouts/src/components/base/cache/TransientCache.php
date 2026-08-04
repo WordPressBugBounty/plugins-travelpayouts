@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -16,7 +17,7 @@ class TransientCache extends Cache
      * @inheritdoc
      */
     public $keyPrefix = TRAVELPAYOUTS_PLUGIN_NAME.'_';
-    
+
     /**
      * @inheritDoc
      */

@@ -55,12 +55,12 @@ use Travelpayouts\helpers\FileHelper;
                     }
                 }
 
-                /**
-                 * Action 'redux_travelpayouts/page/{opt_name}/menu/after'
-                 * @param object $this TravelpayoutsSettingsFramework
-                 */
-                do_action("redux_travelpayouts/page/{$this->parent->args['opt_name']}/menu/after", $this); // phpcs:ignore WordPress.NamingConventions.ValidHookName
-                ?>
+/**
+ * Action 'redux_travelpayouts/page/{opt_name}/menu/after'
+ * @param object $this TravelpayoutsSettingsFramework
+ */
+do_action("redux_travelpayouts/page/{$this->parent->args['opt_name']}/menu/after", $this); // phpcs:ignore WordPress.NamingConventions.ValidHookName
+?>
             </ul>
             <div class="redux-sidebar-divider redux-sidebar--no-mobile"></div>
             <ul class="redux-group-menu redux-sidebar--no-mobile">

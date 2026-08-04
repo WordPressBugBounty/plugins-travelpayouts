@@ -100,9 +100,8 @@ class Table extends FlightsShortcodeModel
         $model = new CityDirectionsApiModel($this->apiModelOptions());
         $model->origin = $this->origin;
         $model->currency = $this->currency;
-        $model->setResponseClass(PopularRoutesFromCityApiResponse::class);
         $result = [];
-        foreach ($model->getResponseModels() as $responseModel) {
+        foreach ($model->getModels(PopularRoutesFromCityApiResponse::class) as $responseModel) {
             /** @var PopularRoutesFromCityApiResponse $responseModel */
             $responseModel->shortcodeModel = $this;
             $result[] = $responseModel;
@@ -146,7 +145,7 @@ class Table extends FlightsShortcodeModel
                 'attribute' => 'fullFlightNumber',
             ],
             ColumnLabels::FLIGHT => [
-                'attribute'=>'flight_number',
+                'attribute' => 'flight_number',
                 'airlineCodeAttribute' => 'airline',
             ],
             ColumnLabels::PRICE => [

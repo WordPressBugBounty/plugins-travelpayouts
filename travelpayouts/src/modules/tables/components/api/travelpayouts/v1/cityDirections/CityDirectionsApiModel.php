@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -10,8 +11,6 @@ use Travelpayouts\modules\tables\components\api\travelpayouts\BaseTravelpayoutsA
 
 class CityDirectionsApiModel extends BaseTravelpayoutsApiModel
 {
-    protected $responseClass = CityDirectionApiResponse::class;
-
     public $currency = 'RUB';
     public $origin;
 
@@ -28,7 +27,7 @@ class CityDirectionsApiModel extends BaseTravelpayoutsApiModel
      */
     protected function endpointUrl()
     {
-        return 'http://api.travelpayouts.com/v1/city-directions';
+        return 'https://api.travelpayouts.com/v1/city-directions';
     }
 
     public function afterRequest()

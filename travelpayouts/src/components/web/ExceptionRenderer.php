@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -35,11 +36,12 @@ class ExceptionRenderer
 
     public function render()
     {
-        wp_die($this->plates->render('error',
+        wp_die($this->plates->render(
+            'error',
             [
                 'error' => $this->exception,
                 'version' => TRAVELPAYOUTS_VERSION,
-                'isAdmin'=> $this->isAdmin,
+                'isAdmin' => $this->isAdmin,
             ]
         ));
     }

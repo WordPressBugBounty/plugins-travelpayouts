@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -27,19 +28,28 @@ abstract class BaseTravelpayoutsApiModel extends BaseTokenApiModel
                 $this->fetchErrors();
                 $this->response = null;
             }
+        } else {
+            // Response did not parse into an array: HTML instead of JSON, a 500
+            // page, broken JSON. Without this branch it looks like an empty list.
+            $this->addError('response', \Travelpayouts::__('API returned an unexpected response'));
+            $this->response = null;
         }
     }
 
+    /**
+     * No branch for an `errors` map on purpose: neither v1 nor v2 returns one,
+     * a validation error arrives as a string in `error`.
+     * A broken token is not even JSON (bare `Unauthorized`), so it ends up in the
+     * "response is not an array" branch of `afterRequest()`.
+     */
     protected function fetchErrors()
     {
         $response = $this->response;
-        if (isset($response['errors'])) {
-            foreach ($response['errors'] as $errorAttribute => $errorMessage) {
-                $this->add_error($errorAttribute, $errorMessage);
-            }
-        }
         if (isset($response['error'])) {
-            $this->add_error('token', $response['error']);
+            // Key `response`, not `token`: the API puts any of its errors here,
+            // most often about request params. `token` stays with client-side
+            // validation in `BaseTokenApiModel::validateApiToken()`.
+            $this->addError('response', $response['error']);
             if (TRAVELPAYOUTS_DEBUG) {
                 echo $response['error'];
             }

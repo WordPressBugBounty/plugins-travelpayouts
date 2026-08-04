@@ -1,10 +1,10 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
 
 namespace Travelpayouts\components\widgets;
-
 
 use Travelpayouts\admin\redux\base\SectionFields;
 

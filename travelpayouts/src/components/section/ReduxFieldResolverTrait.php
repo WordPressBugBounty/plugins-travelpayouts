@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -10,7 +11,6 @@ use Travelpayouts\helpers\ArrayHelper;
 
 trait ReduxFieldResolverTrait
 {
-
     protected function resolveFields(array $fields, $predefinedFields = []): array
     {
         $resolvedFields = [];

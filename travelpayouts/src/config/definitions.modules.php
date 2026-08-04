@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
 
 use Travelpayouts\modules;
+
 use function Travelpayouts\Vendor\DI\autowire;
 
 return [

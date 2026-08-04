@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -40,7 +41,7 @@ abstract class BaseGutenbergRestModule extends Model
             $result = [];
             foreach ($this->campaignList() as $className) {
                 if (is_a($className, BaseGutenbergRestCampaign::class, true)) {
-                    $campaignInstance = new $className;
+                    $campaignInstance = new $className();
                     if ($campaignInstance->isActive()) {
                         $result[] = $campaignInstance;
                     }

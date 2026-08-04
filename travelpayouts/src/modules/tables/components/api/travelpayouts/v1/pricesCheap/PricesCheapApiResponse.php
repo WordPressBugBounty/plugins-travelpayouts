@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -12,6 +13,7 @@ class PricesCheapApiResponse extends InjectedModel
 {
     /**
      * @var int
+     * @required
      */
     public $price;
     /**
@@ -63,6 +65,9 @@ class PricesCheapApiResponse extends InjectedModel
 
     protected function parseDate(string $value): ?DateTime
     {
-        return DateTime::createFromFormat('Y-m-d\TH:i:sT', $value);
+        // `createFromFormat()` returns false on a bad format while the return type
+        // is `?DateTime`: without the null cast the first API date format change
+        // becomes a `TypeError` on the client page.
+        return DateTime::createFromFormat('Y-m-d\TH:i:sT', $value) ?: null;
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -9,7 +10,6 @@ use Exception;
 use Travelpayouts;
 use Travelpayouts\components\HtmlHelper as Html;
 use Travelpayouts\components\Model;
-use Travelpayouts\components\rest\fields\Autocomplete;
 use Travelpayouts\components\shortcodes\ShortcodeModel;
 use Travelpayouts\modules\account\Account;
 use Travelpayouts\modules\searchForms\models\SearchFormModel;
@@ -31,9 +31,9 @@ use Travelpayouts\modules\widgets\components\WidgetShortcode;
  */
 class SearchFormShortcode extends ShortcodeModel
 {
-    const TYPE_AVIA = 'avia';
-    const TYPE_HOTEL = 'hotel';
-    const TYPE_AVIA_HOTEL = 'avia_hotel';
+    public const TYPE_AVIA = 'avia';
+    public const TYPE_HOTEL = 'hotel';
+    public const TYPE_AVIA_HOTEL = 'avia_hotel';
     /**
      * @var string
      */
@@ -137,14 +137,14 @@ class SearchFormShortcode extends ShortcodeModel
 
             if (!$isValid) {
                 $attributesAsString = implode(', ', $params['attributeList']);
-                $this->add_error($attribute, Travelpayouts::__('One of parameters ({attributes}) is required', [
+                $this->addError($attribute, Travelpayouts::__('One of parameters ({attributes}) is required', [
                     'attributes' => $attributesAsString,
                 ]));
             } else {
                 $model = $this->id ? SearchFormModel::getInstance()->findByPk($this->id) :
                     SearchFormModel::getInstance()->findByColumnValue('slug', $this->slug);
                 if (!$model) {
-                    $this->add_error('id', Travelpayouts::_x('Can\'t find search form model by id "{formId}"', 'searchform.model.exception', [
+                    $this->addError('id', Travelpayouts::_x('Can\'t find search form model by id "{formId}"', 'searchform.model.exception', [
                         'formId' => $this->id ?? $this->slug,
                     ]));
                 }
@@ -190,7 +190,7 @@ class SearchFormShortcode extends ShortcodeModel
         }
     }
 
-    public function before_validate()
+    public function beforeValidate()
     {
         /**
          * Если аттрибут applyParamsFromCode представлен, то перезаписываем параметр в модели
@@ -198,7 +198,7 @@ class SearchFormShortcode extends ShortcodeModel
         if ($this->applyParamsFromCode !== null) {
             $this->getModel()->applyParams = $this->applyParamsFromCode;
         }
-        return parent::before_validate();
+        return parent::beforeValidate();
     }
 
     protected function mergeAttributesWithWidgetCode()
@@ -339,7 +339,7 @@ JS;
             $model->validate();
             foreach ($model->getErrors() as $modelAttribute => $errorList) {
                 foreach ($errorList as $error) {
-                    $this->add_error($attribute, $error);
+                    $this->addError($attribute, $error);
                 }
             }
         }
@@ -423,9 +423,9 @@ JS;
         return $fields;
     }
 
-    public function attribute_labels()
+    public function attributeLabels()
     {
-        return array_merge(parent::attribute_labels(), [
+        return array_merge(parent::attributeLabels(), [
             'origin' => Travelpayouts::__('Origin'),
             'destination' => Travelpayouts::__('Destination'),
             'subid' => Travelpayouts::__('Sub ID'),
@@ -446,20 +446,9 @@ JS;
             'destination' => $this->fieldDirectionAutocomplete(),
             'applyParamsFromCode' => $this->fieldCheckbox()->setDefault(true),
             'subid' => $this->fieldInput(),
-            'hotel_city' => $this->fieldHotelCityAutocomplete(),
+            // Plain input: the hotel/city autocomplete service is gone and has no replacement.
+            'hotel_city' => $this->fieldInput(),
         ]);
-    }
-
-    public function fieldHotelCityAutocomplete(): Autocomplete
-    {
-        return $this->fieldInputAutocomplete()->setAsync([
-            'url' => admin_url('admin-ajax.php' . '?action=travelpayouts_routes&page=hotellook/hotels-cities/autocomplete&term=${term}'),
-            'optionsPath' => 'data',
-            'itemProps' => [
-                'value' => '${value}',
-                'label' => '${label}',
-            ],
-        ])->setAllowClear(true);
     }
 
 }

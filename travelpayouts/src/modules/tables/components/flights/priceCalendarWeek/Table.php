@@ -97,7 +97,6 @@ class Table extends FlightsShortcodeModel
     protected function getCollection(): array
     {
         $model = new PricesMonthMatrixApiModel($this->apiModelOptions());
-        $model->setResponseClass(PriceCalendarWeekApiResponse::class);
         $model->origin = $this->origin;
         $model->destination = $this->destination;
         $model->currency = $this->currency;
@@ -105,7 +104,7 @@ class Table extends FlightsShortcodeModel
         $model->month = (new \DateTime())->format('Y-m-d');
         $model->one_way = StringHelper::toBoolean($this->one_way);
         $result = [];
-        foreach ($model->getResponseModels() as $responseModel) {
+        foreach ($model->getModels(PriceCalendarWeekApiResponse::class) as $responseModel) {
             /** @var PriceCalendarWeekApiResponse $responseModel */
             $responseModel->shortcodeModel = $this;
             $result[] = $responseModel;

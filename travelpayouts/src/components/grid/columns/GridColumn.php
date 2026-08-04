@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -62,12 +63,12 @@ class GridColumn extends DataColumn
                 /** @var Model $modelClass */
                 $modelClass = $provider->modelClass;
                 $model = $modelClass::getInstance();
-                $label = $model->get_attribute_label($this->attribute);
+                $label = $model->getAttributeLabel($this->attribute);
             } else {
                 $models = $provider->getModels();
                 if (($model = reset($models)) instanceof Model) {
                     /* @var $model TableShortcode */
-                    $label = $model->get_attribute_label($this->attribute);
+                    $label = $model->getAttributeLabel($this->attribute);
                 } else {
                     $label = $this->attribute;
                 }

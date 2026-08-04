@@ -60,7 +60,7 @@ class Notices extends BaseInjectedObject
      */
     protected function getVisibleNotices(): array
     {
-        if($this->_visibleNotices === null) {
+        if ($this->_visibleNotices === null) {
             $noticeList = $this->getNotices();
             $disabledName = $this->getDisabledNames();
             $result = [];
@@ -72,7 +72,7 @@ class Notices extends BaseInjectedObject
             }
             $this->_visibleNotices = $result;
         }
-      return $this->_visibleNotices;
+        return $this->_visibleNotices;
     }
 
     /**
@@ -122,10 +122,10 @@ class Notices extends BaseInjectedObject
         return TRAVELPAYOUTS_PLUGIN_NAME . '_requested_alerts';
     }
 
-	public function add(Notice $notice)
-	{
+    public function add(Notice $notice)
+    {
         $this->updateOption(array_merge($this->getNotices(), [$notice->name => $notice->getResult()]));
-	}
+    }
 
     /**
      * @param $name
@@ -142,7 +142,7 @@ class Notices extends BaseInjectedObject
      */
     public function requestAlert(string $name): void
     {
-        setcookie($this->cookiePrefix . $name, '1', strtotime( '+30 days' ) );
+        setcookie($this->cookiePrefix . $name, '1', strtotime('+30 days'));
         $this->addOption($name, $this->alertsOptionName());
     }
 

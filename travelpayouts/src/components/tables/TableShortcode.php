@@ -3,6 +3,7 @@
 namespace Travelpayouts\components\tables;
 use Travelpayouts\Vendor\Glook\YiiGrid\Data\ArrayDataProvider;
 use Travelpayouts;
+use Travelpayouts\components\notices\Notice;
 use Travelpayouts\admin\redux\ReduxOptions;
 use Travelpayouts\components\arrayQuery\ArrayQuery;
 use Travelpayouts\components\base\cache\Cache;
@@ -17,10 +18,6 @@ use Travelpayouts\modules\settings\SettingsForm;
 use Travelpayouts\modules\tables\components\BaseTableFields;
 use Travelpayouts\modules\tables\components\settings\CustomTableStylesSection;
 
-/**
- * Class TableModel
- * @package Travelpayouts\src\components\tables
- */
 abstract class TableShortcode extends ShortcodeModel
 {
     public const MIN_PRIORITY = 1;
@@ -149,7 +146,6 @@ abstract class TableShortcode extends ShortcodeModel
     }
 
     /**
-     * Маркер таблицы по умолчанию - имя шорткода
      * @return string
      */
     public function linkMarker()
@@ -169,7 +165,7 @@ abstract class TableShortcode extends ShortcodeModel
             'disable_header',
         ]);
         if ($this->scenario === self::SCENARIO_GENERATE_SHORTCODE) {
-            return $this->safe_attributes();
+            return $this->safeAttributes();
         }
 
         return $fields;
@@ -178,9 +174,9 @@ abstract class TableShortcode extends ShortcodeModel
     /**
      * @return array
      */
-    public function attribute_labels()
+    public function attributeLabels()
     {
-        return array_merge(parent::attribute_labels(), [
+        return array_merge(parent::attributeLabels(), [
             'title' => Travelpayouts::__('Alternate title'),
             'off_title' => Travelpayouts::__('Hide title'),
             'button_title' => Travelpayouts::__('Alternate button title'),
@@ -226,11 +222,34 @@ abstract class TableShortcode extends ShortcodeModel
         $shortcodeModel = new static();
         $shortcodeModel->tag = $tag;
         $shortcodeModel->attributes = $attributes;
-        return $shortcodeModel->render();
+
+        // Render boundary: a failing table leaves an empty spot, the rest of the
+        // page still renders. `Throwable`, not `Exception`: a broken date format
+        // raises `TypeError`, which extends `Error` and slips past `Exception`.
+        try {
+            return $shortcodeModel->render();
+        } catch (\Throwable $e) {
+            $shortcodeModel->reportRenderFailure($e);
+
+            return '';
+        }
     }
 
     /**
-     * Список значений использующихся при генерации заголовка таблицы
+     * The plugin logger is a stub, so admin notices are the only channel that
+     * actually reaches the site owner.
+     */
+    protected function reportRenderFailure(\Throwable $e): void
+    {
+        Travelpayouts::getInstance()->notices->add(
+            Notice::create(TRAVELPAYOUTS_PLUGIN_NAME . '-renderFailure-' . $this->tag)
+                ->setType(Notice::NOTICE_TYPE_ERROR)
+                ->setTitle(Travelpayouts::__('Table rendering failed'))
+                ->setDescription($e->getMessage())
+        );
+    }
+
+    /**
      * @return string[] | callable(string):string
      */
     protected function titleVariables(): array
@@ -239,7 +258,6 @@ abstract class TableShortcode extends ShortcodeModel
     }
 
     /**
-     * Получаем ключи из getTitleVariables()
      * @return array
      */
     public function getTableTitleVariableKeys(): array
@@ -248,7 +266,6 @@ abstract class TableShortcode extends ShortcodeModel
     }
 
     /**
-     * Формируем значения из availableTitleTags
      * @return string[]
      */
     protected function prepareTableTitleTags(): array
@@ -271,8 +288,8 @@ abstract class TableShortcode extends ShortcodeModel
     }
 
     /**
-     * Ищем исходный текст заголовка таблицы начиная с аттрибута title
-     * и заканчивая предустановленным значением из titlePlaceholder()
+     * Title precedence: `title` attribute, then section title, then
+     * `titlePlaceholder()`.
      * @return string|null
      */
     protected function getRawTableTitleText(): ?string
@@ -284,7 +301,8 @@ abstract class TableShortcode extends ShortcodeModel
             $section = $this->section;
             if ($section instanceof BaseTableFields) {
                 $titleList = array_merge(
-                    $titleList, [
+                    $titleList,
+                    [
                         $section->title,
                         $section->titlePlaceholder($this->locale),
                     ]
@@ -319,7 +337,8 @@ abstract class TableShortcode extends ShortcodeModel
         $section = $this->section;
         if ($section instanceof BaseTableFields) {
             $titleList = array_merge(
-                $titleList, [
+                $titleList,
+                [
                     $section->button_title,
                     $section->buttonPlaceholder($this->locale),
                 ]
@@ -341,7 +360,6 @@ abstract class TableShortcode extends ShortcodeModel
     }
 
     /**
-     * Отдаем заголовок таблицы
      * @return string
      */
     public function getGridTitle(): string
@@ -352,7 +370,6 @@ abstract class TableShortcode extends ShortcodeModel
     }
 
     /**
-     * Отдаем подзаголовок таблицы
      * @return string|null
      */
     public function getGridSubtitle(): ?string
@@ -361,7 +378,6 @@ abstract class TableShortcode extends ShortcodeModel
     }
 
     /**
-     * Массив содержащий приоритетность колонок
      * @return array
      */
     public function gridColumnsPriority(): array
@@ -377,9 +393,6 @@ abstract class TableShortcode extends ShortcodeModel
         return [];
     }
 
-    /**
-     * Создаем ArrayDataProvider предварительно фильтруя коллекцию
-     */
     public function getDataProvider(): ArrayDataProvider
     {
         if (!$this->_dataProvider) {
@@ -392,22 +405,20 @@ abstract class TableShortcode extends ShortcodeModel
     }
 
     /**
+     * No local catch on purpose: a render failure travels to the boundary in
+     * `render_shortcode_static()`, so it never leaks exception text to the page.
+     * Inline error text stays in `render()` only, where it reports attributes
+     * the site owner typed.
      * @return string
      */
     public function renderGrid(): string
     {
-        try {
-            return (new GridBuilder([
-                'shortcodeModel' => $this,
-            ]))->run();
-        } catch (\Exception $exception) {
-            $this->add_error('tag', $exception->getMessage());
-            return $this->renderErrors();
-        }
+        return (new GridBuilder([
+            'shortcodeModel' => $this,
+        ]))->run();
     }
 
     /**
-     * Дополнительные параметры для грида
      * @return array
      */
     public function gridOptions(): array
@@ -416,7 +427,6 @@ abstract class TableShortcode extends ShortcodeModel
     }
 
     /**
-     * Заголовки колонок
      * @return array
      */
     public function columnLabels(): array
@@ -434,7 +444,6 @@ abstract class TableShortcode extends ShortcodeModel
     }
 
     /**
-     * Возвращаем список элементов, которые будут отображены в таблице
      * @return array
      */
     protected function getCollection(): array
@@ -443,7 +452,6 @@ abstract class TableShortcode extends ShortcodeModel
     }
 
     /**
-     * Фильтруем коллекцию
      * @param array $collection
      * @return array
      */
@@ -456,7 +464,7 @@ abstract class TableShortcode extends ShortcodeModel
             return $query->all();
         } catch (\Exception $exception) {
             if (TRAVELPAYOUTS_DEBUG) {
-                $this->add_error('tag', "got an error while trying to filter collection. Return unfiltered results \n" . $exception->getMessage());
+                $this->addError('tag', "got an error while trying to filter collection. Return unfiltered results \n" . $exception->getMessage());
                 echo $this->renderErrors();
             }
 
@@ -466,7 +474,7 @@ abstract class TableShortcode extends ShortcodeModel
     }
 
     /**
-     * Список фильтров применяемых к элементам полученным из функции getCollection()
+     * Filters applied to the items returned by `getCollection()`.
      * @param ArrayQuery $query
      * @return void
      */
@@ -475,7 +483,6 @@ abstract class TableShortcode extends ShortcodeModel
     }
 
     /**
-     * Отдаем конфигуратор стилей заголовка таблицы
      * @return GridTitleStyleConfig|null
      */
     public function getCustomGridTitleConfig(): ?GridTitleStyleConfig
@@ -484,7 +491,6 @@ abstract class TableShortcode extends ShortcodeModel
     }
 
     /**
-     * Список доступных тем для таблицы
      * @return array
      */
     public static function availableThemes(): array

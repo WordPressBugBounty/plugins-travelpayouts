@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link http://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -139,19 +140,19 @@ class ValidatorEach extends Validator
         $detectedErrors = $model->getErrors($attribute);
         $filteredValue = $model->$attribute;
         foreach ($value as $k => $v) {
-            $model->clear_errors($attribute);
+            $model->clearErrors($attribute);
             $model->$attribute = $v;
 
             if (!$validator->skipOnEmpty || !$validator->isEmpty($v)) {
                 $validator->validateAttribute($model, $attribute);
             }
             $filteredValue[$k] = $model->$attribute;
-            if ($model->has_errors($attribute)) {
+            if ($model->hasErrors($attribute)) {
                 if ($this->allowMessageFromRule) {
                     $validationErrors = $model->getErrors($attribute);
                     $detectedErrors = array_merge($detectedErrors, $validationErrors);
                 } else {
-                    $model->clear_errors($attribute);
+                    $model->clearErrors($attribute);
                     $this->addError($model, $attribute, $this->message, ['value' => $v]);
                     $detectedErrors[] = $model->get_first_error($attribute);
                 }
@@ -164,8 +165,8 @@ class ValidatorEach extends Validator
         }
 
         $model->$attribute = $filteredValue;
-        $model->clear_errors($attribute);
-        $model->add_errors([$attribute => $detectedErrors]);
+        $model->clearErrors($attribute);
+        $model->addErrors([$attribute => $detectedErrors]);
     }
 
     /**

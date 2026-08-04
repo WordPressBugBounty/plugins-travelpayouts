@@ -162,9 +162,9 @@ class Shortcode extends BaseLinkShortcode
         ];
     }
 
-    public function attribute_labels()
+    public function attributeLabels()
     {
-        return array_merge(parent::attribute_labels(), [
+        return array_merge(parent::attributeLabels(), [
             'hotel_id' => Travelpayouts::__('Hotel'),
             'city_id' => Travelpayouts::__('City'),
             'check_out' => Travelpayouts::__('Check-out: today +'),

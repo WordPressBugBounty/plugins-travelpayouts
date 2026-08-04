@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -28,7 +29,8 @@ class Widget extends BaseWidget
 
     public function rules()
     {
-        return array_merge(parent::rules(),
+        return array_merge(
+            parent::rules(),
             [
                 [
                     [

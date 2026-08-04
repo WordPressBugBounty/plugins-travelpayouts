@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -26,6 +27,6 @@ class ReduxExtension extends Redux_Travelpayouts_Extension_Abstract
         $this->addPsr4Field(SortByField::class, SortByField::TYPE);
         $this->addPsr4Field(PlatformSelectField::class, PlatformSelectField::TYPE);
         // deprecated fields
-//        $this->addPsr4Field(AutocompleteField::class, AutocompleteField::TYPE);
+        //        $this->addPsr4Field(AutocompleteField::class, AutocompleteField::TYPE);
     }
 }

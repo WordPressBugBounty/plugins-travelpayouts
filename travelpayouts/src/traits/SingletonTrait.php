@@ -19,7 +19,7 @@ trait SingletonTrait
         $className = static::class;
 
         if ($refresh || !isset(self::$_instances[$className])) {
-            self::$_instances[$className] = new $className;
+            self::$_instances[$className] = new $className();
         }
         return self::$_instances[$className];
     }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -11,6 +12,6 @@ class InvalidArgumentException extends TravelpayoutsException
 {
     public function getName()
     {
-        return Travelpayouts::_x('Invalid Argument','exception');
+        return Travelpayouts::_x('Invalid Argument', 'exception');
     }
 }

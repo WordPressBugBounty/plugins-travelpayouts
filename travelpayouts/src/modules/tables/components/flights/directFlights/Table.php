@@ -116,9 +116,8 @@ class Table extends FlightsShortcodeModel
         $model = new PricesDirectApiModel($this->apiModelOptions());
         $model->origin = $this->origin;
         $model->currency = $this->currency;
-        $model->responseClass = DirectFlightsResponse::class;
         /** @var $models DirectFlightsResponse[] */
-        $models = $model->getResponseModels();
+        $models = $model->getModels(DirectFlightsResponse::class);
         foreach ($models as $responseModel) {
             $responseModel->shortcodeModel = $this;
         }
@@ -129,13 +128,13 @@ class Table extends FlightsShortcodeModel
     {
         return ArrayHelper::mergeRecursive(parent::gridColumns(), [
             ColumnLabels::DESTINATION => [
-                'class'=> ColumnDirection::class,
+                'class' => ColumnDirection::class,
             ],
             ColumnLabels::DEPARTURE_AT => [
-                'attribute'=> 'departure_at'
+                'attribute' => 'departure_at'
             ],
             ColumnLabels::RETURN_AT => [
-                'attribute'=> 'return_at'
+                'attribute' => 'return_at'
             ],
             ColumnLabels::AIRLINE_LOGO => [
                 'attribute' => 'airline',
@@ -156,11 +155,11 @@ class Table extends FlightsShortcodeModel
                 'sortProperty' => 'price',
             ],
             ColumnLabels::FLIGHT_NUMBER => [
-                'attribute'=> 'fullFlightNumber'
+                'attribute' => 'fullFlightNumber'
             ],
             ColumnLabels::FLIGHT => [
                 'airlineCodeAttribute' => 'airline',
-                'attribute'=> 'flight_number',
+                'attribute' => 'flight_number',
             ],
             ColumnLabels::AIRLINE => [
                 'attribute' => 'airline',

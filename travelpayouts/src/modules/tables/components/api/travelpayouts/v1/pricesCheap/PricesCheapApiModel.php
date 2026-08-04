@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -7,9 +8,6 @@ namespace Travelpayouts\modules\tables\components\api\travelpayouts\v1\pricesChe
 
 use Travelpayouts\modules\tables\components\api\travelpayouts\BaseTravelpayoutsApiModel;
 
-/**
- * @method PricesCheapApiResponse[] getResponseModels()
- */
 class PricesCheapApiModel extends BaseTravelpayoutsApiModel
 {
     /**
@@ -37,7 +35,6 @@ class PricesCheapApiModel extends BaseTravelpayoutsApiModel
      */
     public $page = 1;
 
-    protected $responseClass = PricesCheapApiResponse::class;
 
     public function rules()
     {
@@ -59,7 +56,7 @@ class PricesCheapApiModel extends BaseTravelpayoutsApiModel
     }
 
     /**
-     * Добавляет количество пересадок, так в ответе нет информации о пересадках
+     * Adds the number of changes: the response carries no transfer data.
      * @param array $data
      * @return array
      */
@@ -89,7 +86,7 @@ class PricesCheapApiModel extends BaseTravelpayoutsApiModel
      */
     protected function endpointUrl()
     {
-        return 'http://api.travelpayouts.com/v1/prices/cheap';
+        return 'https://api.travelpayouts.com/v1/prices/cheap';
     }
 
 }

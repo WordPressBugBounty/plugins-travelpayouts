@@ -13,8 +13,8 @@ use Travelpayouts\modules\widgets\components\LegacyReduxFields;
 
 class TpDucklettWidget extends Fields
 {
-    const FILTER_TYPE_FOR_AIRCOMPANIES = '0';
-    const FILTER_TYPE_FOR_ROUTE = '1';
+    public const FILTER_TYPE_FOR_AIRCOMPANIES = '0';
+    public const FILTER_TYPE_FOR_ROUTE = '1';
 
     /**
      * @var string

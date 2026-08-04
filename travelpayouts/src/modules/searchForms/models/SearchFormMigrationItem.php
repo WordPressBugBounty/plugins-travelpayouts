@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -9,6 +10,7 @@ use Travelpayouts\components\httpClient\CachedClient;
 use Travelpayouts\components\httpClient\Client;
 use Travelpayouts\components\Model;
 use Travelpayouts\helpers\ArrayHelper;
+use Travelpayouts\modules\searchForms\models\widgetCode\HotelCity;
 
 /**
  * @property-read string $fromCity
@@ -18,8 +20,8 @@ use Travelpayouts\helpers\ArrayHelper;
  */
 class SearchFormMigrationItem extends Model
 {
-    const CITY_HOTEL_REGEXP = '/(?<id>\d+),?\s(?<type>city|hotel),/';
-    const CITY_REGEXP = '/\[(?<id>\w{3})\]/';
+    public const CITY_HOTEL_REGEXP = '/(?<id>\d+),?\s(?<type>city|hotel),/';
+    public const CITY_REGEXP = '/\[(?<id>\w{3})\]/';
 
     /**
      * @var string
@@ -67,6 +69,11 @@ class SearchFormMigrationItem extends Model
      * @var string
      */
     protected $_cityHotelType;
+    /**
+     * Raw legacy value: it carries the whole hotel/city record in braces.
+     * @var string
+     */
+    protected $_cityHotelSource;
 
     /**
      * @return string
@@ -169,6 +176,7 @@ class SearchFormMigrationItem extends Model
     public function setHotel_city($value)
     {
         if (is_string($value) && preg_match(self::CITY_HOTEL_REGEXP, $value, $matches)) {
+            $this->_cityHotelSource = $value;
             $this->_cityHotel = $matches['id'];
             if (in_array($matches['type'], ['hotel', 'city'])) {
                 $this->_cityHotelType = $matches['type'];
@@ -183,13 +191,43 @@ class SearchFormMigrationItem extends Model
     public function getHotelCity()
     {
         if (is_string($this->_cityHotel) && $this->_cityHotelType) {
-            $data = $this->getHotelDataById($this->_cityHotel, $this->_cityHotelType);
+            $data = $this->parseHotelCity($this->_cityHotelSource);
             if ($data) {
                 $this->_cityHotel = $data;
             }
         }
 
         return $this->_cityHotel;
+    }
+
+    /**
+     * The legacy value carries the whole record in braces, so the resolved data is read out of
+     * the string instead of fetched: the autocomplete service it came from no longer exists.
+     *
+     * @param string|null $value
+     * @return array|null
+     */
+    protected function parseHotelCity($value)
+    {
+        if (!is_string($value) || !preg_match('/\{(?<record>[^}]+)\}/', $value, $matches)) {
+            return null;
+        }
+
+        $hotelCity = HotelCity::createFromString($matches['record']);
+
+        if (!$hotelCity->search_id) {
+            return null;
+        }
+
+        return [
+            'name' => $hotelCity->name,
+            'location' => $hotelCity->location,
+            // Accessors cast to int - the endpoint used to return numbers, the regexp yields strings.
+            'hotels_count' => $hotelCity->getHotelsCount(),
+            'search_id' => $hotelCity->getSearchId(),
+            'search_type' => $hotelCity->search_type,
+            'country_name' => $hotelCity->country_name,
+        ];
     }
 
     /**
@@ -243,49 +281,9 @@ class SearchFormMigrationItem extends Model
         ]);
         if (!$response->isError) {
             $data = $response->getJSON();
-            if (count($data)) {
+            // Guarded: a failed request yields null, and `count(null)` is a TypeError on PHP 8.
+            if (is_array($data) && count($data)) {
                 return ArrayHelper::getFirst($data);
-            }
-        }
-        return null;
-    }
-
-    protected function getHotelDataById($id, $type)
-    {
-        $client = $this->getClient();
-        $response = $client->get('https://yasen.hotellook.com/autocomplete', [
-            'query' => [
-                'lang' => $this->getLocale(),
-                'term' => $id,
-            ],
-        ]);
-        $searchIndex = $type === 'hotel' ? 'hotels' : 'cities';
-        if (!$response->isError) {
-            $data = $response->getJSON();
-            if (count($data) && isset($data[$searchIndex]) && count($data[$searchIndex])) {
-                $firstElement = ArrayHelper::getFirst($data[$searchIndex]);
-
-                if ($type === 'hotel') {
-                    return [
-                        'name' => $firstElement['name'],
-                        'location' => $firstElement['locationFullName'],
-                        'hotels_count' => '',
-                        'search_id' => $firstElement['id'],
-                        'search_type' => 'hotel',
-                        'country_name' => $firstElement['country'],
-                    ];
-                }
-
-                if ($type === 'city') {
-                    return [
-                        'name' => $firstElement['city'],
-                        'location' => $firstElement['fullname'],
-                        'hotels_count' => $firstElement['hotelsCount'],
-                        'search_id' => $firstElement['id'],
-                        'search_type' => 'city',
-                        'country_name' => $firstElement['country'],
-                    ];
-                }
             }
         }
         return null;
@@ -296,7 +294,7 @@ class SearchFormMigrationItem extends Model
      */
     public function getSearchFormModel()
     {
-        $searchForm = new SearchFormModel($this->toArray());
+        $searchForm = (new SearchFormModel($this->toArray()))->setImporting(true);
         try {
             return $searchForm->validate() ? $searchForm->setAllowSaveWithId(true) : null;
         } catch (\Exception $e) {
@@ -319,6 +317,20 @@ class SearchFormMigrationItem extends Model
             ]);
         }
         return $this->_client;
+    }
+
+    /**
+     * Seam for tests: `getClient()` builds a `CachedClient` on first use, and resolving a city
+     * goes to a live endpoint. Mirrors `ApiModel::setHttpClient()`.
+     *
+     * @param Client $client
+     * @return self
+     */
+    public function setClient($client): self
+    {
+        $this->_client = $client;
+
+        return $this;
     }
 
     /**

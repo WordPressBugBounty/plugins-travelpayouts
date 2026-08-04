@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -14,21 +15,21 @@ use Travelpayouts\components\tables\BaseColumnLabels;
  */
 class ColumnLabels extends BaseColumnLabels
 {
-    const TRAIN = 'train';
-    const ROUTE = 'route';
-    const ROUTE_SHORT = 'route_short';
-    const ROUTE_INFO = 'route_info';
-    const DEPARTURE = 'departure';
-    const ARRIVAL = 'arrival';
-    const DURATION = 'duration';
-    const PRICES = 'prices';
-    const DATES = 'dates';
-    const ORIGIN = 'origin';
-    const DESTINATION = 'destination';
-    const DEPARTURE_TIME = 'departure_time';
-    const ARRIVAL_TIME = 'arrival_time';
-    const ROUTE_FIRST_STATION = 'route_first_station';
-    const ROUTE_LAST_STATION = 'route_last_station';
+    public const TRAIN = 'train';
+    public const ROUTE = 'route';
+    public const ROUTE_SHORT = 'route_short';
+    public const ROUTE_INFO = 'route_info';
+    public const DEPARTURE = 'departure';
+    public const ARRIVAL = 'arrival';
+    public const DURATION = 'duration';
+    public const PRICES = 'prices';
+    public const DATES = 'dates';
+    public const ORIGIN = 'origin';
+    public const DESTINATION = 'destination';
+    public const DEPARTURE_TIME = 'departure_time';
+    public const ARRIVAL_TIME = 'arrival_time';
+    public const ROUTE_FIRST_STATION = 'route_first_station';
+    public const ROUTE_LAST_STATION = 'route_last_station';
 
     /**
      * @inheritDoc

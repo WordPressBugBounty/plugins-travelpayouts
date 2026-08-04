@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -57,7 +58,7 @@ class ColumnAirlineLogo extends ColumnAirline
     {
         $logo = $this->getAirLogoUrl($value);
         $width = $this->width;
-        $height= $this->height;
+        $height = $this->height;
         if ($logo) {
             $airlineName = $this->getAirlineName($value);
             return HtmlHelper::tag(
@@ -76,22 +77,24 @@ class ColumnAirlineLogo extends ColumnAirline
 
     protected function getLogoWithAirlineNameElement($value)
     {
-        return HtmlHelper::tagArrayContent('div',
+        return HtmlHelper::tagArrayContent(
+            'div',
             [
-                'class'=> 'tp-flex tp-items-center tp-gap-2',
+                'class' => 'tp-flex tp-items-center tp-gap-2',
             ],
             [
                 $this->getLogoElement($value, 30, 30),
                 HtmlHelper::tag('div', [
                     'class' => 'tp-break-normal tp-flex-grow-1'
                 ], $this->getAirlineName($value)),
-            ]);
+            ]
+        );
     }
 
     protected function getAirLogoUrl($value): ?string
     {
         $width = $this->width;
-        $height= $this->height;
+        $height = $this->height;
         $url = $width === $height ? 'https://pics.avs.io/al_square' : 'https://pics.avs.io';
         return is_string($value) ? "$url/$width/$height/$value@2x.png" : null;
     }

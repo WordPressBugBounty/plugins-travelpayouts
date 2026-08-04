@@ -1,15 +1,15 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
 
 namespace Travelpayouts\components;
-use Travelpayouts\Vendor\apimatic\jsonmapper\JsonMapper;
-use Travelpayouts\Vendor\apimatic\jsonmapper\JsonMapperException;
+use Travelpayouts\Vendor\glook\jsonmapper\JsonMapperException;
 use Travelpayouts\Vendor\DI\Annotation\Inject;
 use Exception;
 use Travelpayouts;
-use Travelpayouts\components\exceptions\InvalidConfigException;
+use Travelpayouts\components\api\ResponseMapper;
 use Travelpayouts\components\httpClient\CachedClient;
 use Travelpayouts\components\httpClient\Client;
 use Travelpayouts\components\notices\Notice;
@@ -17,8 +17,6 @@ use Travelpayouts\components\notices\Notices;
 use Travelpayouts\helpers\ArrayHelper;
 
 /**
- * Class ApiModel
- * @package Travelpayouts\src\components
  * @property-read array $api_data
  * @property array|null $response
  * @property-read array $debugData
@@ -38,12 +36,6 @@ abstract class ApiModel extends InjectedModel
     protected $settingsSection;
 
     /**
-     * @var BaseObject
-     */
-    protected $responseClass;
-
-    /**
-     * Опции для httpClient\Client
      * @see getHttpClient()
      * @var array
      */
@@ -66,14 +58,29 @@ abstract class ApiModel extends InjectedModel
 
     protected $cacheTime = 60 * 5;
 
-    protected $_responseModels;
+    /**
+     * Client injected from outside, filled in tests only.
+     * @var Client|null
+     */
+    protected $_httpClient;
 
     /**
+     * @param Client $client
+     */
+    public function setHttpClient($client): void
+    {
+        $this->_httpClient = $client;
+    }
+
+    /**
+     * Never memoize: `fetchRemoteContent()` mixes a per-URL `Host` header into
+     * `clientOptions`, so a cached client would keep the first request's host.
+     * `final` keeps subclasses from bypassing the client injected by the setter.
      * @return Client
      */
-    protected function getHttpClient()
+    final protected function getHttpClient()
     {
-        return new CachedClient($this->clientOptions, $this->cacheTime);
+        return $this->_httpClient ?: new CachedClient($this->clientOptions, $this->cacheTime);
     }
 
     /**
@@ -112,13 +119,11 @@ abstract class ApiModel extends InjectedModel
     }
 
     /**
-     * Функция, которая будет отдавать данные от апи
      * @return array|mixed
      */
     abstract protected function request();
 
     /**
-     * Возвращаем данные из апи попутно вызывая коллбеки
      * @return array|bool
      */
     final public function sendRequest()
@@ -133,17 +138,22 @@ abstract class ApiModel extends InjectedModel
             }
 
             $this->notifyErrors();
-        } catch (Exception $e) {
+        } catch (\Throwable $e) {
+            // `Throwable`, not `Exception`: a broken date format in the response
+            // raises `TypeError`, which extends `Error`.
             Travelpayouts::getInstance()->logger->error($e->getMessage(), [
                 $this->attributes,
             ]);
+            // The plugin logger is a stub, so a failure must also reach the error
+            // bag: otherwise "API is down" looks exactly like "list is empty".
+            $this->addError('request', $e->getMessage());
+            $this->notifyErrors();
         }
         return [];
     }
 
     /**
-     * Коллбек, вызываемый после назначения $this->response
-     * На этом этапе необходимо применять мутации для обогащения данных
+     * Hook for enriching data once `$this->response` is assigned.
      * @return void
      */
     protected function afterRequest()
@@ -151,7 +161,6 @@ abstract class ApiModel extends InjectedModel
     }
 
     /**
-     * Собираем корректный url с аттрибутами и отправляем запрос
      * @return array|bool
      */
     protected function fetchApi()
@@ -173,7 +182,15 @@ abstract class ApiModel extends InjectedModel
             ],
         ]);
 
-        return $this->getHttpClient()->get($url)->json;
+        $response = $this->getHttpClient()->get($url);
+
+        // A timeout, the most common failure, throws nothing: `WP_Error` settles
+        // in `Response` and `->json` returns null, which looks like an empty list.
+        if ($response->isError ?? false) {
+            $this->addError('request', Travelpayouts::__('API request failed'));
+        }
+
+        return $response->json;
     }
 
     /**
@@ -197,7 +214,7 @@ abstract class ApiModel extends InjectedModel
      */
     abstract protected function endpointUrl();
     /**
-     * Добавляет ошибки в notices которые отображаются в админке
+     * Surfaces collected errors as admin notices.
      */
     protected function notifyErrors()
     {
@@ -220,57 +237,53 @@ abstract class ApiModel extends InjectedModel
     }
 
     /**
-     * @return BaseObject[]
-     * @throws InvalidConfigException
+     * Parsed response, one value per target class.
+     * @var array<class-string, mixed>
      */
-    public function getResponseModels(): array
-    {
-        if (!$this->_responseModels && !$this->_response && $this->responseClass) {
-            $response = $this->sendRequest();
-            $result = [];
-            foreach ($response as $item) {
-                $result[] = BaseObject::createObject(array_merge($item, [
-                    'class' => $this->responseClass,
-                ]));
-            }
-            $this->_responseModels = $result;
-        }
-
-        return $this->_responseModels;
-    }
-
-    protected $mappedResponses = [];
+    protected $parsed = [];
 
     /**
+     * Parses the response into a list of objects. The request runs on demand and
+     * is reused, so the call order relative to `sendRequest()` does not matter.
+     *
+     * A parse error is deliberately not caught: a missing `@required` field must
+     * reach the render boundary instead of becoming an empty table row.
+     *
+     * @template T
+     * @param class-string<T> $class
+     * @return T[]
+     * @throws JsonMapperException
+     */
+    public function getModels(string $class): array
+    {
+        if (!isset($this->parsed[$class])) {
+            $this->parsed[$class] = ResponseMapper::mapList($this->getResponse() ?? $this->sendRequest(), $class);
+        }
+
+        return $this->parsed[$class];
+    }
+
+    /**
+     * Same for a response parsed into a single object rather than a list. Here a
+     * parse error is swallowed: empty object plus an entry in the error bag, so
+     * the table renders empty and the site owner gets a notice.
+     *
      * @template T
      * @param class-string<T> $class
      * @return T
-     * @throws JsonMapperException
      */
-    public function getMappedResponse(string $class)
+    public function getModel(string $class)
     {
-        $mappedResponse = $this->mappedResponses[$class] ?? null;
-        if (!$mappedResponse) {
-            $response = $this->getResponse() ?? $this->sendRequest();
-            $mapper = new JsonMapper();
-            $mapper->bEnforceMapType = false;
-            $mapper->bExceptionOnMissingData = false;
-            if (!is_array($response)) {
-                $objectResponse = (object)[];
-            } else {
-                $objectResponse = ArrayHelper::toObject($response);
+        if (!isset($this->parsed[$class])) {
+            try {
+                $this->parsed[$class] = ResponseMapper::map($this->getResponse() ?? $this->sendRequest(), $class);
+            } catch (\Throwable $e) {
+                $this->addError('response', $e->getMessage());
+                $this->notifyErrors();
+                $this->parsed[$class] = new $class();
             }
-            $mappedResponse = $mapper->map($objectResponse, new $class);
-            $this->mappedResponses[$class] = $mappedResponse;
         }
-        return $mappedResponse;
-    }
 
-    /**
-     * @param class-string $responseClass
-     */
-    public function setResponseClass(string $responseClass): void
-    {
-        $this->responseClass = $responseClass;
+        return $this->parsed[$class];
     }
 }

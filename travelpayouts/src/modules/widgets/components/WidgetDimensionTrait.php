@@ -5,6 +5,7 @@
  */
 
 namespace Travelpayouts\modules\widgets\components;
+
 /**
  * Trait WidgetDimension
  * @package Travelpayouts\src\modules\widgets\components

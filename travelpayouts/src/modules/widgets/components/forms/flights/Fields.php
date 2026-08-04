@@ -1,10 +1,10 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
 
 namespace Travelpayouts\modules\widgets\components\forms\flights;
-
 
 use Travelpayouts\modules\widgets\components\BaseWidgetsFields;
 

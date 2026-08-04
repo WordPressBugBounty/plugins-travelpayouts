@@ -10,7 +10,7 @@ use Travelpayouts\modules\moneyScript\MoneyScriptSection;
 
 class MoneyScript extends BaseInjectedObject
 {
-    const SCRIPT_URL = 'www.travelpayouts.com/money_script/money_script.js';
+    public const SCRIPT_URL = 'www.travelpayouts.com/money_script/money_script.js';
 
     /**
      * @Inject
@@ -60,7 +60,7 @@ class MoneyScript extends BaseInjectedObject
                 $params
             ),
             [
-                'data-no-minify'=> '1',
+                'data-no-minify' => '1',
             ]
         );
     }

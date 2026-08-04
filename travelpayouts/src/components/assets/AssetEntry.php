@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -20,8 +21,8 @@ use Travelpayouts\helpers\ArrayHelper;
  */
 class AssetEntry extends BaseObject
 {
-    const POSITION_BEFORE = 'before';
-    const POSITION_AFTER = 'after';
+    public const POSITION_BEFORE = 'before';
+    public const POSITION_AFTER = 'after';
 
     protected $delimiter = '-';
     /**
@@ -222,7 +223,7 @@ class AssetEntry extends BaseObject
     protected function registerScriptParams()
     {
         foreach ($this->_inlineScripts as $inlineScript) {
-           $inlineScript->register();
+            $inlineScript->register();
         }
     }
 
@@ -239,7 +240,8 @@ class AssetEntry extends BaseObject
                 'asset' => $this,
                 'name' => $name,
                 'value' => $value,
-            ]));
+            ]
+        ));
 
         $this->registerScriptParams();
         return $this;

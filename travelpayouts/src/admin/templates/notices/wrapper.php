@@ -22,7 +22,7 @@ Travelpayouts::getInstance()->assets->loader->registerAsset('admin-notice');
                 echo $notice;
             }
         }
-        ?>
+?>
     </div>
     <?= $this->insert('admin::notices/_notificationCloseDialog') ?>
 </div>

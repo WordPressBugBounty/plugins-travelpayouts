@@ -22,6 +22,7 @@ use Travelpayouts\components\module\ModuleRedux;
 use Travelpayouts\components\multilingual\MultiLang;
 use Travelpayouts\components\notices\Notices;
 use Travelpayouts\components\Rights;
+use Travelpayouts\components\SettingsRecovery;
 use Travelpayouts\components\snowplow\Tracker;
 use Travelpayouts\components\Translator;
 use Travelpayouts\components\web\ExceptionRenderer;
@@ -55,7 +56,6 @@ use Travelpayouts\modules\widgets\Widgets;
  */
 class Travelpayouts extends BasePluginCore
 {
-
     /**
      * @Inject
      * @var Settings
@@ -185,6 +185,8 @@ class Travelpayouts extends BasePluginCore
     {
         try {
             $this->checkDependencies();
+            // Must hook before anything reads the settings - tableLocale() below already does.
+            $this->hooksLoader->registerHooksInstance(new SettingsRecovery());
             $this->i18n->register();
             $this->translator->locale = LanguageHelper::tableLocale();
             $this->hooksLoader

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -29,10 +30,10 @@ use Travelpayouts\modules\settings\Settings;
  */
 abstract class WidgetModel extends ShortcodeModel
 {
-    const EXTRA_MARKER = '.wpplugin';
-    const SCENARIO_RENDER = 'render';
-    const DEFAULT_LOCALE = 'en';
-    const DEFAULT_CURRENCY = 'usd';
+    public const EXTRA_MARKER = '.wpplugin';
+    public const SCENARIO_RENDER = 'render';
+    public const DEFAULT_LOCALE = 'en';
+    public const DEFAULT_CURRENCY = 'usd';
 
     public $subid;
 
@@ -174,8 +175,8 @@ abstract class WidgetModel extends ShortcodeModel
 
     protected function get_render_attributes()
     {
-        $safe = $this->safe_attributes();
-        return $this->get_attributes($safe);
+        $safe = $this->safeAttributes();
+        return $this->getAttributes($safe);
     }
 
     /**

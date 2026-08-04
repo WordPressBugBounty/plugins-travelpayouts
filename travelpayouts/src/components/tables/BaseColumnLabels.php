@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -66,11 +67,11 @@ abstract class BaseColumnLabels
     public function getDashboardColumnLabels(array $names = null): array
     {
         $translations = $this->defaultTranslations();
-        if(!$names) {
+        if (!$names) {
             return $translations;
         }
 
-        return array_filter($translations, static function($key) use ($names) {
+        return array_filter($translations, static function ($key) use ($names) {
             return in_array($key, $names);
         }, ARRAY_FILTER_USE_KEY);
     }

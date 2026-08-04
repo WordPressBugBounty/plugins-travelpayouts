@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -28,7 +29,6 @@ use Travelpayouts\components\section\fields\Typography;
 
 trait ReduxFieldsTrait
 {
-
     /**
      * @return Checkbox
      */
@@ -215,4 +215,3 @@ trait ReduxFieldsTrait
         ];
     }
 }
-

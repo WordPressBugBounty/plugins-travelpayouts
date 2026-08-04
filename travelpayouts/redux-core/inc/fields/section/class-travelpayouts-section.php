@@ -7,90 +7,92 @@
  * @version     4.0.0
  */
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
 // Don't duplicate me!
-if ( ! class_exists( 'Redux_Travelpayouts_Section', false ) ) {
+if (! class_exists('Redux_Travelpayouts_Section', false)) {
 
-	/**
-	 * Main Redux_Travelpayouts_heading class
-	 *
-	 * @since       1.0.0
-	 */
-	class Redux_Travelpayouts_Section extends Redux_Travelpayouts_Field {
+    /**
+     * Main Redux_Travelpayouts_heading class
+     *
+     * @since       1.0.0
+     */
+    class Redux_Travelpayouts_Section extends Redux_Travelpayouts_Field
+    {
+        /**
+         * Set field and value defaults.
+         */
+        public function set_defaults()
+        {
+            // No errors please.
+            $defaults = [
+                'indent'   => '',
+                'style'    => '',
+                'class'    => '',
+                'title'    => '',
+                'subtitle' => '',
+            ];
 
-		/**
-		 * Set field and value defaults.
-		 */
-		public function set_defaults() {
-			// No errors please.
-			$defaults = array(
-				'indent'   => '',
-				'style'    => '',
-				'class'    => '',
-				'title'    => '',
-				'subtitle' => '',
-			);
+            $this->field = wp_parse_args($this->field, $defaults);
+        }
 
-			$this->field = wp_parse_args( $this->field, $defaults );
-		}
+        /**
+         * Field Render Function.
+         * Takes the vars and outputs the HTML for the field in the settings
+         *
+         * @since         1.0.0
+         * @access        public
+         * @return        void
+         */
+        public function render()
+        {
+            $guid = uniqid();
 
-		/**
-		 * Field Render Function.
-		 * Takes the vars and outputs the HTML for the field in the settings
-		 *
-		 * @since         1.0.0
-		 * @access        public
-		 * @return        void
-		 */
-		public function render() {
-			$guid = uniqid();
+            if (true === $this->field['indent']) {
+                $this->field['class'] .= ' redux-section-indent-start';
+            }
 
-			if ( true === $this->field['indent'] ) {
-				$this->field['class'] .= ' redux-section-indent-start';
-			}
+            $add_class = '';
+            if (isset($this->field['indent']) && true === $this->field['indent']) {
+                $add_class = ' form-table-section-indented';
+            } elseif (! isset($this->field['indent']) || (isset($this->field['indent']) && false !== $this->field['indent'])) {
+                $add_class = ' hide';
+            }
 
-			$add_class = '';
-			if ( isset( $this->field['indent'] ) && true === $this->field['indent'] ) {
-				$add_class = ' form-table-section-indented';
-			} elseif ( ! isset( $this->field['indent'] ) || ( isset( $this->field['indent'] ) && false !== $this->field['indent'] ) ) {
-				$add_class = ' hide';
-			}
+            echo '<input type="hidden" id="' . esc_attr($this->field['id']) . '-marker"></td></tr></table>';
 
-			echo '<input type="hidden" id="' . esc_attr( $this->field['id'] ) . '-marker"></td></tr></table>';
+            if (isset($this->field['indent']) && true === $this->field['indent']) {
+                echo '<div class="indent-section-container">';
+            }
 
-			if ( isset( $this->field['indent'] ) && true === $this->field['indent'] ) {
-				echo '<div class="indent-section-container">';
-			}
+            echo '<div id="section-' . esc_attr($this->field['id']) . '" class="redux-section-field redux-field ' . esc_attr($this->field['style']) . ' ' . esc_attr($this->field['class']) . ' ">';
 
-			echo '<div id="section-' . esc_attr( $this->field['id'] ) . '" class="redux-section-field redux-field ' . esc_attr( $this->field['style'] ) . ' ' . esc_attr( $this->field['class'] ) . ' ">';
+            if (! empty($this->field['title'])) {
+                echo '<h3>' . wp_kses_post($this->field['title']) . '</h3>';
+            }
 
-			if ( ! empty( $this->field['title'] ) ) {
-				echo '<h3>' . wp_kses_post( $this->field['title'] ) . '</h3>';
-			}
+            if (! empty($this->field['subtitle'])) {
+                echo '<div class="redux-section-desc">' . wp_kses_post($this->field['subtitle']) . '</div>';
+            }
 
-			if ( ! empty( $this->field['subtitle'] ) ) {
-				echo '<div class="redux-section-desc">' . wp_kses_post( $this->field['subtitle'] ) . '</div>';
-			}
+            echo '</div>';
 
-			echo '</div>';
+            if (isset($this->field['indent']) && true === $this->field['indent']) {
+                echo '</div>';
+            }
 
-			if ( isset( $this->field['indent'] ) && true === $this->field['indent'] ) {
-				echo '</div>';
-			}
+            echo '<table id="tp-admin-table tp-admin-table-section section-table-' . esc_attr($this->field['id']) . '" data-id="' . esc_attr($this->field['id']) . '" class="tp-admin-table form-table form-table-section no-border' . esc_attr($add_class) . '"><tbody class="tp-admin-table-body"><tr class="tp-admin-table-body-row" style="display: none;" ><th></th><td class="tp-admin-table-body-cell" id="' . esc_attr($guid) . '">';
 
-			echo '<table id="tp-admin-table tp-admin-table-section section-table-' . esc_attr( $this->field['id'] ) . '" data-id="' . esc_attr( $this->field['id'] ) . '" class="tp-admin-table form-table form-table-section no-border' . esc_attr( $add_class ) . '"><tbody class="tp-admin-table-body"><tr class="tp-admin-table-body-row" style="display: none;" ><th></th><td class="tp-admin-table-body-cell" id="' . esc_attr( $guid ) . '">';
-
-			?>
+            ?>
 			<script type="text/javascript">
 				jQuery( document ).ready(
 					function() {
-						jQuery( '#<?php echo esc_attr( $this->field['id'] ); ?>-marker' ).parents( 'tr:first' )
+						jQuery( '#<?php echo esc_attr($this->field['id']); ?>-marker' ).parents( 'tr:first' )
 						.css( {display: 'none'} )
 						.prev( 'tr' )
 						.css( 'border-bottom', 'none' );
 
-						var group = jQuery( '#<?php echo esc_attr( $this->field['id'] ); ?>-marker' ).parents( '.redux-group-tab:first' );
+						var group = jQuery( '#<?php echo esc_attr($this->field['id']); ?>-marker' ).parents( '.redux-group-tab:first' );
 						if ( !group.hasClass( 'sectionsChecked' ) ) {
 							group.addClass( 'sectionsChecked' );
 							var test = group.find( '.redux-section-indent-start h3' );
@@ -107,23 +109,24 @@ if ( ! class_exists( 'Redux_Travelpayouts_Section', false ) ) {
 				);
 			</script>
 			<?php
-		}
+        }
 
-		/**
-		 * Enqueue Script and styles.
-		 */
-		public function enqueue() {
-			if ( $this->parent->args['dev_mode'] ) {
-				wp_enqueue_style(
-					'redux-field-section-css',
-					Redux_Travelpayouts_Core::$url . 'inc/fields/section/redux-section.css',
-					array(),
-					$this->timestamp,
-					'all'
-				);
-			}
-		}
-	}
+        /**
+         * Enqueue Script and styles.
+         */
+        public function enqueue()
+        {
+            if ($this->parent->args['dev_mode']) {
+                wp_enqueue_style(
+                    'redux-field-section-css',
+                    Redux_Travelpayouts_Core::$url . 'inc/fields/section/redux-section.css',
+                    [],
+                    $this->timestamp,
+                    'all'
+                );
+            }
+        }
+    }
 }
 
-class_alias( 'Redux_Travelpayouts_Section', 'TravelpayoutsSettingsFramework_Section' );
+class_alias('Redux_Travelpayouts_Section', 'TravelpayoutsSettingsFramework_Section');

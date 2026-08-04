@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -20,8 +21,9 @@ class City extends TravelpayoutsApiItem
         if ($case) {
             $case_path = "cases.{$case}";
             $name = $this->dataDot->get($case_path);
-            if ($name !== null)
+            if ($name !== null) {
                 return $name;
+            }
         }
         return $this->dataDot->get('name');
     }

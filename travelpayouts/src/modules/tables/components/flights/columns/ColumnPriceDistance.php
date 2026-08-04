@@ -62,9 +62,9 @@ class ColumnPriceDistance extends GridColumn
             }
 
             return $prefix . PriceFormatter::getInstance()->format(
-                    $value,
-                    strtolower($this->currency)
-                ) . '/' . $distanceUnit;
+                $value,
+                strtolower($this->currency)
+            ) . '/' . $distanceUnit;
         }
         return null;
     }

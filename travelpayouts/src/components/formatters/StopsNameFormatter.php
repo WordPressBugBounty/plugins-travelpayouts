@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -25,7 +26,8 @@ class StopsNameFormatter extends Travelpayouts\components\BaseObject
                 return Travelpayouts::t('flights.stops.Direct', [], 'tables', $locale);
             }
 
-            $label = $this->pluralizeString($value,
+            $label = $this->pluralizeString(
+                $value,
                 Travelpayouts::t('flights.stops.nominative', [], 'tables', $locale),
                 Travelpayouts::t('flights.stops.genitive', [], 'tables', $locale),
                 Travelpayouts::t('flights.stops.prepositional', [], 'tables', $locale)

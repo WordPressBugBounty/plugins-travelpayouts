@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -10,7 +11,6 @@ use Travelpayouts\components\module\ModuleRedux;
 use Travelpayouts\modules\widgets\components\forms\flights;
 use Travelpayouts\modules\widgets\components\forms\hotels;
 use Travelpayouts\modules\widgets\components\Section;
-
 
 /**
  * Class Widgets

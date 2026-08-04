@@ -40,7 +40,7 @@ class ArrayQuery extends BaseObject
     {
         parent::init();
         $this->_queryProcessor = BaseObject::createObject([
-            'class'=> $this->queryProcessorClass
+            'class' => $this->queryProcessorClass
         ]);
     }
 

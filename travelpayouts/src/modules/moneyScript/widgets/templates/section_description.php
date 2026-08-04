@@ -23,11 +23,11 @@ AlertWidget::begin([
 ?>
 <div class='tp-stack-2'>
     <div><?= Travelpayouts::_x('With Money Script you can quickly replace links to travel resources such as Booking.com, Kiwitaxi and others with Travelpayouts affiliate links.',
-            'moneyscript description text') ?>
+        'moneyscript description text') ?>
     </div>
     <div>
         <?=Travelpayouts::_x('Find out more in our {link}.', 'moneyscript description text', [
-            'link' => $this->section('anchorLink'),
+        'link' => $this->section('anchorLink'),
         ])?>
     </div>
 </div>

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -6,7 +7,6 @@
 namespace Travelpayouts\components\shortcodes;
 
 use Travelpayouts;
-
 
 class ShortcodeHelper
 {

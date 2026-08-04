@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -21,6 +22,7 @@ use Travelpayouts\includes\I18n;
 use Travelpayouts\includes\PublicRouter;
 use Travelpayouts\includes\ReduxConfigurator;
 use Travelpayouts\includes\Router;
+
 use function Travelpayouts\Vendor\DI\get;
 use function Travelpayouts\Vendor\DI\autowire;
 

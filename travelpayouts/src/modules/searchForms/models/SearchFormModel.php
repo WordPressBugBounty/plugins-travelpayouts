@@ -24,7 +24,7 @@ use Travelpayouts\modules\widgets\components\WidgetShortcode;
 class SearchFormModel extends ReduxOptionCollectionModel
 {
     protected const LEGACY_SEARCH_FORM_REGEX = '/window.TP_FORM_SETTINGS\["(?<widgetId>[\w]+)"\](\s?=\s?)(?<widgetParams>[^;]+)/';
-    const DATE_FORMAT = 'Y-m-d';
+    public const DATE_FORMAT = 'Y-m-d';
 
     /**
      * @var string
@@ -54,6 +54,10 @@ class SearchFormModel extends ReduxOptionCollectionModel
      * @var boolean
      */
     public $applyParams = false;
+    /**
+     * @var bool
+     */
+    protected $_importing = false;
     /**
      * @var string
      */
@@ -126,7 +130,7 @@ class SearchFormModel extends ReduxOptionCollectionModel
         ]);
     }
 
-    public function attribute_labels()
+    public function attributeLabels()
     {
         return [
             'title' => Travelpayouts::__('Title'),
@@ -142,8 +146,8 @@ class SearchFormModel extends ReduxOptionCollectionModel
     public function arrayValidator($attribute)
     {
         if ($this->$attribute && !is_array($this->$attribute)) {
-            $this->add_error($attribute, Travelpayouts::__('{attribute} has invalid value', [
-                'attribute' => $this->get_attribute_label($attribute),
+            $this->addError($attribute, Travelpayouts::__('{attribute} has invalid value', [
+                'attribute' => $this->getAttributeLabel($attribute),
             ]));
         }
     }
@@ -353,19 +357,33 @@ class SearchFormModel extends ReduxOptionCollectionModel
         return $this->_destination;
     }
 
+    /**
+     * Migration carries legacy code over by design, so the ban below must not apply to it.
+     * Without this the import silently produced nothing for exactly the data it exists to convert.
+     *
+     * @param bool $importing
+     * @return self
+     */
+    public function setImporting($importing): self
+    {
+        $this->_importing = (bool)$importing;
+
+        return $this;
+    }
+
     public function codeValidator($attribute)
     {
         $value = trim($this->$attribute);
-        $errorMessage = Travelpayouts::__('{attribute} has invalid value', ['attribute' => $this->get_attribute_label($attribute)]);
+        $errorMessage = Travelpayouts::__('{attribute} has invalid value', ['attribute' => $this->getAttributeLabel($attribute)]);
 
         // для новых форм запрещаем создание с старым форматом поисковой формы
-        if ($this->getIsNewRecord() && preg_match(self::LEGACY_SEARCH_FORM_REGEX, $value)) {
-            $this->add_error($attribute, $errorMessage);
+        if (!$this->_importing && $this->getIsNewRecord() && preg_match(self::LEGACY_SEARCH_FORM_REGEX, $value)) {
+            $this->addError($attribute, $errorMessage);
             return;
         }
 
         if (!WidgetShortcode::isTravelpayoutsWidget($value) && !preg_match(self::LEGACY_SEARCH_FORM_REGEX, $value)) {
-            $this->add_error($attribute, $errorMessage);
+            $this->addError($attribute, $errorMessage);
         }
     }
 

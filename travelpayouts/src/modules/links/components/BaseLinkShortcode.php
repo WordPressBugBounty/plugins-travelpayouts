@@ -18,7 +18,7 @@ use Travelpayouts\modules\settings\Settings;
  */
 abstract class BaseLinkShortcode extends ShortcodeModel
 {
-    const LINK_MARKER = 'wpplugin_link';
+    public const LINK_MARKER = 'wpplugin_link';
 
     /**
      * @var string
@@ -84,9 +84,9 @@ abstract class BaseLinkShortcode extends ShortcodeModel
         ];
         $settingsModuleData = $this->settingsModule->data;
         $settingsNewTab = true === filter_var(
-                $settingsModuleData->get('target_url'),
-                FILTER_VALIDATE_BOOLEAN
-            );
+            $settingsModuleData->get('target_url'),
+            FILTER_VALIDATE_BOOLEAN
+        );
         if ($settingsModuleData->get('nofollow')) {
             $buttonAttributes['rel'] = 'nofollow';
         }
@@ -106,7 +106,7 @@ abstract class BaseLinkShortcode extends ShortcodeModel
                 unset($buttonAttributes['target']);
             }
         }
-        
+
         $buttonAttributes['class'] = TRAVELPAYOUTS_TEXT_DOMAIN . '-link';
 
         return Html::tag(
@@ -137,9 +137,9 @@ abstract class BaseLinkShortcode extends ShortcodeModel
         return $model->render();
     }
 
-    public function attribute_labels()
+    public function attributeLabels()
     {
-        return array_merge(parent::attribute_labels(), [
+        return array_merge(parent::attributeLabels(), [
             'new_tab' => Travelpayouts::__('Open link in a new tab'),
             'subid' => Travelpayouts::__('Sub ID'),
         ]);

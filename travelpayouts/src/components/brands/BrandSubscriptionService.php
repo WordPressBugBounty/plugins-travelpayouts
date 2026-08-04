@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -13,7 +14,6 @@ use Travelpayouts\components\BaseObject;
  */
 class BrandSubscriptionService extends BaseObject
 {
-
     /**
      * @var array
      */

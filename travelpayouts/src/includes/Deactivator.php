@@ -23,7 +23,6 @@ use Travelpayouts\components\snowplow\Tracker;
  */
 class Deactivator
 {
-
     /**
      * Short Description. (use period)
      * Long Description.

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by: Andrey Polyakov (andrey@polyakov.im)
  */
@@ -64,7 +65,7 @@ class WidgetIata extends BaseWidgetShortcodeModel
     public function render()
     {
         if (!$this->widget_url) {
-            $this->add_error('widget_url', 'widget_url must be set');
+            $this->addError('widget_url', 'widget_url must be set');
         }
 
         if ($this->validate()) {
