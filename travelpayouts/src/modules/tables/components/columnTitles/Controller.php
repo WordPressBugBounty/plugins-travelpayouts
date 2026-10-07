@@ -33,6 +33,8 @@ class Controller extends BaseController
 
     public function actionTranslationPhrases()
     {
+        $this->requireCapability('edit_posts');
+
         $localeId = $this->getQueryParam('locale');
 
         if ($localeId) {
@@ -120,6 +122,8 @@ class Controller extends BaseController
 
     public function actionGetData()
     {
+        $this->requireCapability('edit_posts');
+
         $this->response(
             true,
             [

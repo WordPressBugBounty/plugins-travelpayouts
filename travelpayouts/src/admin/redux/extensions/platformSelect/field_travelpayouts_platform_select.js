@@ -12,6 +12,7 @@
             type: 'POST',
             data: {
                 action: 'travelpayouts_clear_platforms_select_cache',
+                _ajax_nonce: window.travelpayoutsAdminAjaxNonce,
             },
             success: function (response) {
                 var result = jQuery.parseJSON(response);

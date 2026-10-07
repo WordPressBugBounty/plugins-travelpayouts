@@ -59,23 +59,7 @@ if (! class_exists('Redux_Travelpayouts_Extension_Import_Export', false)) {
             );
 
             add_action(
-                'wp_ajax_nopriv_Redux_Travelpayouts_link_options-' . $this->parent->args['opt_name'],
-                [
-                    $this,
-                    'link_options',
-                ]
-            );
-
-            add_action(
                 'wp_ajax_Redux_Travelpayouts_download_options-' . $this->parent->args['opt_name'],
-                [
-                    $this,
-                    'download_options',
-                ]
-            );
-
-            add_action(
-                'wp_ajax_nopriv_Redux_Travelpayouts_download_options-' . $this->parent->args['opt_name'],
                 [
                     $this,
                     'download_options',
@@ -134,7 +118,7 @@ if (! class_exists('Redux_Travelpayouts_Extension_Import_Export', false)) {
          */
         public function link_options()
         {
-            if (! isset($_GET['secret']) || md5(md5(Redux_Travelpayouts_Functions_Ex::hash_key()) . '-' . $this->parent->args['opt_name']) !== $_GET['secret']) { // phpcs:ignore WordPress.Security.NonceVerification
+            if (! current_user_can('manage_options') || ! isset($_GET['secret']) || md5(md5(Redux_Travelpayouts_Functions_Ex::hash_key()) . '-' . $this->parent->args['opt_name']) !== $_GET['secret']) { // phpcs:ignore WordPress.Security.NonceVerification
                 wp_die('Invalid Secret for options use');
                 exit;
             }
@@ -156,7 +140,7 @@ if (! class_exists('Redux_Travelpayouts_Extension_Import_Export', false)) {
          */
         public function download_options()
         {
-            if (! isset($_GET['secret']) || md5(md5(Redux_Travelpayouts_Functions_Ex::hash_key()) . '-' . $this->parent->args['opt_name']) !== $_GET['secret']) { // phpcs:ignore WordPress.Security.NonceVerification
+            if (! current_user_can('manage_options') || ! isset($_GET['secret']) || md5(md5(Redux_Travelpayouts_Functions_Ex::hash_key()) . '-' . $this->parent->args['opt_name']) !== $_GET['secret']) { // phpcs:ignore WordPress.Security.NonceVerification
                 wp_die('Invalid Secret for options use');
                 exit;
             }

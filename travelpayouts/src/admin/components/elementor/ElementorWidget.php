@@ -42,7 +42,7 @@ class ElementorWidget extends Widget_Base
      */
     public function get_name()
     {
-        return TRAVELPAYOUTS_PLUGIN_NAME . '_shortcode_widget';
+        return WidgetContent::WIDGET_NAME;
     }
 
     /**

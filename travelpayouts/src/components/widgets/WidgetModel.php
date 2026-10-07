@@ -253,7 +253,7 @@ abstract class WidgetModel extends ShortcodeModel
             '[' . $this->tag . ']',
         ];
         $errorsList = array_map(function ($errorMessage) {
-            return implode(' ', $errorMessage);
+            return esc_html(implode(' ', $errorMessage));
         }, $this->getErrors());
 
         return implode('<br>', array_merge($errorTemplate, $errorsList));
@@ -330,7 +330,7 @@ abstract class WidgetModel extends ShortcodeModel
     {
         $debugData = $this->getDebugData();
         return $debugData ?
-            Html::tagArrayContent('pre', [], print_r($this->getDebugData(), true))
+            Html::tagArrayContent('pre', [], esc_html(print_r($debugData, true)))
             : '';
     }
 }

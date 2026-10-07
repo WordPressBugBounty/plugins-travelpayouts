@@ -132,7 +132,7 @@ abstract class ColumnButton extends GridColumn
     protected function getButtonLabel($buttonTitle, $model): ?string
     {
 
-        return is_string($buttonTitle) ? StringHelper::formatMessage($buttonTitle, $this->getButtonVariablesByModel($model)) : null;
+        return is_string($buttonTitle) ? StringHelper::formatMessage(esc_html($buttonTitle), $this->getButtonVariablesByModel($model)) : null;
     }
 
     abstract public function getButtonUrl($model): ?string;

@@ -13,7 +13,6 @@ use Travelpayouts\components\base\cache\Cache;
 use Travelpayouts\components\base\cache\CacheFromSettings;
 use Travelpayouts\components\Logger;
 use Travelpayouts\components\multilingual\MultiLang;
-use Travelpayouts\components\Rights;
 use Travelpayouts\components\snowplow\Tracker;
 use Travelpayouts\components\Translator;
 use Travelpayouts\frontend\PublicHooks;
@@ -66,7 +65,6 @@ return [
         'domain' => TRAVELPAYOUTS_TEXT_DOMAIN,
         'localePath' => Travelpayouts::getAlias('@root/languages'),
     ]),
-    Rights::class => autowire(),
     AirtableDistribution::class => autowire()->constructor([
         'baseId' => 'appdZVIFV8Fj9j9OU',
         'tableId' => 'tblve8a7LnLegx49h',

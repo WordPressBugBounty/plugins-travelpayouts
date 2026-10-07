@@ -112,7 +112,7 @@ abstract class BaseLinkShortcode extends ShortcodeModel
         return Html::tag(
             'a',
             $buttonAttributes,
-            $this->text_link
+            esc_html($this->text_link)
         );
     }
 

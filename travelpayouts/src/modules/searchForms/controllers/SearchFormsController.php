@@ -12,7 +12,7 @@ use Travelpayouts\components\LanguageHelper;
 use Travelpayouts\modules\searchForms\models\SearchFormModel;
 
 /**
- * Class Controller
+ * Reads need only `edit_posts`: the shortcode picker in the post editor lists the forms.
  */
 class SearchFormsController extends Controller
 {
@@ -24,6 +24,8 @@ class SearchFormsController extends Controller
 
     public function actionIndex()
     {
+        $this->requireCapability('edit_posts');
+
         $records = [];
         foreach ($this->model->findAll() as $record) {
             $records[] = $record->toArray();
@@ -33,6 +35,8 @@ class SearchFormsController extends Controller
 
     public function actionRawData()
     {
+        $this->requireCapability('edit_posts');
+
         $this->response(true, $this->model->getOptionValue());
     }
 
@@ -42,18 +46,25 @@ class SearchFormsController extends Controller
      */
     public function actionView($id)
     {
+        $this->requireCapability('edit_posts');
+
         $model = $this->model->findByPk($id);
         $model ? $this->response(true, $model->toArray(), ['id' => $model->id]) : $this->response(false, []);
     }
 
     public function actionViewBySlug($slug)
     {
+        $this->requireCapability('edit_posts');
+
         $model = $this->model->findByColumnValue('slug', $slug);
         $model ? $this->response(true, $model->toArray(), ['id' => $model->id]) : $this->response(false);
     }
 
     public function actionCreate()
     {
+        $this->requireCapability('manage_options');
+        $this->requireNonce();
+
         $attributes = $this->getInputParam('query');
         $model = new SearchFormModel();
         $model->attributes = $attributes;
@@ -66,6 +77,9 @@ class SearchFormsController extends Controller
 
     public function actionUpdate($id)
     {
+        $this->requireCapability('manage_options');
+        $this->requireNonce();
+
         $attributes = $this->getInputParam('query');
         $model = $this->model->findByPk($id);
         if ($model) {
@@ -81,6 +95,9 @@ class SearchFormsController extends Controller
 
     public function actionDelete($id)
     {
+        $this->requireCapability('manage_options');
+        $this->requireNonce();
+
         try {
             $model = $this->model->findByPk($id);
             if ($model && $model->delete()) {
@@ -93,6 +110,9 @@ class SearchFormsController extends Controller
 
     public function actionDeleteById()
     {
+        $this->requireCapability('manage_options');
+        $this->requireNonce();
+
         $attributes = $this->getInputParam('query');
         if (is_array($attributes)) {
             try {
@@ -111,6 +131,8 @@ class SearchFormsController extends Controller
 
     public function actionGetTranslations()
     {
+        $this->requireCapability('edit_posts');
+
         $this->response(true, [
             'item_add_title' => Travelpayouts::__('Add a new search form'),
             'item_edit_title' => Travelpayouts::__('Edit the search form "{searchForm_name}"'),

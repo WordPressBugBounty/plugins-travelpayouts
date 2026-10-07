@@ -11,6 +11,7 @@
             type: 'POST',
             data: {
                 action: 'travelpayouts_clear_tables_cache',
+                _ajax_nonce: window.travelpayoutsAdminAjaxNonce,
             },
             cache: false,
             dataType: 'json',

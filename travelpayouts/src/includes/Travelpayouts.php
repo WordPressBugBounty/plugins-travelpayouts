@@ -21,7 +21,6 @@ use Travelpayouts\components\Module;
 use Travelpayouts\components\module\ModuleRedux;
 use Travelpayouts\components\multilingual\MultiLang;
 use Travelpayouts\components\notices\Notices;
-use Travelpayouts\components\Rights;
 use Travelpayouts\components\SettingsRecovery;
 use Travelpayouts\components\snowplow\Tracker;
 use Travelpayouts\components\Translator;
@@ -133,12 +132,6 @@ class Travelpayouts extends BasePluginCore
      * @var I18n
      */
     protected $i18n;
-
-    /**
-     * @Inject
-     * @var Rights
-     */
-    public $userRights;
 
     /**
      * @var Tables

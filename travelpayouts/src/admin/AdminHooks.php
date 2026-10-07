@@ -26,7 +26,6 @@ use Travelpayouts\components\Menu;
 use Travelpayouts\components\notices\Notice;
 use Travelpayouts\components\notices\NoticeButton;
 use Travelpayouts\components\notices\Notices;
-use Travelpayouts\components\Rights;
 use Travelpayouts\components\snowplow\Tracker;
 use Travelpayouts\includes\HooksLoader;
 use Travelpayouts\includes\migrations\Migration;
@@ -46,6 +45,8 @@ use Travelpayouts\modules\settings\Settings;
  */
 class AdminHooks extends Travelpayouts\components\HookableObject
 {
+    public const AJAX_NONCE_ACTION = 'travelpayouts_admin_ajax';
+
     /**
      * The ID of this plugin.
      * @since    1.0.0
@@ -101,12 +102,6 @@ class AdminHooks extends Travelpayouts\components\HookableObject
     public $notices;
 
     /**
-     * @Inject
-     * @var Rights
-     */
-    public $userRights;
-
-    /**
      * @var Settings
      * @Inject
      */
@@ -134,6 +129,7 @@ class AdminHooks extends Travelpayouts\components\HookableObject
                 'clearPlatformsSelectCache',
             ])
             ->addAdminAjaxEndpoint('travelpayouts_migrate_search_forms', [$this, 'migrateSearchForms'])
+            ->addAction('admin_enqueue_scripts', [$this, 'exposeAjaxNonce'])
             ->addAction('init', [$this, 'loadReduxOptions'], 1)
             ->addAction('admin_menu', [$this->get_landing_page(), 'add_page'])
             ->addAction('admin_notices', [$this, 'renderNotices'])
@@ -172,7 +168,7 @@ class AdminHooks extends Travelpayouts\components\HookableObject
 
     public function loadReduxOptions()
     {
-        if ($this->userRights->manage_options) {
+        if (current_user_can('manage_options')) {
             $opt = new ReduxHooks();
             $opt->setUpHooks();
         }
@@ -269,6 +265,29 @@ class AdminHooks extends Travelpayouts\components\HookableObject
         wp_dequeue_style('redux-admin-css');
     }
 
+    /**
+     * The callers are plain scripts enqueued by Redux fields and notices, so the nonce goes out as a global.
+     */
+    public function exposeAjaxNonce(): void
+    {
+        if (current_user_can('manage_options')) {
+            wp_add_inline_script(
+                'jquery-core',
+                'var travelpayoutsAdminAjaxNonce = ' . wp_json_encode(wp_create_nonce(self::AJAX_NONCE_ACTION)) . ';',
+                'before'
+            );
+        }
+    }
+
+    private function authorizeAdminAction(): void
+    {
+        if (!current_user_can('manage_options')) {
+            wp_die(Travelpayouts::__('Insufficient access rights!'), '', 403);
+        }
+
+        check_ajax_referer(self::AJAX_NONCE_ACTION);
+    }
+
     public function migrate()
     {
         /**
@@ -278,9 +297,7 @@ class AdminHooks extends Travelpayouts\components\HookableObject
          * }, 10, 2 );
          */
 
-        if (!$this->userRights->manage_options) {
-            die(Travelpayouts::__('Insufficient access rights!'));
-        }
+        $this->authorizeAdminAction();
 
         $options = get_option(Migration::SOURCE_OPTION_NAME);
         $importDone = get_option(Migration::IMPORT_DONE_OPTION_NAME);
@@ -293,14 +310,12 @@ class AdminHooks extends Travelpayouts\components\HookableObject
             'status' => 'success',
             'action' => 'reload',
         ]);
-        die();
+        wp_die();
     }
 
     public function migrateCancel()
     {
-        if (!$this->userRights->manage_options) {
-            die(Travelpayouts::__('Insufficient access rights!'));
-        }
+        $this->authorizeAdminAction();
 
         update_option(Migration::IMPORT_DONE_OPTION_NAME, Migration::IMPORT_DONE_TRUE);
 
@@ -308,14 +323,12 @@ class AdminHooks extends Travelpayouts\components\HookableObject
             'status' => 'success',
             'action' => 'reload',
         ]);
-        die();
+        wp_die();
     }
 
     public function clearPlatformsSelectCache()
     {
-        if (!$this->userRights->manage_options) {
-            die(Travelpayouts::__('Insufficient access rights!'));
-        }
+        $this->authorizeAdminAction();
 
         if ($response = PlatformsEndpoint::getInstance()->getResponse()) {
             $response->deleteCache();
@@ -325,21 +338,19 @@ class AdminHooks extends Travelpayouts\components\HookableObject
             'status' => 'success',
             'action' => 'reload',
         ]);
-        die();
+        wp_die();
     }
 
     public function migrateSearchForms()
     {
-        if (!$this->userRights->manage_options) {
-            die(Travelpayouts::__('Insufficient access rights!'));
-        }
+        $this->authorizeAdminAction();
         $this->importModel()->importSearchForms();
 
         echo json_encode([
             'status' => 'success',
             'action' => 'reload',
         ]);
-        die();
+        wp_die();
     }
 
     /**
@@ -347,9 +358,7 @@ class AdminHooks extends Travelpayouts\components\HookableObject
      */
     public function clearTablesCache()
     {
-        if (!$this->userRights->manage_options) {
-            die(Travelpayouts::__('Insufficient access rights!'));
-        }
+        $this->authorizeAdminAction();
 
         global $wpdb;
 
@@ -373,7 +382,7 @@ class AdminHooks extends Travelpayouts\components\HookableObject
                     ->setTitle(Travelpayouts::__('Clear cache failed'))
                     ->setDescription($exception->getMessage())
             );
-            die();
+            wp_die();
         }
 
         $this->notices->add(
@@ -382,12 +391,12 @@ class AdminHooks extends Travelpayouts\components\HookableObject
                 ->setTitle(Travelpayouts::__('Cache has been cleared'))
                 ->setDescription(Travelpayouts::__('Tables cache has been cleared successfully'))
         );
-        die();
+        wp_die();
     }
 
     public function importFile()
     {
-        if (!$this->userRights->manage_options) {
+        if (!current_user_can('manage_options')) {
             die(Travelpayouts::__('Insufficient access rights!'));
         }
 
@@ -455,7 +464,7 @@ class AdminHooks extends Travelpayouts\components\HookableObject
             return;
         }
 
-        if ($this->userRights->manage_options) {
+        if (current_user_can('manage_options')) {
             // Добавляет welcome (плашку) уведомление
             $this->welcomeNotice();
             $this->importNotice();
@@ -468,7 +477,7 @@ class AdminHooks extends Travelpayouts\components\HookableObject
 
     public function landing_page_action()
     {
-        if (!$this->userRights->manage_options) {
+        if (!current_user_can('manage_options')) {
             die(Travelpayouts::__('Insufficient access rights!'));
         }
 
@@ -477,7 +486,7 @@ class AdminHooks extends Travelpayouts\components\HookableObject
             $model->setSanitizedAttributes($_POST);
             $model->save();
 
-            exit(wp_redirect($_POST['_wp_http_referer']));
+            exit(wp_safe_redirect(wp_get_referer() ?: admin_url()));
         }
 
         die(Travelpayouts::__('WP nonce verification failed!'));

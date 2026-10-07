@@ -19,6 +19,7 @@ class ElementorHooks extends HookableObject
         $hooksLoader
             ->addAction('elementor/controls/controls_registered', [$this, 'registerControl'])
             ->addAction('elementor/widgets/widgets_registered', [$this, 'registerWidget'])
+            ->addFilter('elementor/document/save/data', [WidgetContent::class, 'sanitizeOnSave'])
             ->addAdminAjaxEndpoint(PreviewController::ACTION_ID, [$this, 'registerAjaxEndpoint']);
     }
 

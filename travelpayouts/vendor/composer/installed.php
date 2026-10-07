@@ -80,9 +80,9 @@
             'dev_requirement' => false,
         ),
         'travelpayouts-carbonphp/carbon-doctrine-types' => array(
-            'pretty_version' => '1.0.0',
-            'version' => '1.0.0.0',
-            'reference' => '3d13f50e744a93c536352136762d104fe923db0a',
+            'pretty_version' => '1.x-dev',
+            'version' => '1.9999999.9999999.9999999-dev',
+            'reference' => 'ffa425808e909411a350211f8ff8e205a03f3bf9',
             'type' => 'library',
             'install_path' => __DIR__ . '/../travelpayouts-carbonphp/carbon-doctrine-types',
             'aliases' => array(),
@@ -145,7 +145,7 @@
         'travelpayouts-nesbot/carbon' => array(
             'pretty_version' => '2.x-dev',
             'version' => '2.9999999.9999999.9999999-dev',
-            'reference' => '0957c4c601c29f5145a9c80b5d33dcf79c2634f3',
+            'reference' => '5a65fb8e46e146e930de803407b0218e2bb643b7',
             'type' => 'library',
             'install_path' => __DIR__ . '/../travelpayouts-nesbot/carbon',
             'aliases' => array(),

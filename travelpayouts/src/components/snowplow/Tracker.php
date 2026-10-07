@@ -59,7 +59,8 @@ class Tracker extends \Travelpayouts\Vendor\Snowplow\Tracker\Tracker
     public function __construct($config = [])
     {
         BaseObject::configure($this, $config);
-        parent::__construct($this->getEmitter(), new Subject(), $this->namespace, $this->app_id, $this->encode_base64);
+        // A list, not a single emitter: the library types that as `emitter`, unresolvable on a case-sensitive filesystem.
+        parent::__construct([$this->getEmitter()], new Subject(), $this->namespace, $this->app_id, $this->encode_base64);
     }
 
     /**

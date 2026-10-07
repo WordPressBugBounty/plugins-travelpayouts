@@ -108,7 +108,7 @@ class GridBuilder extends InjectedModel
         $debugData = $this->getDebugData();
         return $debugData
             ?
-            HtmlHelper::tagArrayContent('pre', [], print_r($this->getDebugData(), true))
+            HtmlHelper::tagArrayContent('pre', [], esc_html(print_r($debugData, true)))
             : '';
     }
 
@@ -129,7 +129,7 @@ class GridBuilder extends InjectedModel
         $attributes = array_merge([
             'class' => 'tp-widget-table-title',
         ], $customTitleHtmlProps);
-        return HtmlHelper::tag($titleTag, $attributes, $title);
+        return HtmlHelper::tag($titleTag, $attributes, esc_html($title));
     }
 
     protected function renderSubtitle(): string

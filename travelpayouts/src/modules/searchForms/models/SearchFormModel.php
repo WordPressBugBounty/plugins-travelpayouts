@@ -269,11 +269,13 @@ class SearchFormModel extends ReduxOptionCollectionModel
     }
 
     /**
+     * Legacy forms load their script protocol-relative, so a missing scheme is accepted.
      * @return string|null
      */
     public function getUrl()
     {
-        if (!$this->_url && $this->code_form && preg_match('/src="(?<url>.+)"/', $this->code_form, $urlMatches)) {
+        if (!$this->_url && $this->code_form && preg_match('/src="(?<url>[^"]+)"/', $this->code_form, $urlMatches)
+            && in_array(parse_url($urlMatches['url'], PHP_URL_SCHEME), [null, 'http', 'https'], true)) {
             $this->_url = $urlMatches['url'];
         }
         return $this->_url;

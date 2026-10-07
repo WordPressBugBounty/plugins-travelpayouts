@@ -3,6 +3,7 @@
 namespace Travelpayouts\modules\widgets\components;
 
 use Travelpayouts\components\brands\PlatformsEndpoint;
+use Travelpayouts\components\HtmlHelper;
 use Travelpayouts\components\shortcodes\ShortcodeModel;
 
 /**
@@ -12,6 +13,11 @@ use Travelpayouts\components\shortcodes\ShortcodeModel;
 class WidgetShortcode extends ShortcodeModel
 {
     public const TRAVELPAYOUTS_SHORTCODE_REGEX = '/^<script[^>]* src="(?<url>[^"]+\/content\?([^"]+)).*?<\/script>$/';
+
+    /**
+     * Matched on the stored content: entity-only text from a filtered author must not decode into a script.
+     */
+    private const SCRIPT_URL_REGEX = '/^<script[^>]*\ssrc="(?<url>[^"]+\/content\?[^"]+)"/';
 
     /**
      * @var string|null
@@ -39,23 +45,24 @@ class WidgetShortcode extends ShortcodeModel
 
     public function render()
     {
-        if ($this->getScriptUrl() && is_string($this->content)) {
-            return $this->getShortcodeContentWithReplacedScriptDomain($this->content);
+        $scriptUrl = $this->getScriptUrl();
+        if (!$scriptUrl) {
+            return '';
         }
-        return '';
+
+        return HtmlHelper::scriptFile(esc_url_raw($this->moveToWidgetDomain($scriptUrl)), [
+            'async' => 'async',
+            'charset' => 'utf-8',
+        ]);
     }
 
-    protected function getShortcodeContentWithReplacedScriptDomain(string $content): string
+    protected function moveToWidgetDomain(string $scriptUrl): string
     {
         $scriptHost = $this->getScriptHost();
-        if ($scriptHost) {
-            $platformResponse = PlatformsEndpoint::getInstance()->getData();
-            $widgetDomain = $platformResponse ? $platformResponse->widget_domain : null;
-            if ($widgetDomain) {
-                $content = str_replace($scriptHost, $widgetDomain, $content);
-            }
-        }
-        return $content;
+        $platformResponse = PlatformsEndpoint::getInstance()->getData();
+        $widgetDomain = $platformResponse ? $platformResponse->widget_domain : null;
+
+        return $scriptHost && $widgetDomain ? str_replace($scriptHost, $widgetDomain, $scriptUrl) : $scriptUrl;
     }
 
     /**
@@ -70,10 +77,10 @@ class WidgetShortcode extends ShortcodeModel
 
     protected function getScriptUrl(): ?string
     {
-        if (!$this->_scriptUrl && $this->content) {
-            $content = html_entity_decode(trim($this->content));
-            if (preg_match(self::TRAVELPAYOUTS_SHORTCODE_REGEX, $content, $matches)) {
-                $this->_scriptUrl = $matches['url'];
+        if (!$this->_scriptUrl && $this->content && preg_match(self::SCRIPT_URL_REGEX, trim($this->content), $matches)) {
+            $url = html_entity_decode($matches['url']);
+            if (in_array(parse_url($url, PHP_URL_SCHEME), ['http', 'https'], true)) {
+                $this->_scriptUrl = $url;
             }
         }
         return $this->_scriptUrl;

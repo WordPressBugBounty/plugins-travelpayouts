@@ -7,6 +7,8 @@
 namespace Travelpayouts\components;
 
 use Exception;
+use Travelpayouts;
+use Travelpayouts\admin\AdminHooks;
 use Travelpayouts\traits\SingletonTrait;
 
 abstract class Controller extends BaseInjectedObject
@@ -14,6 +16,33 @@ abstract class Controller extends BaseInjectedObject
     use SingletonTrait;
 
     private $_queryParams;
+
+    protected function requireCapability(string $capability): void
+    {
+        if (!current_user_can($capability)) {
+            $this->refuse();
+        }
+    }
+
+    /**
+     * The body is read from php://input whatever its content type, so a cross-site text/plain form can submit it.
+     */
+    protected function requireNonce(): void
+    {
+        if (!check_ajax_referer(AdminHooks::AJAX_NONCE_ACTION, false, false)) {
+            $this->refuse();
+        }
+    }
+
+    /**
+     * Ends the request: `wp_send_json()` dies after printing.
+     */
+    private function refuse(): void
+    {
+        // Set apart from the envelope: `wp_send_json()` skips the status once anything is printed.
+        status_header(403);
+        $this->response(false, ['message' => Travelpayouts::__('Insufficient access rights!')]);
+    }
 
     protected function getInputData()
     {

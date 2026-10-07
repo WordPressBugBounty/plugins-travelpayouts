@@ -248,11 +248,6 @@ if (! class_exists('Redux_Travelpayouts_Core', false)) {
             spl_autoload_register([ $this, 'register_classes' ]);
 
             new Redux_Travelpayouts_Rest_Api_Builder($this);
-
-            $hash_arg = md5(trailingslashit(network_site_url()) . '-redux');
-            add_action('wp_ajax_nopriv_' . $hash_arg, [ 'Redux_Travelpayouts_Helpers', 'hash_arg' ]);
-            add_action('wp_ajax_' . $hash_arg, [ 'Redux_Travelpayouts_Helpers', 'hash_arg' ]);
-            add_action('wp_ajax_Redux_Travelpayouts_support_hash', [ 'Redux_Travelpayouts_Functions', 'support_hash' ]);
         }
 
         /**

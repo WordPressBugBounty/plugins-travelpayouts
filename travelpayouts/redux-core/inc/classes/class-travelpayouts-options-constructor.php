@@ -762,7 +762,7 @@ if (! class_exists('Redux_Travelpayouts_Options_Object', false)) {
                 if ('' !== $plugin_options['import_code']) {
                     $import = $plugin_options['import_code'];
                 } elseif ('' !== $plugin_options['import_link']) {
-                    $import = wp_remote_retrieve_body(wp_remote_get($plugin_options['import_link']));
+                    $import = wp_remote_retrieve_body(wp_safe_remote_get($plugin_options['import_link']));
                 }
 
                 if (! empty($import)) {

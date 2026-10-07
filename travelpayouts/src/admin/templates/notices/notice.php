@@ -24,10 +24,10 @@ $classNames = HtmlHelper::classNames(array_filter([
         </div>
         <div class="wlcm__plug__text travelpayouts-notice__text">
             <?php if (isset($title)): ?>
-                <div class="travelpayouts-notice__text__title"><?= $title ?></div>
+                <div class="travelpayouts-notice__text__title"><?= wp_kses_post($title) ?></div>
             <?php endif ?>
             <?php if (isset($description)): ?>
-                <div class="travelpayouts-notice__text__description"><?= $description ?></div>
+                <div class="travelpayouts-notice__text__description"><?= wp_kses_post($description) ?></div>
             <?php endif ?>
         </div>
     </div>

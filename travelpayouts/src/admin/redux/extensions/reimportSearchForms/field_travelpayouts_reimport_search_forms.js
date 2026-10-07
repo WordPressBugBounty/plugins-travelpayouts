@@ -10,6 +10,7 @@
             type: 'POST',
             data: {
                 action: 'travelpayouts_migrate_search_forms',
+                _ajax_nonce: window.travelpayoutsAdminAjaxNonce,
             },
             success: function (response) {
                 var result = jQuery.parseJSON(response);

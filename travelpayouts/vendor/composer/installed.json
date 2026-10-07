@@ -286,12 +286,12 @@
         },
         {
             "name": "travelpayouts-carbonphp/carbon-doctrine-types",
-            "version": "1.0.0",
-            "version_normalized": "1.0.0.0",
+            "version": "1.x-dev",
+            "version_normalized": "1.9999999.9999999.9999999-dev",
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-carbonphp/carbon-doctrine-types",
-                "reference": "3d13f50e744a93c536352136762d104fe923db0a"
+                "reference": "ffa425808e909411a350211f8ff8e205a03f3bf9"
             },
             "require": {
                 "php": "^7.1.8 || ^8.0"
@@ -705,14 +705,14 @@
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-nesbot/carbon",
-                "reference": "0957c4c601c29f5145a9c80b5d33dcf79c2634f3"
+                "reference": "5a65fb8e46e146e930de803407b0218e2bb643b7"
             },
             "require": {
                 "ext-json": "*",
                 "php": "^7.1.8 || ^8.0",
                 "symfony/polyfill-mbstring": "1.x-dev",
                 "symfony/polyfill-php80": "1.x-dev",
-                "travelpayouts-carbonphp/carbon-doctrine-types": "1.0.0",
+                "travelpayouts-carbonphp/carbon-doctrine-types": "1.x-dev",
                 "travelpayouts-psr/clock": "1.0.0",
                 "travelpayouts-symfony/translation": "5.4.x-dev"
             },

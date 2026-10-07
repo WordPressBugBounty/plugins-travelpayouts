@@ -1,5 +1,7 @@
 <?php
 /**
+ * Encoded: the characters that end a JS literal survive sanitize_text_field.
+ *
  * @var string $marker
  */
 ?>
@@ -14,7 +16,7 @@
         entrypoint.src = "https://tpo.gg/entrypoint.js?" + sp.toString();
         if (snippet) snippet.parentNode.insertBefore(entrypoint, snippet);
     })(
-        { marker: <?= $marker ?>, page_opened_id: crypto.randomUUID() },
+        { marker: <?= wp_json_encode($marker) ?>, page_opened_id: crypto.randomUUID() },
         window,
         "__tpam_snippet_node"
     );

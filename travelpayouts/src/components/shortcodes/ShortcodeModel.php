@@ -133,7 +133,7 @@ abstract class ShortcodeModel extends InjectedModel implements IShortcodeModel
 
         $errors[] = '[' . $this->tag . ']';
         foreach ($errorsList as $error) {
-            $errors[] = nl2br(implode(' ', $error));
+            $errors[] = nl2br(esc_html(implode(' ', $error)));
         }
 
         return implode('<br>', $errors);
