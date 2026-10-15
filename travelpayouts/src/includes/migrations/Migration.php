@@ -228,7 +228,7 @@ class Migration extends BaseObject
 
     private function prepareVariables($data)
     {
-        return preg_replace('/(?!\{)(origin|destination|price|airline)(?!\})/', '{$1}', $data);
+        return preg_replace('/(?!\{)(origin|destination|price|airline)(?!\})/', '{$1}', (string) $data);
     }
 
     private function getHostValue($value)

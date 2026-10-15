@@ -35,6 +35,11 @@ class Table extends FlightsShortcodeModel
      */
     public $stops;
     /**
+     * Unlike the other limited tables there is no default: published tables keep every day the API returns.
+     * @var int|string|null
+     */
+    public $limit;
+    /**
      * @Inject
      * @var Section
      */
@@ -78,6 +83,7 @@ class Table extends FlightsShortcodeModel
             ],
             [['filter_airline', 'filter_flight_number'], 'string'],
             [['stops'], 'in', 'range' => array_keys(ReduxOptions::stops_number())],
+            [['limit'], 'number'],
         ]);
     }
 
@@ -105,6 +111,7 @@ class Table extends FlightsShortcodeModel
         return [
             'origin',
             'destination',
+            'limit',
             'hr',
             'subid',
             'button_title',
@@ -205,6 +212,10 @@ class Table extends FlightsShortcodeModel
         $stopsCount = $this->getStopsFilterCount($this->stops);
         if ($this->stops !== null && $stopsCount !== null) {
             $query->andFilterWhere(['<=', 'transfers', $stopsCount]);
+        }
+
+        if ($this->limit) {
+            $query->limit((int)$this->limit);
         }
     }
 

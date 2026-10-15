@@ -212,7 +212,7 @@
                                 },
 
                                 stop: function (event, ui) {
-                                    var sorter = redux.travelpayouts_sorter[$(this).attr('data-id')];
+                                    var sorter = redux.optName.travelpayouts_sorter[$(this).attr('data-id')];
                                     var id = $(this).find('h3').text();
 
                                     if (sorter.limits && id && sorter.limits[id]) {
@@ -228,7 +228,7 @@
                                 },
 
                                 update: function (event, ui) {
-                                    var sorter = redux.travelpayouts_sorter[$(this).attr('data-id')];
+                                    var sorter = redux.optName.travelpayouts_sorter[$(this).attr('data-id')];
                                     var id = $(this).find('h3').text();
 
                                     if (sorter.limits && id && sorter.limits[id]) {
@@ -254,7 +254,7 @@
 
                                             $(this).prop(
                                                 "name",
-                                                redux.args.opt_name + '[' + optionID + '][' + parentID + '][' + listID + ']'
+                                                redux.optName.args.opt_name + '[' + optionID + '][' + parentID + '][' + listID + ']'
                                             );
                                         }
                                     );

@@ -64,7 +64,7 @@ abstract class BaseColumnLabels
      * @param string[]|null $names
      * @return string[]
      */
-    public function getDashboardColumnLabels(array $names = null): array
+    public function getDashboardColumnLabels(?array $names = null): array
     {
         $translations = $this->defaultTranslations();
         if (!$names) {

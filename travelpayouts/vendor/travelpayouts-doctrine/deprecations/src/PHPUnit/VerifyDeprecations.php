@@ -17,32 +17,24 @@ trait VerifyDeprecations
     /** @var array<string,int> */
     private $doctrineNoDeprecationsExpectations = [];
 
-    /** @final since 1.2 */
     public function expectDeprecationWithIdentifier(string $identifier): void
     {
         $this->doctrineDeprecationsExpectations[$identifier] = Deprecation::getTriggeredDeprecations()[$identifier] ?? 0;
     }
 
-    /** @final since 1.2 */
     public function expectNoDeprecationWithIdentifier(string $identifier): void
     {
         $this->doctrineNoDeprecationsExpectations[$identifier] = Deprecation::getTriggeredDeprecations()[$identifier] ?? 0;
     }
 
-    /**
-     * @before
-     * @final since 1.2
-     */
+    /** @before */
     #[Before]
     public function enableDeprecationTracking(): void
     {
         Deprecation::enableTrackingDeprecations();
     }
 
-    /**
-     * @after
-     * @final since 1.2
-     */
+    /** @after */
     #[After]
     public function verifyDeprecationsAreTriggered(): void
     {

@@ -24,7 +24,7 @@ class EditShortcodeAction extends PreviewShortcodeAction
         $shortcodeModel = $this->findModelFromShortcodeList($shortcode);
 
         if ($shortcodeModel) {
-            return $shortcodeModel->toArray([null], ['id', 'label', 'fields', 'extraData']);
+            return $shortcodeModel->toEditorArray();
         }
         throw new NotFoundResourceException('Shortcode not found');
     }

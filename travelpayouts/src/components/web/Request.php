@@ -97,7 +97,7 @@ class Request
      * @param mixed $defaultValue the default parameter value if the parameter does not exist.
      * @return array|mixed
      */
-    public function get(string $name = null, $defaultValue = null)
+    public function get(?string $name = null, $defaultValue = null)
     {
         if ($name === null) {
             return $this->getQueryParams();

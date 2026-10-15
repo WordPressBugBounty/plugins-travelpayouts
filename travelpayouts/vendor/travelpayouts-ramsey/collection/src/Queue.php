@@ -23,8 +23,8 @@ use Travelpayouts\Vendor\Ramsey\Collection\Tool\ValueToStringTrait;
  * the effort required to implement this interface.
  *
  * @template T
- * @template-extends AbstractArray<T>
- * @template-implements QueueInterface<T>
+ * @extends AbstractArray<T>
+ * @implements QueueInterface<T>
  */
 class Queue extends AbstractArray implements QueueInterface
 {
@@ -36,17 +36,13 @@ class Queue extends AbstractArray implements QueueInterface
      *
      * A queue's type is immutable once it is set. For this reason, this
      * property is set private.
-     *
-     * @var string
      */
-    private $queueType;
+    private string $queueType;
 
     /**
      * The index of the head of the queue.
-     *
-     * @var int
      */
-    protected $index = 0;
+    protected int $index = 0;
 
     /**
      * Constructs a queue object of the specified type, optionally with the
@@ -67,13 +63,15 @@ class Queue extends AbstractArray implements QueueInterface
      * Since arbitrary offsets may not be manipulated in a queue, this method
      * serves only to fulfill the `ArrayAccess` interface requirements. It is
      * invoked by other operations when adding values to the queue.
+     *
+     * @throws InvalidArgumentException if $value is of the wrong type
      */
     public function offsetSet($offset, $value): void
     {
         if ($this->checkType($this->getType(), $value) === false) {
             throw new InvalidArgumentException(
                 'Value must be of type ' . $this->getType() . '; value is '
-                . $this->toolValueToString($value)
+                . $this->toolValueToString($value),
             );
         }
 
@@ -81,6 +79,8 @@ class Queue extends AbstractArray implements QueueInterface
     }
 
     /**
+     * @throws InvalidArgumentException if $value is of the wrong type
+     *
      * @inheritDoc
      */
     public function add($element): bool
@@ -99,7 +99,7 @@ class Queue extends AbstractArray implements QueueInterface
 
         if ($element === null) {
             throw new NoSuchElementException(
-                'Can\'t return element from Queue. Queue is empty.'
+                'Can\'t return element from Queue. Queue is empty.',
             );
         }
 

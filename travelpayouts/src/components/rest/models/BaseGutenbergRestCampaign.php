@@ -61,7 +61,7 @@ abstract class BaseGutenbergRestCampaign extends InjectedModel
         if (!$this->_shortcodes) {
             $result = [];
             foreach ($this->getChildren() as $model) {
-                $result[] = $model->toArray([null], ['id', 'label', 'fields', 'extraData']);
+                $result[] = $model->toEditorArray();
             }
             $this->_shortcodes = $result;
         }

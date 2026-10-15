@@ -208,13 +208,15 @@ class ObjectCreator implements DefinitionResolver
         self::setPrivatePropertyValue($propertyInjection->getClassName(), $object, $propertyName, $value);
     }
 
-    public static function setPrivatePropertyValue(string $className = null, $object, string $propertyName, $propertyValue)
+    public static function setPrivatePropertyValue(?string $className, $object, string $propertyName, $propertyValue)
     {
         $className = $className ?: get_class($object);
 
         $property = new ReflectionProperty($className, $propertyName);
         if (! $property->isPublic()) {
-            $property->setAccessible(true);
+            if (\PHP_VERSION_ID < 80100) {
+                $property->setAccessible(true);
+            }
         }
         $property->setValue($object, $propertyValue);
     }

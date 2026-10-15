@@ -34,7 +34,7 @@
     "require": {
         "php": "^7.1 || ^8.0",
         "ext-tokenizer": "*",
-        "travelpayouts-doctrine/lexer": "2.1.x-dev",
+        "travelpayouts-doctrine/lexer": "2.1.1",
         "travelpayouts-psr/cache": "1.0.1"
     },
     "require-dev": {
@@ -69,5 +69,5 @@
         },
         "sort-packages": true
     },
-    "version": "1.14.x-dev"
+    "version": "1.14.4"
 }

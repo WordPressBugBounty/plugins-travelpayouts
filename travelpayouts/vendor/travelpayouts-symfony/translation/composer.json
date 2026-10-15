@@ -17,10 +17,10 @@
     ],
     "require": {
         "php": ">=7.2.5",
-        "travelpayouts-symfony/deprecation-contracts": "2.5.x-dev",
-        "symfony/polyfill-mbstring": "1.x-dev",
-        "symfony/polyfill-php80": "1.x-dev",
-        "travelpayouts-symfony/translation-contracts": "2.5.x-dev"
+        "travelpayouts-symfony/deprecation-contracts": "v2.5.4",
+        "symfony/polyfill-mbstring": "v1.38.2",
+        "symfony/polyfill-php80": "v1.37.0",
+        "travelpayouts-symfony/translation-contracts": "v2.5.4"
     },
     "require-dev": {
         "symfony/config": "^4.4|^5.0|^6.0",
@@ -63,5 +63,5 @@
         ]
     },
     "minimum-stability": "dev",
-    "version": "5.4.x-dev"
+    "version": "v5.4.45"
 }

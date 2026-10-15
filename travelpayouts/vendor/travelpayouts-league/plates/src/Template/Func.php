@@ -92,7 +92,7 @@ class Func
      * @param  array    $arguments
      * @return mixed
      */
-    public function call(Template $template = null, $arguments = array())
+    public function call(?Template $template = null, $arguments = array())
     {
         if (is_array($this->callback) and
             isset($this->callback[0]) and

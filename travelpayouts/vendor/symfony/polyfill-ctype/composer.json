@@ -44,5 +44,5 @@
             "url": "https://github.com/symfony/polyfill"
         }
     },
-    "version": "1.x-dev"
+    "version": "v1.37.0"
 }

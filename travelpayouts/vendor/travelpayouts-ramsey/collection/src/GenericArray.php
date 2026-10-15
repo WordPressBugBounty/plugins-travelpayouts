@@ -17,7 +17,7 @@ namespace Travelpayouts\Vendor\Ramsey\Collection;
 /**
  * `GenericArray` represents a standard array object.
  *
- * @template-extends AbstractArray<mixed>
+ * @extends AbstractArray<mixed>
  */
 class GenericArray extends AbstractArray
 {

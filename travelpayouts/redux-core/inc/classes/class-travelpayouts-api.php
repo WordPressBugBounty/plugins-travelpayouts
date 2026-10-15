@@ -1411,7 +1411,7 @@ if (! class_exists('Redux_Travelpayouts', false)) {
             Redux_Travelpayouts_Functions_Ex::record_caller($opt_name);
 
             if ('' !== $opt_name && '' !== $key) {
-                $redux         = get_option($opt_name);
+                $redux         = get_option($opt_name, []);
                 $redux[ $key ] = $option;
 
                 return update_option($opt_name, $redux);
@@ -1809,7 +1809,7 @@ if (! class_exists('Redux_Travelpayouts', false)) {
          * @param bool $force
          * @return void
          */
-        public static function addPsr4Extension(string $opt_name, string $className, string $extensionName = null, bool $force = false)
+        public static function addPsr4Extension(string $opt_name, string $className, ?string $extensionName = null, bool $force = false)
         {
             if ('' === $className || '' === $opt_name) {
                 return;

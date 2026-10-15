@@ -21,17 +21,15 @@ use Travelpayouts\Vendor\Ramsey\Collection\Exception\NoSuchElementException;
  * minimize the effort required to implement this interface.
  *
  * @template T
- * @template-extends Queue<T>
- * @template-implements DoubleEndedQueueInterface<T>
+ * @extends Queue<T>
+ * @implements DoubleEndedQueueInterface<T>
  */
 class DoubleEndedQueue extends Queue implements DoubleEndedQueueInterface
 {
     /**
      * Index of the last element in the queue.
-     *
-     * @var int
      */
-    private $tail = -1;
+    private int $tail = -1;
 
     /**
      * @inheritDoc
@@ -41,7 +39,7 @@ class DoubleEndedQueue extends Queue implements DoubleEndedQueueInterface
         if ($this->checkType($this->getType(), $value) === false) {
             throw new InvalidArgumentException(
                 'Value must be of type ' . $this->getType() . '; value is '
-                . $this->toolValueToString($value)
+                . $this->toolValueToString($value),
             );
         }
 
@@ -51,6 +49,8 @@ class DoubleEndedQueue extends Queue implements DoubleEndedQueueInterface
     }
 
     /**
+     * @throws InvalidArgumentException if $element is of the wrong type
+     *
      * @inheritDoc
      */
     public function addFirst($element): bool
@@ -58,7 +58,7 @@ class DoubleEndedQueue extends Queue implements DoubleEndedQueueInterface
         if ($this->checkType($this->getType(), $element) === false) {
             throw new InvalidArgumentException(
                 'Value must be of type ' . $this->getType() . '; value is '
-                . $this->toolValueToString($element)
+                . $this->toolValueToString($element),
             );
         }
 

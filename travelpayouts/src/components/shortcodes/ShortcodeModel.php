@@ -114,6 +114,16 @@ abstract class ShortcodeModel extends InjectedModel implements IShortcodeModel
     }
 
     /**
+     * What the editors need to build the shortcode form, without the shortcode's own attribute values.
+     * @return array{id: string, label: string, fields: array, extraData: array}
+     */
+    public function toEditorArray(): array
+    {
+        // An empty name matches no field from fields(), so only the requested extra fields are exported.
+        return $this->toArray([''], ['id', 'label', 'fields', 'extraData']);
+    }
+
+    /**
      * @return array
      */
     public function gutenbergExtraData(): array

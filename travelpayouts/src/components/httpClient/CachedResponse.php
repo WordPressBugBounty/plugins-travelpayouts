@@ -19,7 +19,7 @@ class CachedResponse extends Response
      */
     protected $_cacheKey = '';
 
-    public function __construct($response, string $requestUrl = '', CacheInterface $cacheInstance = null, string $cacheKey = '')
+    public function __construct($response, string $requestUrl = '', ?CacheInterface $cacheInstance = null, string $cacheKey = '')
     {
         $this->_cacheKey = $cacheKey;
         $this->_cache = $cacheInstance;

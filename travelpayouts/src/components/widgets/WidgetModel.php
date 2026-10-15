@@ -152,7 +152,7 @@ abstract class WidgetModel extends ShortcodeModel
 
     protected function getWhiteLabel($whiteLabel)
     {
-        if (parse_url($whiteLabel, PHP_URL_SCHEME)) {
+        if (is_string($whiteLabel) && parse_url($whiteLabel, PHP_URL_SCHEME)) {
             return parse_url($whiteLabel, PHP_URL_HOST);
         }
 

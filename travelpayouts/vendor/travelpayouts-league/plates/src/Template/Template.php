@@ -100,7 +100,7 @@ class Template
      * @param  array $data
      * @return mixed
      */
-    public function data(array $data = null)
+    public function data(?array $data = null)
     {
         if (is_null($data)) {
             return $this->data;

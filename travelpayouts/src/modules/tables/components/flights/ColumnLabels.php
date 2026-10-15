@@ -103,7 +103,7 @@ class ColumnLabels extends BaseColumnLabels
         ];
     }
 
-    public function getDashboardColumnLabels(array $names = null): array
+    public function getDashboardColumnLabels(?array $names = null): array
     {
         $labelsList = array_merge(parent::getDashboardColumnLabels($names), [
             self::AIRLINE_LOGO => Travelpayouts::__('Full airline logo'),

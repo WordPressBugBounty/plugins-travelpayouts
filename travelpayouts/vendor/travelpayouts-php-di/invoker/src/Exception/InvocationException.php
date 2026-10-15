@@ -1,11 +1,9 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Travelpayouts\Vendor\Invoker\Exception;
 
 /**
  * Impossible to invoke the callable.
- *
- * @author Matthieu Napoli <matthieu@mnapoli.fr>
  */
 class InvocationException extends \Exception
 {

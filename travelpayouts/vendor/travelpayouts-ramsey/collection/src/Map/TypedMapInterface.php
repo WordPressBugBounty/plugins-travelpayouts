@@ -19,7 +19,7 @@ namespace Travelpayouts\Vendor\Ramsey\Collection\Map;
  * typed.
  *
  * @template T
- * @template-extends MapInterface<T>
+ * @extends MapInterface<T>
  */
 interface TypedMapInterface extends MapInterface
 {

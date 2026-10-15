@@ -2,12 +2,12 @@
     "packages": [
         {
             "name": "symfony/polyfill-ctype",
-            "version": "1.x-dev",
-            "version_normalized": "1.9999999.9999999.9999999-dev",
+            "version": "v1.37.0",
+            "version_normalized": "1.37.0.0",
             "dist": {
                 "type": "path",
                 "url": "../library/symfony/polyfill-ctype",
-                "reference": "499b42c6f68634c35785c0e0b9ec507db2b6b8d6"
+                "reference": "9abe3a1cf33b1aefc5598d9c88bc0219382580ce"
             },
             "require": {
                 "php": ">=7.2"
@@ -63,12 +63,12 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "1.x-dev",
-            "version_normalized": "1.9999999.9999999.9999999-dev",
+            "version": "v1.38.2",
+            "version_normalized": "1.38.2.0",
             "dist": {
                 "type": "path",
                 "url": "../library/symfony/polyfill-mbstring",
-                "reference": "78d499bb1e2af4c9c85ae719e1a584fbfc7c4da2"
+                "reference": "c5b13d0fdb46d85a634207995f2bb920856d3a76"
             },
             "require": {
                 "ext-iconv": "*",
@@ -126,12 +126,12 @@
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "1.x-dev",
-            "version_normalized": "1.9999999.9999999.9999999-dev",
+            "version": "v1.37.0",
+            "version_normalized": "1.37.0.0",
             "dist": {
                 "type": "path",
                 "url": "../library/symfony/polyfill-php80",
-                "reference": "ddc10b706c8368fc3ac581cb01140e876ae12d4b"
+                "reference": "7f95c105ff27b1a641a45ca1cea7be80ed6c939b"
             },
             "require": {
                 "php": ">=7.2"
@@ -187,13 +187,71 @@
             "install-path": "../symfony/polyfill-php80"
         },
         {
+            "name": "symfony/polyfill-php81",
+            "version": "v1.38.1",
+            "version_normalized": "1.38.1.0",
+            "dist": {
+                "type": "path",
+                "url": "../library/symfony/polyfill-php81",
+                "reference": "bdd0d000dd2bd508aef90ab913ef41f31afd0210"
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "type": "library",
+            "extra": {
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php81\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ],
+                "classmap": [
+                    "Resources/stubs"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill backporting some PHP 8.1+ features to lower PHP versions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "transport-options": {
+                "symlink": false,
+                "relative": true
+            },
+            "install-path": "../symfony/polyfill-php81"
+        },
+        {
             "name": "travelpayouts-adbario/php-dot-notation",
-            "version": "2.x-dev",
-            "version_normalized": "2.9999999.9999999.9999999-dev",
+            "version": "2.5.0",
+            "version_normalized": "2.5.0.0",
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-adbario/php-dot-notation",
-                "reference": "cc40073b292a8ab8f489d43fc28fc8d42596d79e"
+                "reference": "2c7ad26619fb19c9123965fa257c230387eeb666"
             },
             "require": {
                 "ext-json": "*",
@@ -286,21 +344,21 @@
         },
         {
             "name": "travelpayouts-carbonphp/carbon-doctrine-types",
-            "version": "1.x-dev",
-            "version_normalized": "1.9999999.9999999.9999999-dev",
+            "version": "2.1.0",
+            "version_normalized": "2.1.0.0",
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-carbonphp/carbon-doctrine-types",
-                "reference": "ffa425808e909411a350211f8ff8e205a03f3bf9"
+                "reference": "2acd66c54e479effb6fa75cc01b286f59c570ec0"
             },
             "require": {
-                "php": "^7.1.8 || ^8.0"
+                "php": "^7.4 || ^8.0"
             },
             "conflict": {
-                "doctrine/dbal": ">=3.7.0"
+                "doctrine/dbal": "<3.7.0 || >=4.0.0"
             },
             "require-dev": {
-                "doctrine/dbal": ">=2.0.0",
+                "doctrine/dbal": "^3.7.0",
                 "nesbot/carbon": "^2.71.0 || ^3.0.0",
                 "phpunit/phpunit": "^10.3"
             },
@@ -336,17 +394,17 @@
         },
         {
             "name": "travelpayouts-doctrine/annotations",
-            "version": "1.14.x-dev",
-            "version_normalized": "1.14.9999999.9999999-dev",
+            "version": "1.14.4",
+            "version_normalized": "1.14.4.0",
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-doctrine/annotations",
-                "reference": "5ab2145f2833c60625d6a920d4f72de31e0ab1c8"
+                "reference": "70e9360b63c3c6d3ca1611ba674bb81c31690952"
             },
             "require": {
                 "ext-tokenizer": "*",
                 "php": "^7.1 || ^8.0",
-                "travelpayouts-doctrine/lexer": "2.1.x-dev",
+                "travelpayouts-doctrine/lexer": "2.1.1",
                 "travelpayouts-psr/cache": "1.0.1"
             },
             "require-dev": {
@@ -417,12 +475,12 @@
         },
         {
             "name": "travelpayouts-doctrine/deprecations",
-            "version": "1.2.x-dev",
-            "version_normalized": "1.2.9999999.9999999-dev",
+            "version": "1.1.6",
+            "version_normalized": "1.1.6.0",
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-doctrine/deprecations",
-                "reference": "0f33ac826861d18f73dfa2c6bead7b13117c583b"
+                "reference": "8127bb799835c0ca6bd9d0248bebbedab35ebd73"
             },
             "require": {
                 "php": "^7.1 || ^8.0"
@@ -466,16 +524,16 @@
         },
         {
             "name": "travelpayouts-doctrine/lexer",
-            "version": "2.1.x-dev",
-            "version_normalized": "2.1.9999999.9999999-dev",
+            "version": "2.1.1",
+            "version_normalized": "2.1.1.0",
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-doctrine/lexer",
-                "reference": "e06add14110d184c7c05d89564df395abbaf96c9"
+                "reference": "7819d38d70649eae5a321be29cf3bb159f82f054"
             },
             "require": {
                 "php": "^7.1 || ^8.0",
-                "travelpayouts-doctrine/deprecations": "1.2.x-dev"
+                "travelpayouts-doctrine/deprecations": "1.1.6"
             },
             "require-dev": {
                 "doctrine/coding-standard": "^9 || ^12",
@@ -642,6 +700,69 @@
             "install-path": "../travelpayouts-glook/yiigrid"
         },
         {
+            "name": "travelpayouts-laravel/serializable-closure",
+            "version": "v1.3.7",
+            "version_normalized": "1.3.7.0",
+            "dist": {
+                "type": "path",
+                "url": "../library/travelpayouts-laravel/serializable-closure",
+                "reference": "989f3005d90c7c786b72edfbf8e5fc4d3c89e4d6"
+            },
+            "require": {
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "illuminate/support": "^8.0|^9.0|^10.0|^11.0",
+                "nesbot/carbon": "^2.61|^3.0",
+                "pestphp/pest": "^1.21.3",
+                "phpstan/phpstan": "^1.8.2",
+                "symfony/var-dumper": "^5.4.11|^6.2.0|^7.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": []
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Travelpayouts\\Vendor\\Laravel\\SerializableClosure\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                },
+                {
+                    "name": "Nuno Maduro",
+                    "email": "nuno@laravel.com"
+                }
+            ],
+            "description": "Laravel Serializable Closure provides an easy and secure way to serialize closures in PHP.",
+            "keywords": [
+                "Serializable",
+                "closure",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/serializable-closure/issues",
+                "source": "https://github.com/laravel/serializable-closure"
+            },
+            "transport-options": {
+                "symlink": false,
+                "relative": true
+            },
+            "install-path": "../travelpayouts-laravel/serializable-closure"
+        },
+        {
             "name": "travelpayouts-league/plates",
             "version": "3.3.0",
             "version_normalized": "3.3.0.0",
@@ -700,21 +821,21 @@
         },
         {
             "name": "travelpayouts-nesbot/carbon",
-            "version": "2.x-dev",
-            "version_normalized": "2.9999999.9999999.9999999-dev",
+            "version": "2.73.0",
+            "version_normalized": "2.73.0.0",
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-nesbot/carbon",
-                "reference": "5a65fb8e46e146e930de803407b0218e2bb643b7"
+                "reference": "d195c9e29d25e4a03c9c3f991fcc95b7efd771cc"
             },
             "require": {
                 "ext-json": "*",
                 "php": "^7.1.8 || ^8.0",
-                "symfony/polyfill-mbstring": "1.x-dev",
-                "symfony/polyfill-php80": "1.x-dev",
-                "travelpayouts-carbonphp/carbon-doctrine-types": "1.x-dev",
+                "symfony/polyfill-mbstring": "v1.38.2",
+                "symfony/polyfill-php80": "v1.37.0",
+                "travelpayouts-carbonphp/carbon-doctrine-types": "2.1.0",
                 "travelpayouts-psr/clock": "1.0.0",
-                "travelpayouts-symfony/translation": "5.4.x-dev"
+                "travelpayouts-symfony/translation": "v5.4.45"
             },
             "provide": {
                 "psr/clock-implementation": "1.0"
@@ -889,83 +1010,22 @@
             "install-path": "../travelpayouts-nikic/fast-route"
         },
         {
-            "name": "travelpayouts-opis/closure",
-            "version": "3.x-dev",
-            "version_normalized": "3.9999999.9999999.9999999-dev",
-            "dist": {
-                "type": "path",
-                "url": "../library/travelpayouts-opis/closure",
-                "reference": "bbda4387365865966814d8a746e43b1d0bd6eac8"
-            },
-            "require": {
-                "php": "^5.4 || ^7.0 || ^8.0"
-            },
-            "require-dev": {
-                "jeremeamia/superclosure": "^2.0",
-                "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0 || ^8.0 || ^9.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": []
-            },
-            "installation-source": "dist",
-            "autoload": {
-                "psr-4": {
-                    "Travelpayouts\\Vendor\\Opis\\Closure\\": "src/"
-                },
-                "files": [
-                    "functions.php"
-                ]
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Opis\\Closure\\Test\\": "tests/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Marius Sarca",
-                    "email": "marius.sarca@gmail.com"
-                },
-                {
-                    "name": "Sorin Sarca",
-                    "email": "sarca_sorin@hotmail.com"
-                }
-            ],
-            "description": "A library that can be used to serialize closures (anonymous functions) and arbitrary objects.",
-            "homepage": "https://opis.io/closure",
-            "keywords": [
-                "anonymous functions",
-                "closure",
-                "function",
-                "serializable",
-                "serialization",
-                "serialize"
-            ],
-            "transport-options": {
-                "symlink": false,
-                "relative": true
-            },
-            "install-path": "../travelpayouts-opis/closure"
-        },
-        {
             "name": "travelpayouts-php-di/invoker",
-            "version": "2.0.0",
-            "version_normalized": "2.0.0.0",
+            "version": "2.3.7",
+            "version_normalized": "2.3.7.0",
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-php-di/invoker",
-                "reference": "47bc158c46773610767788b8c5b706b330f63037"
+                "reference": "8bd06a9d9151bfe4320de95c6fa351848bdce4ae"
             },
             "require": {
-                "travelpayouts-psr/container": "1.1.x-dev"
+                "php": ">=7.3",
+                "travelpayouts-psr/container": "1.1.2"
             },
             "require-dev": {
                 "athletic/athletic": "~0.1.8",
-                "phpunit/phpunit": "~4.5"
+                "mnapoli/hard-mode": "~0.3.0",
+                "phpunit/phpunit": "^9.0 || ^10 || ^11 || ^12"
             },
             "type": "library",
             "installation-source": "dist",
@@ -1000,30 +1060,30 @@
         },
         {
             "name": "travelpayouts-php-di/php-di",
-            "version": "6.3.5",
-            "version_normalized": "6.3.5.0",
+            "version": "6.4.0",
+            "version_normalized": "6.4.0.0",
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-php-di/php-di",
-                "reference": "4ee81465f4944071fa1c7c250714888cf0def06a"
+                "reference": "2ce00116ed8c25e678e074fc3591f6aa9c094686"
             },
             "require": {
-                "php": ">=7.2.0",
-                "travelpayouts-opis/closure": "3.x-dev",
-                "travelpayouts-php-di/invoker": "2.0.0",
+                "php": ">=7.4.0",
+                "travelpayouts-laravel/serializable-closure": "v1.3.7",
+                "travelpayouts-php-di/invoker": "2.3.7",
                 "travelpayouts-php-di/phpdoc-reader": "2.2.1",
-                "travelpayouts-psr/container": "1.1.x-dev"
+                "travelpayouts-psr/container": "1.1.2"
             },
             "provide": {
                 "psr/container-implementation": "^1.0"
             },
             "require-dev": {
-                "doctrine/annotations": "~1.2",
+                "doctrine/annotations": "~1.10",
                 "friendsofphp/php-cs-fixer": "^2.4",
                 "mnapoli/phpunit-easymock": "^1.2",
-                "ocramius/proxy-manager": "^2.0.2",
+                "ocramius/proxy-manager": "^2.11.2",
                 "phpstan/phpstan": "^0.12",
-                "phpunit/phpunit": "^8.5|^9.0"
+                "phpunit/phpunit": "^9.5"
             },
             "suggest": {
                 "doctrine/annotations": "Install it if you want to use annotations (version ~1.2)",
@@ -1206,15 +1266,15 @@
         },
         {
             "name": "travelpayouts-psr/container",
-            "version": "1.1.x-dev",
-            "version_normalized": "1.1.9999999.9999999-dev",
+            "version": "1.1.2",
+            "version_normalized": "1.1.2.0",
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-psr/container",
-                "reference": "1c1446609b87107ff3b204c86d650da37aa60c4b"
+                "reference": "2f4b923d8525acdc2a4b580a7c9901ea1584a3f1"
             },
             "require": {
-                "php": ">=7.2.0"
+                "php": ">=7.4.0"
             },
             "type": "library",
             "installation-source": "dist",
@@ -1293,35 +1353,48 @@
         },
         {
             "name": "travelpayouts-ramsey/collection",
-            "version": "1.1.4",
-            "version_normalized": "1.1.4.0",
+            "version": "1.3.0",
+            "version_normalized": "1.3.0.0",
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-ramsey/collection",
-                "reference": "39c5691f9fae42269d5f477c93e0896485ebf6eb"
+                "reference": "42bb9a581fd36b1b4943345b4d3c36a1651ed69f"
             },
             "require": {
-                "php": "^7.2 || ^8"
+                "php": "^7.4 || ^8.0",
+                "symfony/polyfill-php81": "v1.38.1"
             },
             "require-dev": {
-                "captainhook/captainhook": "^5.3",
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
-                "ergebnis/composer-normalize": "^2.6",
-                "fakerphp/faker": "^1.5",
-                "hamcrest/hamcrest-php": "^2",
-                "jangregor/phpstan-prophecy": "^0.8",
-                "mockery/mockery": "^1.3",
-                "phpstan/extension-installer": "^1",
-                "phpstan/phpstan": "^0.12.32",
-                "phpstan/phpstan-mockery": "^0.12.5",
-                "phpstan/phpstan-phpunit": "^0.12.11",
-                "phpunit/phpunit": "^8.5 || ^9",
-                "psy/psysh": "^0.10.4",
-                "slevomat/coding-standard": "^6.3",
-                "squizlabs/php_codesniffer": "^3.5",
-                "vimeo/psalm": "^4.4"
+                "captainhook/plugin-composer": "^5.3",
+                "ergebnis/composer-normalize": "^2.28.3",
+                "fakerphp/faker": "^1.21",
+                "hamcrest/hamcrest-php": "^2.0",
+                "jangregor/phpstan-prophecy": "^1.0",
+                "mockery/mockery": "^1.5",
+                "php-parallel-lint/php-console-highlighter": "^1.0",
+                "php-parallel-lint/php-parallel-lint": "^1.3",
+                "phpcsstandards/phpcsutils": "^1.0.0-rc1",
+                "phpspec/prophecy-phpunit": "^2.0",
+                "phpstan/extension-installer": "^1.2",
+                "phpstan/phpstan": "^1.9",
+                "phpstan/phpstan-mockery": "^1.1",
+                "phpstan/phpstan-phpunit": "^1.3",
+                "phpunit/phpunit": "^9.5",
+                "psalm/plugin-mockery": "^1.1",
+                "psalm/plugin-phpunit": "^0.18.4",
+                "ramsey/coding-standard": "^2.0.3",
+                "ramsey/conventional-commits": "^1.3",
+                "vimeo/psalm": "^5.4"
             },
             "type": "library",
+            "extra": {
+                "captainhook": {
+                    "force-install": true
+                },
+                "ramsey/conventional-commits": {
+                    "configFile": "conventional-commits.json"
+                }
+            },
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
@@ -1330,63 +1403,56 @@
             },
             "autoload-dev": {
                 "psr-4": {
-                    "Ramsey\\Console\\": "resources/console/",
-                    "Ramsey\\Collection\\Test\\": "tests/"
+                    "Ramsey\\Collection\\Test\\": "tests/",
+                    "Ramsey\\Test\\Generics\\": "tests/generics/"
                 },
                 "files": [
                     "vendor/hamcrest/hamcrest-php/hamcrest/Hamcrest.php"
                 ]
             },
             "scripts": {
-                "post-autoload-dump": [
-                    "captainhook install --ansi -f -s"
+                "dev:analyze": [
+                    "@dev:analyze:phpstan",
+                    "@dev:analyze:psalm"
                 ],
-                "br:analyze": [
-                    "@br:analyze:phpstan",
-                    "@br:analyze:psalm"
+                "dev:analyze:phpstan": [
+                    "phpstan analyse --ansi --memory-limit=1G"
                 ],
-                "br:analyze:phpstan": [
-                    "phpstan --memory-limit=1G analyse"
+                "dev:analyze:psalm": [
+                    "psalm"
                 ],
-                "br:analyze:psalm": [
-                    "psalm --diff --config=psalm.xml"
+                "dev:build:clean": [
+                    "git clean -fX build/"
                 ],
-                "br:build:clean": [
-                    "git clean -fX build/."
+                "dev:lint": [
+                    "@dev:lint:syntax",
+                    "@dev:lint:style"
                 ],
-                "br:build:clear-cache": [
-                    "git clean -fX build/cache/."
+                "dev:lint:fix": [
+                    "phpcbf"
                 ],
-                "br:lint": [
-                    "phpcs --cache=build/cache/phpcs.cache"
+                "dev:lint:style": [
+                    "phpcs --colors"
                 ],
-                "br:lint:fix": [
-                    "./bin/lint-fix.sh"
+                "dev:lint:syntax": [
+                    "parallel-lint --colors src/ tests/"
                 ],
-                "br:repl": [
-                    "echo ; echo 'Type ./bin/repl to start the REPL.'"
+                "dev:test": [
+                    "@dev:lint",
+                    "@dev:analyze",
+                    "@dev:test:unit"
                 ],
-                "br:test": [
-                    "phpunit"
+                "dev:test:coverage:ci": [
+                    "phpunit --colors=always --coverage-text --coverage-clover build/coverage/clover.xml --coverage-cobertura build/coverage/cobertura.xml --coverage-crap4j build/coverage/crap4j.xml --coverage-xml build/coverage/coverage-xml --log-junit build/junit.xml"
                 ],
-                "br:test:all": [
-                    "@br:lint",
-                    "@br:analyze",
-                    "@br:test"
+                "dev:test:coverage:html": [
+                    "phpunit --colors=always --coverage-html build/coverage/coverage-html/"
                 ],
-                "br:test:coverage:ci": [
-                    "phpunit --coverage-clover build/logs/clover.xml"
-                ],
-                "br:test:coverage:html": [
-                    "phpunit --coverage-html build/coverage"
-                ],
-                "pre-commit": [
-                    "@br:lint:fix",
-                    "@br:lint",
-                    "@br:analyze"
+                "dev:test:unit": [
+                    "phpunit --colors=always"
                 ],
                 "test": [
-                    "@br:test:all"
+                    "@dev:test"
                 ]
             },
             "license": [
@@ -1399,7 +1465,7 @@
                     "homepage": "https://benramsey.com"
                 }
             ],
-            "description": "A PHP 7.2+ library for representing and manipulating collections.",
+            "description": "A PHP library for representing and manipulating collections.",
             "keywords": [
                 "array",
                 "collection",
@@ -1421,15 +1487,15 @@
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-ramsey/uuid",
-                "reference": "287a0945db59ae63da298c72aec3f61fdd935d9b"
+                "reference": "935f63358f8ee2d28b7d17728c825fa761f0e018"
             },
             "require": {
                 "ext-json": "*",
                 "php": "^7.2 || ^8.0",
-                "symfony/polyfill-ctype": "1.x-dev",
-                "symfony/polyfill-php80": "1.x-dev",
+                "symfony/polyfill-ctype": "v1.37.0",
+                "symfony/polyfill-php80": "v1.37.0",
                 "travelpayouts-brick/math": "0.9.3",
-                "travelpayouts-ramsey/collection": "1.1.4"
+                "travelpayouts-ramsey/collection": "1.3.0"
             },
             "replace": {
                 "rhumsaa/uuid": "self.version"
@@ -1600,12 +1666,12 @@
         },
         {
             "name": "travelpayouts-symfony/deprecation-contracts",
-            "version": "2.5.x-dev",
-            "version_normalized": "2.5.9999999.9999999-dev",
+            "version": "v2.5.4",
+            "version_normalized": "2.5.4.0",
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-symfony/deprecation-contracts",
-                "reference": "79dacd362ae86214f3bf3e3751e3d4e6164ed6ff"
+                "reference": "6a39a826309108e36ace237bb2ee06ecfa792cb6"
             },
             "require": {
                 "php": ">=7.1"
@@ -1649,19 +1715,19 @@
         },
         {
             "name": "travelpayouts-symfony/translation",
-            "version": "5.4.x-dev",
-            "version_normalized": "5.4.9999999.9999999-dev",
+            "version": "v5.4.45",
+            "version_normalized": "5.4.45.0",
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-symfony/translation",
-                "reference": "3a2009c8128674de75b5acdcf27eb8c7c9dab99a"
+                "reference": "a1dadf61fbfc0bd6d40df2795a0888946d9a52cc"
             },
             "require": {
                 "php": ">=7.2.5",
-                "symfony/polyfill-mbstring": "1.x-dev",
-                "symfony/polyfill-php80": "1.x-dev",
-                "travelpayouts-symfony/deprecation-contracts": "2.5.x-dev",
-                "travelpayouts-symfony/translation-contracts": "2.5.x-dev"
+                "symfony/polyfill-mbstring": "v1.38.2",
+                "symfony/polyfill-php80": "v1.37.0",
+                "travelpayouts-symfony/deprecation-contracts": "v2.5.4",
+                "travelpayouts-symfony/translation-contracts": "v2.5.4"
             },
             "conflict": {
                 "symfony/config": "<4.4",
@@ -1728,12 +1794,12 @@
         },
         {
             "name": "travelpayouts-symfony/translation-contracts",
-            "version": "2.5.x-dev",
-            "version_normalized": "2.5.9999999.9999999-dev",
+            "version": "v2.5.4",
+            "version_normalized": "2.5.4.0",
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-symfony/translation-contracts",
-                "reference": "6384f932b0bb476176b82f9d27538e3f9183784e"
+                "reference": "ee3b293386a9a2ab49babdb1ad0b4dd8f90c5b5f"
             },
             "require": {
                 "php": ">=7.2.5"
@@ -1788,17 +1854,17 @@
         },
         {
             "name": "travelpayouts-symfony/yaml",
-            "version": "5.4.x-dev",
-            "version_normalized": "5.4.9999999.9999999-dev",
+            "version": "v5.4.53",
+            "version_normalized": "5.4.53.0",
             "dist": {
                 "type": "path",
                 "url": "../library/travelpayouts-symfony/yaml",
-                "reference": "87cf86d5101c4b1c8394ee174079d0c869521749"
+                "reference": "0f5bef3a5300810e475405b689bc011b92420354"
             },
             "require": {
                 "php": ">=7.2.5",
-                "symfony/polyfill-ctype": "1.x-dev",
-                "travelpayouts-symfony/deprecation-contracts": "2.5.x-dev"
+                "symfony/polyfill-ctype": "v1.37.0",
+                "travelpayouts-symfony/deprecation-contracts": "v2.5.4"
             },
             "conflict": {
                 "symfony/console": "<5.3"

@@ -4,14 +4,14 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit9c458fdce8032198d3f575ca3cebac8e
+class ComposerStaticInit9dbf72111e5b295e908ad8b44497028a
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '23c18046f52bef3eea034657bafda50f' => __DIR__ . '/..' . '/symfony/polyfill-php81/bootstrap.php',
         'ef20aed265ec04260cf44d195a22f6aa' => __DIR__ . '/..' . '/travelpayouts-symfony/deprecation-contracts/function.php',
-        'f1f0f948afd3959c2732a662e749bce5' => __DIR__ . '/..' . '/travelpayouts-opis/closure/functions.php',
         'f184a8857d8611567e805c3e5a2e99f9' => __DIR__ . '/..' . '/travelpayouts-ramsey/uuid/src/functions.php',
         'ddd0018b52c21a5c0f1b146c965db6a0' => __DIR__ . '/..' . '/travelpayouts-symfony/translation/Resources/functions.php',
         '705ac3e6269c586f00b1edc70c01e836' => __DIR__ . '/..' . '/travelpayouts-adbario/php-dot-notation/src/helpers.php',
@@ -36,8 +36,8 @@ class ComposerStaticInit9c458fdce8032198d3f575ca3cebac8e
             'Travelpayouts\\Vendor\\Psr\\Clock\\' => 31,
             'Travelpayouts\\Vendor\\Psr\\Cache\\' => 31,
             'Travelpayouts\\Vendor\\PhpDocReader\\' => 34,
-            'Travelpayouts\\Vendor\\Opis\\Closure\\' => 34,
             'Travelpayouts\\Vendor\\League\\Plates\\' => 35,
+            'Travelpayouts\\Vendor\\Laravel\\SerializableClosure\\' => 49,
             'Travelpayouts\\Vendor\\Invoker\\' => 29,
             'Travelpayouts\\Vendor\\Glook\\YiiGrid\\' => 35,
             'Travelpayouts\\Vendor\\FastRoute\\' => 31,
@@ -53,6 +53,7 @@ class ComposerStaticInit9c458fdce8032198d3f575ca3cebac8e
         ),
         'S' =>
         array (
+            'Symfony\\Polyfill\\Php81\\' => 23,
             'Symfony\\Polyfill\\Php80\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
@@ -108,13 +109,13 @@ class ComposerStaticInit9c458fdce8032198d3f575ca3cebac8e
         array (
             0 => __DIR__ . '/..' . '/travelpayouts-php-di/phpdoc-reader/src/PhpDocReader',
         ),
-        'Travelpayouts\\Vendor\\Opis\\Closure\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/travelpayouts-opis/closure/src',
-        ),
         'Travelpayouts\\Vendor\\League\\Plates\\' =>
         array (
             0 => __DIR__ . '/..' . '/travelpayouts-league/plates/src',
+        ),
+        'Travelpayouts\\Vendor\\Laravel\\SerializableClosure\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/travelpayouts-laravel/serializable-closure/src',
         ),
         'Travelpayouts\\Vendor\\Invoker\\' =>
         array (
@@ -164,6 +165,10 @@ class ComposerStaticInit9c458fdce8032198d3f575ca3cebac8e
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
+        'Symfony\\Polyfill\\Php81\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php81',
+        ),
         'Symfony\\Polyfill\\Php80\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
@@ -180,8 +185,10 @@ class ComposerStaticInit9c458fdce8032198d3f575ca3cebac8e
 
     public static $classMap = array (
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
+        'CURLStringFile' => __DIR__ . '/..' . '/symfony/polyfill-php81/Resources/stubs/CURLStringFile.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
+        'ReturnTypeWillChange' => __DIR__ . '/..' . '/symfony/polyfill-php81/Resources/stubs/ReturnTypeWillChange.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
@@ -190,9 +197,9 @@ class ComposerStaticInit9c458fdce8032198d3f575ca3cebac8e
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit9c458fdce8032198d3f575ca3cebac8e::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit9c458fdce8032198d3f575ca3cebac8e::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit9c458fdce8032198d3f575ca3cebac8e::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit9dbf72111e5b295e908ad8b44497028a::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit9dbf72111e5b295e908ad8b44497028a::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit9dbf72111e5b295e908ad8b44497028a::$classMap;
 
         }, null, ClassLoader::class);
     }

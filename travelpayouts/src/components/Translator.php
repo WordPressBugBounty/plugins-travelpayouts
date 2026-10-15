@@ -212,7 +212,7 @@ class Translator extends BaseInjectedObject
      * @param string|null $locale
      * @return bool
      */
-    public function hasTranslation(string $id, string $domain = null, string $locale = null): bool
+    public function hasTranslation(string $id, ?string $domain = null, ?string $locale = null): bool
     {
         if ($locale) {
             $this->loadLocale($locale);

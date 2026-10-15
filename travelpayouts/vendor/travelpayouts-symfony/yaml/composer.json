@@ -17,8 +17,8 @@
     ],
     "require": {
         "php": ">=7.2.5",
-        "travelpayouts-symfony/deprecation-contracts": "2.5.x-dev",
-        "symfony/polyfill-ctype": "1.x-dev"
+        "travelpayouts-symfony/deprecation-contracts": "v2.5.4",
+        "symfony/polyfill-ctype": "v1.37.0"
     },
     "require-dev": {
         "symfony/console": "^5.3|^6.0"
@@ -41,5 +41,5 @@
         "Resources/bin/yaml-lint"
     ],
     "minimum-stability": "dev",
-    "version": "5.4.x-dev"
+    "version": "v5.4.53"
 }

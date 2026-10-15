@@ -2,8 +2,10 @@
 
 /**
  * This file is part of the ramsey/uuid library
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
+ *
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
@@ -23,6 +25,7 @@ use Traversable;
 
 /**
  * A collection of UuidBuilderInterface objects
+ *
  * @extends AbstractCollection<UuidBuilderInterface>
  */
 class BuilderCollection extends AbstractCollection
@@ -44,8 +47,10 @@ class BuilderCollection extends AbstractCollection
 
     /**
      * Re-constructs the object from its serialized form
+     *
      * @param string $serialized The serialized PHP string to unserialize into
      *     a UuidInterface instance
+     *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      * @psalm-suppress RedundantConditionGivenDocblockType
      */
@@ -71,15 +76,4 @@ class BuilderCollection extends AbstractCollection
             }
         );
     }
-
-    public function __serialize()
-    {
-        return $this->serialize();
-    }
-
-    public function __unserialize($data)
-    {
-        $this->unserialize($data);
-    }
-
 }

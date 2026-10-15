@@ -20,7 +20,7 @@ namespace Travelpayouts\Vendor\Ramsey\Collection;
  * this specific type of collection.
  *
  * @template T
- * @template-extends AbstractCollection<T>
+ * @extends AbstractCollection<T>
  */
 abstract class AbstractSet extends AbstractCollection
 {
